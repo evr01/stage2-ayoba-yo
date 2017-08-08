@@ -36,7 +36,9 @@
 
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
   {{ 'foundation.scss' | asset_url | stylesheet_tag }}
+  {{ 'ayoba.scss' | asset_url | stylesheet_tag }}
   {% include 'google-fonts' %}
+  {{ "font.css"  | asset_url | stylesheet_tag }}
 
     {{ 'modernizr.min.js' | asset_url | script_tag }}
     
@@ -111,8 +113,17 @@
     {% section 'footer' %}
 
   </div>
-  <script>
+    <script>
       $(document).foundation();
+    </script>
+    <script>
+      $(function() {
+        $('.search')
+          .bind('click', function(event) {
+            $(".search-drop").toggleClass("expand-search");
+            $(".search-drop").focus();
+          })
+      }); 
     </script>
 </body>
 </html>

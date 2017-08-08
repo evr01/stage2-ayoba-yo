@@ -1,0 +1,97 @@
+/* Default Colors 
+      $black: #231F20;
+      $red: #ED1C24;
+      $white: #FAFAFA; 
+*/
+
+body{
+  font-family: 'futura_ltcn_btlight'; 
+  font-weight: normal;
+}
+h1, .h1, .logo-font a{
+  font-family: 'intro_rust_gbase_2_line'; 
+  text-transform: uppercase;
+}
+.text-logo{
+  font-size: 1em;
+  font-family: 'intro_rust_gbase_2_line'; 
+}
+h2, .h2{
+  font-family: 'festivo_lcbasic_r_line'; 
+  text-transform: uppercase;
+}
+
+
+
+
+
+header .main-nav a{
+  color: #fafafa !important;
+}
+.dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
+    border-color: #fafafa transparent transparent;
+}
+
+///Navigation
+$topbar-center-logo-bg: #2c3840;
+
+.topbar-center-logo {
+  background: $topbar-center-logo-bg;
+
+  .menu {
+    background: $topbar-center-logo-bg;
+
+    a {
+      color: $white;
+    }
+  }
+}
+
+.topbar-center-logo .top-bar-center {
+  flex: 1 0 auto;
+
+  @include breakpoint(small only) {
+    display: none;
+  }
+}
+
+.topbar-center-logo-mobile {
+  background: $topbar-center-logo-bg;
+
+  .menu-icon {
+    vertical-align: text-top;
+  }
+}
+@media screen and (min-width: 640px) {
+  .topbar-center-logo .top-bar-center {
+  flex: none;
+
+  @include breakpoint(small only) {
+    display: none;
+  }
+}
+}
+//Search Bar
+.searchbar {
+  margin: 1rem;
+  display: inline-block !important;
+}
+.search-drop{
+  display: none;
+  transition: all 0.5s ease;
+}
+
+
+.expand-search {
+  height: 6em;
+  display: block;
+}
+
+svg {
+  width: 20px;
+  height: 20px;
+}
+
+
+
+

@@ -4936,7 +4936,7 @@ a.thumbnail {
       flex-wrap: wrap; }
   .top-bar,
   .top-bar ul {
-    background-color: #e6e6e6; }
+    background-color: #231F20; }
   .top-bar input {
     max-width: 200px;
     margin-right: 1rem; }
@@ -5606,46 +5606,3 @@ a.thumbnail {
 
 .long-delay {
   animation-delay: 700ms !important; }
-
-
-
-///
-$topbar-center-logo-bg: #2c3840;
-
-.topbar-center-logo {
-  background: $topbar-center-logo-bg;
-
-  .menu {
-    background: $topbar-center-logo-bg;
-
-    a {
-      color: $white;
-    }
-  }
-}
-
-.topbar-center-logo .top-bar-center {
-  flex: 1 0 auto;
-
-  @include breakpoint(small only) {
-    display: none;
-  }
-}
-
-.topbar-center-logo-mobile {
-  background: $topbar-center-logo-bg;
-
-  .menu-icon {
-    vertical-align: text-top;
-  }
-}
-@media screen and (min-width: 640px) {
-  .topbar-center-logo .top-bar-center {
-  flex: none;
-
-  @include breakpoint(small only) {
-    display: none;
-  }
-}
-}
-
