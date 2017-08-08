@@ -1,44 +1,239 @@
-<!-- mobile nav bar -->
-<div class="title-bar topbar-center-logo-mobile" data-responsive-toggle="topbar-center-logo" data-hide-for="medium">
-  <div class="title-bar-left">
-    <button class="menu-icon" type="button" data-toggle="topbar-center-logo"></button>
-  </div>
-  <div class="top-bar-center">
-    <div class="title-bar-title"><img src="http://placehold.it/100x39" alt="" /></div>
-  </div>
-  <div class="title-bar-right">
-    <span class="title-bar-text">Actions</span>
-    <span class="title-bar-text"><a href="#"><i class="fa fa-home title-bar-logo"></i></a></span>
-  </div>
-</div>
-<!-- /mobile nav bar -->
+<nav role="navigation">
+  <!-- mobile nav bar -->
+  <div class="title-bar topbar-center-logo-mobile" data-responsive-toggle="topbar-center-logo" data-hide-for="medium">
+    <div class="title-bar-left">
+      <button class="menu-icon" type="button" data-toggle="topbar-center-logo"></button>
+    </div>
+    <div class="top-bar-center">
+      <div class="title-bar-title">
+      <div class="h2 site-header__logo" itemscope itemtype="http://schema.org/Organization">
+          {% if section.settings.logo %}
+            <a href="/" itemprop="url" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
+              {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
+              <img src="{{ section.settings.logo | img_url: image_size }}"
+                   srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                   alt="{{ section.settings.logo.alt | default: shop.name }}"
+                   itemprop="logo">
+            </a>
+          {% else %}
+            <a class="site-header__logo-link" href="/" itemprop="url">{{ shop.name }}</a>
+          {% endif %}
+      </div>
+      </div>
+    </div>
+    <div class="title-bar-right">
 
-<!-- medium and larger nav bar -->
-<div class="top-bar topbar-center-logo" id="topbar-center-logo">
-  <div class="top-bar-left show-for-medium">
-    <a href="#"><img src="http://placehold.it/100x39" alt="" /></a> 
-  </div>
-  <div class="top-bar-center">
-    <ul class="dropdown menu vertical medium-horizontal" data-responsive-menu="accordion medium-dropdown">
-      <li class="has-submenu">
-        <a href="#">One</a>
-          <ul class="submenu menu vertical nested" data-submenu>
-            <li><a href="#">Item 1A</a></li>
-            <li><a href="#">Item 2B</a></li>
-          </ul>
-      </li>
-      <li><a href="#">Two</a></li>
-      <li><a href="#">Three</a></li>
-      <li><a href="#">Four</a></li>
-    </ul>
-  </div>
-  <div class="top-bar-right">
-    <ul class="menu vertical medium-horizontal">
-      <li><a href="#">Five</a></li>
-      <li><a href="#">Six</a></li>
-      <li><a href="#">Seven</a></li>
-    </ul>
-  </div>
-</div>
-<!-- /medium and larger nav bar -->
 
+      
+        <div class="site-header__icons-wrapper">
+          {% if section.settings.align_logo == 'left' %}
+            <div class="site-header__search small--hide">
+              {% include 'search-form' %}
+            </div>
+          {% endif %}
+
+          <button type="button" class="">
+            {% include 'icon-search' %}
+            <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+          </button>
+
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+              <a href="/account" class="site-header__account">
+                {% include 'icon-login' %}
+                <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
+              </a>
+            {% else %}
+              <a href="/account/login" class="site-header__account">
+                {% include 'icon-login' %}
+                <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
+              </a>
+            {% endif %}
+          {% endif %}
+
+          <a href="/cart" class="site-header__cart">
+            {% include 'icon-cart' %}
+            <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
+            <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+            {% if cart.item_count > 0 %}
+              <div id="CartCount" class="site-header__cart-count">
+                <span>{{ cart.item_count }}</span>
+                <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
+              </div>
+            {% endif %}
+          </a>
+        </div>
+
+     
+
+
+
+
+    </div>
+  </div>
+  <!-- /mobile nav bar -->
+
+  <!-- medium and larger nav bar -->
+  <div class="top-bar topbar-center-logo" id="topbar-center-logo">
+    <div class="top-bar-left show-for-medium">
+
+
+  
+     
+      <div class="h2 site-header__logo" itemscope itemtype="http://schema.org/Organization">
+          {% if section.settings.logo %}
+            <a href="/" itemprop="url" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
+              {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
+              <img src="{{ section.settings.logo | img_url: image_size }}"
+                   srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                   alt="{{ section.settings.logo.alt | default: shop.name }}"
+                   itemprop="logo">
+            </a>
+          {% else %}
+            <a class="site-header__logo-link" href="/" itemprop="url">{{ shop.name }}</a>
+          {% endif %}
+      </div>
+
+
+    </div>
+    <div class="top-bar-center">
+      <ul class="dropdown menu vertical medium-horizontal" data-responsive-menu="accordion medium-dropdown">
+
+      {% for link in linklists[section.settings.main_linklist].links %}
+        {%- assign child_list_handle = link.title | handleize -%}
+
+        {% if linklists[child_list_handle].links != blank %}
+        <li class="has-submenu">
+          <a href="{{ link.url }}" aria-has-popup="true" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">{{ link.title }}</a>
+              <ul class="submenu menu vertical nested" data-submenu>
+                {% for childlink in linklists[child_list_handle].links %}
+                <li {% if childlink.active %}class="site-nav--active"{% endif %}><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+                {% endfor %}
+              </ul>
+            
+            
+        </li>
+        {% else %}
+        <li {% if link.active %}class="site-nav--active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="top-bar-right show-for-medium site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %}">
+       <div class="site-header__icons-wrapper">
+         <!-- {% if section.settings.align_logo == 'left' %}
+            <div class="site-header__search small--hide">
+              {% include 'search-form' %}
+            </div>
+          {% endif %}-->
+
+          <button type="button" class="">
+            {% include 'icon-search' %}
+            <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+          </button>
+
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+              <a href="/account" class="site-header__account">
+                {% include 'icon-login' %}
+                <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
+              </a>
+            {% else %}
+              <a href="/account/login" class="site-header__account">
+                {% include 'icon-login' %}
+                <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
+              </a>
+            {% endif %}
+          {% endif %}
+
+          <a href="/cart" class="site-header__cart">
+            {% include 'icon-cart' %}
+            <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
+            <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+            {% if cart.item_count > 0 %}
+              <div id="CartCount" class="site-header__cart-count">
+                <span>{{ cart.item_count }}</span>
+                <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
+              </div>
+            {% endif %}
+          </a>
+        </div>
+    </div>
+  </div>
+  <!-- /medium and larger nav bar -->
+</nav>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "align_logo",
+        "label": "Logo alignment",
+        "default": "left",
+        "options": [
+          {"value": "left", "label": "Left"},
+          {"value": "center", "label": "Centered"}
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "text",
+        "id": "logo_max_width",
+        "label": "Custom logo width (in pixels)",
+        "default": "100"
+      },
+      {
+        "type": "link_list",
+        "id": "main_linklist",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "header",
+        "content": "Announcement bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "message",
+        "label": "Show announcement",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "home_page_only",
+        "label": "Home page only",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "message_text",
+        "label": "Announcement text",
+        "default": "Announce something here"
+      },
+      {
+        "type": "url",
+        "id": "message_link",
+        "label": "Announcement link",
+        "info": "Optional"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Bar color",
+        "default": "#7796A8"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text color",
+        "default": "#fff"
+      }
+    ]
+  }
+{% endschema %}

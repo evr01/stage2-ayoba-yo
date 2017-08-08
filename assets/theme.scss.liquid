@@ -3646,14 +3646,16 @@ h1.product-single__title {
 
 .site-header__icons-wrapper {
   position: relative;
-  margin-right: -10px;
+  margin-right: 1em;
 }
 
 .site-header__cart,
 .site-header__search,
 .site-header__account {
   position: relative;
+  padding: 1em;
 }
+
 
 .site-header__search {
   padding-right: 45px;
@@ -3666,10 +3668,7 @@ h1.product-single__title {
 @include media-query($medium-up) {
   .site-header__cart,
   .site-header__account {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    padding: 8px 0;
+   
     @include transform(translateY(-50%));
   }
 
