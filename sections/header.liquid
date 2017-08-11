@@ -1,5 +1,5 @@
-<header>
-  <nav class="main-nav" role="navigation">
+<header data-sticky-container>
+  <div class="main-nav" role="navigation" data-sticky data-options="anchor: page; marginTop: 0; stickyOn: small;">
     <!-- mobile nav bar -->
     <div class="title-bar topbar-center-logo-mobile" data-responsive-toggle="topbar-center-logo" data-hide-for="medium">
       <div class="title-bar-left">
@@ -9,7 +9,7 @@
         <div class="title-bar-title">
           <div class="logo-font" itemscope itemtype="http://schema.org/Organization">
               {% if section.settings.logo %}
-                <a href="/" itemprop="url" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
+                <a href="/" itemprop="url">
                   {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
                   <img src="{{ section.settings.logo | img_url: image_size }}"
                        srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
@@ -23,23 +23,22 @@
         </div>
       </div>
       <div class="title-bar-right">
-          <div class="site-header__icons-wrapper">
+          <div>
             {% if shop.customer_accounts_enabled %}
               {% if customer %}
-                <a href="/account" class="site-header__account">
-                  {% include 'icon-login' %}
+                <a href="/account" class="icon-padding">
+                  <i class="fi-torso"></i>
                   <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
                 </a>
               {% else %}
-                <a href="/account/login" class="site-header__account">
-                  {% include 'icon-login' %}
+                <a href="/account/login" class="icon-padding">
+                  <i class="fi-torso"></i>
                   <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
                 </a>
               {% endif %}
             {% endif %}
-
-            <a href="/cart" class="site-header__cart">
-              {% include 'icon-cart' %}
+            <a href="/cart" class="icon-padding">
+              <i class="fi-shopping-cart"></i>
               <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
               <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
               {% if cart.item_count > 0 %}
@@ -49,9 +48,9 @@
                 </div>
               {% endif %}
             </a>
-            <button type="button" class="search searchbar">
-              {% include 'icon-search' %}
-              <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+              <button type="button" class="search searchbar icon-padding">
+                <i class="fi-magnifying-glass"></i>
+                <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
             </button>
           </div>
       </div>
@@ -59,95 +58,98 @@
     <!-- /mobile nav bar -->
 
     <!-- medium and larger nav bar -->
-    <div class="top-bar topbar-center-logo" id="topbar-center-logo">
-      <div class="top-bar-left show-for-medium">
-
-
     
-       
-        <div class="logo-font" itemscope itemtype="http://schema.org/Organization">
-            {% if section.settings.logo %}
-              <a href="/" itemprop="url">
-                {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
-                <img src="{{ section.settings.logo | img_url: image_size }}"
-                     srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-                     alt="{{ section.settings.logo.alt | default: shop.name }}"
-                     itemprop="logo">
-              </a>
-            {% else %}
-              <a class="text-logo" href="/" itemprop="url">{{ shop.name }}</a>
-            {% endif %}
-        </div>
-
-
-      </div>
-      <div class="top-bar-center">
-        <ul class="dropdown menu vertical medium-horizontal" data-responsive-menu="accordion medium-dropdown">
-
-        {% for link in linklists[section.settings.main_linklist].links %}
-          {%- assign child_list_handle = link.title | handleize -%}
-
-          {% if linklists[child_list_handle].links != blank %}
-          <li class="has-submenu">
-            <a href="{{ link.url }}" aria-has-popup="true" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">{{ link.title }}</a>
-                <ul class="submenu menu vertical nested" data-submenu>
-                  {% for childlink in linklists[child_list_handle].links %}
-                  <li {% if childlink.active %}class="site-nav--active"{% endif %}><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
-                  {% endfor %}
-                </ul>
-              
-              
-          </li>
-          {% else %}
-          <li {% if link.active %}class="site-nav--active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="top-bar-right show-for-medium site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %}">
-         <div class="site-header__icons-wrapper">
-            {% if shop.customer_accounts_enabled %}
-              {% if customer %}
-                <a href="/account" class="site-header__account">
-                  {% include 'icon-login' %}
-                  <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
+      <div class="top-bar topbar-center-logo" id="topbar-center-logo">
+        <div class="top-bar-left hide-for-small-only">
+          <div class="logo-font" itemscope itemtype="http://schema.org/Organization">
+              {% if section.settings.logo %}
+                <a class="clearfix" href="/" itemprop="url">
+                  {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
+                  <img src="{{ section.settings.logo | img_url: image_size }}"
+                       srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                       alt="{{ section.settings.logo.alt | default: shop.name }}"
+                       itemprop="logo">
                 </a>
               {% else %}
-                <a href="/account/login" class="site-header__account">
-                  {% include 'icon-login' %}
-                  <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
-                </a>
+                <a class="text-logo" href="/" itemprop="url">{{ shop.name }}</a>
               {% endif %}
-            {% endif %}
-
-            <a href="/cart" class="site-header__cart">
-              {% include 'icon-cart' %}
-              <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
-              <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
-              {% if cart.item_count > 0 %}
-                <div id="CartCount" class="site-header__cart-count">
-                  <span>{{ cart.item_count }}</span>
-                  <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
-                </div>
-              {% endif %}
-            </a>
-
-            <button type="button" class="search searchbar">
-              {% include 'icon-search' %}
-              <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
-            </button>
           </div>
-      </div>
+        </div>
+        <div class="nav-link-container">
+          <nav>
+            <ul class="dropdown menu vertical medium-horizontal" data-responsive-menu="accordion medium-dropdown">
+
+            {% for link in linklists[section.settings.main_linklist].links %}
+              {%- assign child_list_handle = link.title | handleize -%}
+
+              {% if linklists[child_list_handle].links != blank %}
+              <li class="has-submenu">
+                <a href="{{ link.url }}" aria-has-popup="true" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">{{ link.title }}</a>
+                    <ul class="submenu menu vertical nested" data-submenu>
+                      {% for childlink in linklists[child_list_handle].links %}
+                      <li {% if childlink.active %}class="site-nav--active"{% endif %}><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
+                      {% endfor %}
+                    </ul>      
+              </li>
+              {% else %}
+              <li {% if link.active %}class="site-nav--active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </nav>
+          
+        </div>
+        <div class="top-bar-right hide-for-small-only">
+           <div class="login-icons">
+              {% if shop.customer_accounts_enabled %}
+                {% if customer %}
+                  <a href="/account" class="icon-padding">
+                    <i class="fi-torso"></i>
+                    <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
+                  </a>
+                {% else %}
+                  <a href="/account/login" class="icon-padding">
+                    <i class="fi-torso"></i>
+                    <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
+                  </a>
+                {% endif %}
+              {% endif %}
+              <a href="/cart" class="icon-padding">
+                <i class="fi-shopping-cart"></i>
+                <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
+                <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+                {% if cart.item_count > 0 %}
+                  <div id="CartCount" class="site-header__cart-count">
+                    <span>{{ cart.item_count }}</span>
+                    <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
+                  </div>
+                {% endif %}
+              </a>
+              <button type="button" class="search searchbar icon-padding">
+                  <i class="fi-magnifying-glass"></i>
+                  <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+              </button>
+            </div>
+        </div>
     </div>
     <!-- /medium and larger nav bar -->
-     <form class="search-drop" action="/search">
-        <input class="search-field" type="search" placeholder="Search" name="q" value="{{ search.terms | escape }}"  />
-        <input type="submit" value="Search" />
-    </form>
-  </nav>
+      <form class="search-drop" action="/search">
+        <div class="grid-container">
+          <div class="grid-x grid-margin-x">
+            <div class="cell auto">
+              <input class="search-field" placeholder="Search" name="q" value="{{ search.terms | escape }}"  />
+            </div>
+            <div class="cell small-2 align-center">
+              <input class="search-btn" type="submit" value="Search" />
+            </div>
+          </div>
+        </div>
+      </form>
+    
+  </div>
 </header>
 
-
+<!--For Wian to edit within Shopify GUI -->
 {% schema %}
   {
     "name": "Header",

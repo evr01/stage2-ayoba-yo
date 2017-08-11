@@ -4,9 +4,25 @@
       $white: #FAFAFA; 
 */
 
+/* DEFAULT STYLES*/
+.vert-center{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.text-center{
+  margin: 0 auto;
+}
 body{
-  font-family: 'futura_ltcn_btlight'; 
+  font-family: 'futura_lt_btlight'; 
   font-weight: normal;
+}
+.logo-font, .nav-link-container, .login-icons{
+  display: inline-block;
+}
+.top-bar-center, .login-icons{
+  display: inline-block;
 }
 h1, .h1, .logo-font a{
   font-family: 'intro_rust_gbase_2_line'; 
@@ -20,19 +36,62 @@ h2, .h2{
   font-family: 'festivo_lcbasic_r_line'; 
   text-transform: uppercase;
 }
-
-
-
-
-
-header .main-nav a{
-  color: #fafafa !important;
+p, h1, .h1, h2, .h2, h3, .h3{
+  letter-spacing: 1px;
 }
-.dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
+.button{
+  border-radius: 2px;
+}
+.button, input[type="submit"].search-btn{
+  font-family: 'halis_rbold';
+  text-transform: uppercase;
+}
+.addthis_toolbox a.at300b, .addthis_toolbox a.at300m {
+  padding: 0 .7rem 0 0;
+  border-radius: 2px !important;
+}
+.addthis_toolbox a.at300b .at-icon-wrapper, .addthis_toolbox a.at300m .at-icon-wrapper, .addthis_toolbox a.at300b .at-icon-wrapper svg, .addthis_toolbox a.at300m .at-icon-wrapper svg {
+  height: 50px !important;
+  width: 50px !important;
+  border-radius: 2px !important;
+}
+/* NAVIGATION*/
+header{
+  position: relative;
+  z-index: 900;
+}
+
+@media screen and (max-width: 59.438em) {
+  .nav-link-container{
+    width: 100%;
+  }
+}
+header .main-nav a, .footer a{
+  color: #fafafa !important;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after, .accordion-menu .is-accordion-submenu-parent:not(.has-submenu-toggle) > a::after {
     border-color: #fafafa transparent transparent;
 }
 
-///Navigation
+.search-btn{
+  display: block;
+  margin: 0 auto;
+}
+.menu-icon{
+    width: 25px;
+    height: 16px;
+}
+.menu-icon::after {
+    width: 100%;
+    height: 1px;
+    background: #fafafa;
+    box-shadow: 0 7px 0 #fafafa, 0 14px 0 #fafafa;
+    content: '';
+}
+
 $topbar-center-logo-bg: #2c3840;
 
 .topbar-center-logo {
@@ -62,7 +121,7 @@ $topbar-center-logo-bg: #2c3840;
     vertical-align: text-top;
   }
 }
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 59.438em) {
   .topbar-center-logo .top-bar-center {
   flex: none;
 
@@ -71,27 +130,151 @@ $topbar-center-logo-bg: #2c3840;
   }
 }
 }
-//Search Bar
+/* SEARCH BAR*/
 .searchbar {
-  margin: 1rem;
   display: inline-block !important;
 }
 .search-drop{
   display: none;
   transition: all 0.5s ease;
 }
-
+.search-drop .grid-container .grid-x{
+  padding: 1em;
+}
+.search-field{
+  width: 100%;
+}
 
 .expand-search {
-  height: 6em;
   display: block;
+  background: #fafafa; 
 }
 
-svg {
-  width: 20px;
-  height: 20px;
+.icon-padding{
+    position: relative;
+    color: #fafafa;
+  }
+
+@media screen and (min-width: 355px) {
+  .icon-padding{
+    padding: .3em;
+  }
+}
+@media screen and (min-width: 400px) {
+  .icon-padding{
+    padding: .5em;
+  }
+}
+@media screen and (min-width: 470px) {
+  .icon-padding{
+    padding: 1em;
+  }
+}
+/*Footer*/
+.footer{
+  padding: 3rem;
+  background: #231F20;
+}
+.footer, .footer a{
+  color: #fafafa;
+}
+.footer .menu a{
+  padding: 0.7rem 1rem 0.7rem 0.3rem;
+}
+.footer h4{
+  font-family: 'halis_rbold';
+  text-transform: uppercase;
+}
+.footer p{
+  color: #fafafa;
+  font-family: 'halis_rbold';
+}
+.footer .button{
+  width: 100%;
+}
+.footer .p-resize-footer{
+  text-transform: uppercase;
 }
 
+@media screen and (max-width: 639px) {
+    .order-padding{
+    padding: 1.5rem 0;
+  }
+}
+.footer-bottom-bar{
+  border-top: 1px solid #fafafa; 
+}
+.footer-bottom-bar .menu a{
+  font-family:'futura_lt_btlight'; 
+  font-weight: normal;
+  font-size: 70%;
+  text-transform: none; 
+}
+.footer-bottom-bar p{
+  text-align: right;
+  font-size: 70%;
+  font-family:'futura_lt_btlight'; 
+  letter-spacing: 0px;
+}
+/*HERO HOME PAGE*/
+.hero-section h1, .hero-section h2, .hero-section p, .hero-section a{
+  color: #fafafa;
+  position: relative;
+  z-index: 10;  
+}
+.hero-section h1, .hero-section p{
+  text-shadow: 0 0 24px rgba( 35, 33, 32, 0.75);
+}
+.hero-section h2{
+  padding-bottom: 2rem;
+  font-family: 'futura_lt_btlight';
+  text-transform: none;
+}
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-color: rgba( 35, 33, 32, 0.1);
+}
+.hero-section {
+  padding: 4rem; 
+  position: relative;
+  background-size: cover;
+  height: 85vh;
+  text-align: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+
+@media screen and (max-width: 767px) {
+    .hero-section {
+      height: 60vh;
+  }
+}
+.blurb-container{
+  background-color: #ED1C24;
+  padding: 2rem;
+  color: #fafafa;
+}
+.blurb-container p{
+  color: #fafafa;
+}
+.tagline-border{
+  position: absolute;
+    z-index: -1;
+}
 
 
 

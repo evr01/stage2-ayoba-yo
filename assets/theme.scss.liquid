@@ -748,14 +748,7 @@ summary {
   display: block;
 }
 
-body,
-input,
-textarea,
-button,
-select {
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-}
+
 
 a {
   background-color: transparent;
@@ -1177,11 +1170,7 @@ html {
 
 .main-content {
   display: block;
-  padding-top: $section-spacing-small;
 
-  @include media-query($medium-up) {
-    padding-top: $section-spacing;
-  }
 }
 
 .section-header {
@@ -1238,7 +1227,6 @@ input,
 textarea,
 button,
 select {
-  font-size: $font-size-base;
   font-family: $font-stack-body;
   color: $color-text;
   line-height: 1.5;
@@ -1275,83 +1263,6 @@ h6 {
   }
 }
 
-h1 {
-  font-size: em(floor($font-size-header * 1.35));
-  text-transform: none;
-  letter-spacing: 0;
-
-  @include media-query($small) {
-    font-size: em(floor($font-size-header * 1.25));
-  }
-}
-
-h2 {
-  font-size: em(floor($font-size-header * 0.78));
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-
-  @include media-query($small) {
-    font-size: em(floor(($font-size-header * 0.78) * 0.9));
-  }
-}
-
-h3 {
-  font-size: em($font-size-header);
-  text-transform: none;
-  letter-spacing: 0;
-
-  @include media-query($small) {
-    font-size: em(floor($font-size-header * 0.78));
-  }
-}
-
-h4 {
-  font-size: em(floor($font-size-header * 0.68));
-
-  @include media-query($small) {
-    font-size: em(floor(($font-size-header * 0.68) * 0.9));
-  }
-}
-
-h5 {
-  font-size: em(floor($font-size-header * 0.58));
-
-  @include media-query($small) {
-    font-size: em(floor(($font-size-header * 0.58) * 0.9));
-  }
-}
-
-h6 {
-  font-size: em(floor($font-size-header * 0.54));
-
-  @include media-query($small) {
-    font-size: em(floor(($font-size-header * 0.54) * 0.9));
-  }
-}
-
-.h1 {
-  @extend h1;
-}
-
-.h2 {
-  @extend h2;
-}
-
-.h3 {
-  @extend h3;
-}
-
-.h4 {
-  @extend h4;
-}
-
-.h5 {
-  @extend h5;
-}
-
-.h6 {
-  @extend h6;
-}
 
 /*================ RTE headings ================*/
 .rte {
@@ -2797,50 +2708,7 @@ $slick-dot-size-small: 10px;
 }
 
 /*================ Index sections ================*/
-.index-section {
-  padding-top: $section-spacing-small;
-  padding-bottom: $section-spacing-small;
 
-  @include media-query($medium-up) {
-    padding-top: $section-spacing;
-    padding-bottom: $section-spacing;
-  }
-
-  &:first-child {
-    padding-top: 0;
-    border-top: 0;
-  }
-
-  &:last-child {
-    padding-bottom: 0;
-  }
-}
-
-.index-section--flush + .index-section--flush {
-  margin-top: -($section-spacing-small * 2);
-
-  @include media-query($medium-up) {
-    margin-top: -($section-spacing * 2);
-  }
-}
-
-// Flush sections should be tight to the nav if they are the first on the page
-.index-section--flush:first-child {
-  margin-top: -$section-spacing-small;
-
-  @include media-query($medium-up) {
-    margin-top: -$section-spacing;
-  }
-}
-
-// Flush sections should be tight to the footer if they are last on the page
-.index-section--flush:last-child {
-  margin-bottom: -$section-spacing-small;
-
-  @include media-query($medium-up) {
-    margin-bottom: -$section-spacing;
-  }
-}
 
 // Visually align featured product section (if first on homepage on mobile)
 @include media-query($small) {
@@ -3122,9 +2990,7 @@ h1.product-single__title {
 }
 
 @include media-query($small) {
-  .template-product .main-content {
-    padding-top: $grid-gutter-mobile;
-  }
+ 
 
   .thumbnails-slider--active {
     .product-single__thumbnails {
@@ -3670,10 +3536,6 @@ h1.product-single__title {
   .site-header__account {
    
     @include transform(translateY(-50%));
-  }
-
-  .site-header__account {
-    right: 50px;
   }
 }
 

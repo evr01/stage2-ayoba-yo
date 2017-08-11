@@ -15,21 +15,92 @@
   {%- assign social_icons = true -%}
 {% endif %}
 
-<footer class="site-footer" role="contentinfo">
-  <div class="page-width">
-    <div class="grid grid--no-gutters">
-      <div class="grid__item{% if section.settings.footer_newsletter_enable and section.settings.footer_linklist_two != blank %} medium-up--one-quarter{% elsif section.settings.footer_linklist_two == blank and section.settings.footer_newsletter_enable %} medium-up--one-half{% else %} text-center{% endif %}">
-        {%- assign footer_linklist = section.settings.footer_linklist -%}
-        {% if linklists[footer_linklist].links.size > 0 %}
-          <ul class="site-footer__linklist{% unless section.settings.footer_newsletter_enable %} site-footer__linklist--center{% endunless %}">
-            {% for link in linklists[footer_linklist].links %}
-              <li class="site-footer__linklist-item">
-                <a href="{{ link.url }}">{{ link.title }}</a>
-              </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
+<footer role="contentinfo">
+  <div class="footer">
+    <div class="grid-container">
+      <div class="grid-x">
+        <div class="cell small-12 medium-4">
+          <h4>Company Information</h4>
+          {%- assign footer_linklist = section.settings.footer_linklist -%}
+            {% if linklists[footer_linklist].links.size > 0 %}
+              <ul class="menu vertical">
+                {% for link in linklists[footer_linklist].links %}
+                  <li>
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+        </div>
+        <div class="cell small-12 medium-4 order-padding">
+          <h4>Orders</h4>
+          {% if linklists[footer_linklist].links.size > 0 %}
+              <ul class="menu vertical">
+                {% for link in linklists.orders.links %}
+                  <li>
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+        </div>
+        <div class="cell small-12 medium-4">
+          <div class="grid-container">
+            <div class="grid-x">
+              <div class="cell small-12">
+                <p class="p-resize-footer">Sign Up for additional updates!</p>
+              </div>
+              <div class="cell small-12">
+                <input type="text" placeholder="Email">
+                <button type="button" class="button primary">Sign Up</button>
+              </div>
+              <div class="cell small-12">
+                <!-- Go to www.addthis.com/dashboard to customize your tools --> <div class="addthis_inline_follow_toolbox social-icon"></div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          
+          
+          
+          
+        </div>
       </div>
+      <div class="grid-container">
+        <div class="footer-bottom-bar grid-x">
+          <div class="small-12 medium-7 cell">
+              {% if linklists[footer_linklist].links.size > 0 %}
+                <ul class="menu">
+                  {% for link in linklists.bottom-links.links %}
+                    <li>
+                      <a href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+          </div>
+          <div class="small-12 medium-5 cell vert-center">
+            <div class="bottom-copyright">
+              <p>Copyright 2017 Ayoba-Yo. We accept all major credit cards.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+<!--
+
+<footer class="site-footer" >
+  <div class="page-width">
+    
 
       <div class="grid__item{% if section.settings.footer_newsletter_enable and section.settings.footer_linklist != blank %} medium-up--one-quarter{% elsif section.settings.footer_linklist == blank and section.settings.footer_newsletter_enable %} medium-up--one-half{% else %} text-center{% endif %}">
         {%- assign footer_linklist_two = section.settings.footer_linklist_two -%}
@@ -190,6 +261,8 @@
     {% endif %}
   </div>
 </footer>
+
+-->
 
 {% schema %}
   {
