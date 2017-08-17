@@ -40,6 +40,9 @@
   {% include 'google-fonts' %}
   {{ "font.css"  | asset_url | stylesheet_tag }}
 
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+
+
     {{ 'modernizr.min.js' | asset_url | script_tag }}
     
 
@@ -124,6 +127,9 @@
           })
       }); 
     </script>
-    <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-598ba7d9688dfb69"></script> 
+    {{ 'instafeed.min.js' | asset_url | script_tag }}
+    {{ 'ayoba.js' | asset_url | script_tag }}
+   <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59937fa5a83bf52d"></script> 
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,134 @@
+<div class="insta-center">
+	<div class="insta-position">
+		<div>
+			<img class="insta-logo" src="{{ 'instagram-logo.svg' | asset_url }}" itemprop="{{}}">
+		</div>
+	</div>
+<section class="insta-container">
+	<div class="grid-container">
+		<div class="grid-x">
+			<div class="cell small-12 {% if section.settings.instagram-h2-align == 'right' %}text-right{% elsif section.settings.instagram-h2-align == 'center' %}text-center{% elsif section.settings.instagram-h2-align == 'left' %}text-left{% endif %}">
+				<h2>{{ section.settings.instagram-h2 | escape }}</h2>
+			</div>
+			<div class="cell small-12 {% if section.settings.instagram-p-align == 'right' %}text-right{% elsif section.settings.instagram-p-align == 'center' %}text-center{% elsif section.settings.instagram-p-align == 'left' %}text-left{% endif %}">
+				<p>{{ section.settings.instagram-p | escape }}</p>
+			</div>
+			<div class="cell small-12 insta-padding {% if section.settings.instagram-a-align == 'right' %}text-right{% elsif section.settings.instagram-a-align == 'center' %}text-center{% elsif section.settings.instagram-a-align == 'left' %}text-left{% endif %}">
+				<a target="blank" href="{{ section.settings.instagram-link }}">{{ section.settings.instagram-a | escape }}</a>
+			</div>
+		</div>
+	</div>
+	<div class="grid-container">
+		<div class="grid-x align-center">
+			<div class="cell small-10 medium-6 text-center">
+				<ul id="feed"></ul>
+			</div>
+		</div>
+	</div>
+</section>
+</div>
+
+
+
+
+{% schema %}
+  {
+    "name": "Instagram",
+    "settings": [
+       {
+        "type": "text",
+        "id": "instagram-h2",
+        "label": "H2",
+        "default": "H2"
+      },
+      {
+        "type": "select",
+        "id": "instagram-h2-align",
+        "label": "Instagram H2 Alignment",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      },
+
+       {
+        "type": "text",
+        "id": "instagram-p",
+        "label": "instagram-p",
+        "default": "Blurb"
+      },
+      {
+        "type": "select",
+        "id": "instagram-p-align",
+        "label": "H2 Alignment",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      },
+
+      {
+        "type": "text",
+        "id": "instagram-a",
+        "label": "instagram link text",
+        "default": "Click here"
+      },
+
+      {
+        "type": "url",
+        "id": "instagram-link",
+        "label": "instagram url"
+      },
+
+      {
+        "type": "select",
+        "id": "instagram-a-align",
+        "label": "H2 Alignment",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "Instagram Follow Us",
+        "category": "Ayoba-Yo Sections"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,95 @@
+
+
+
+
+<div class="blurb-position">
+ <div class="grid-x">
+    <div class="cell small-12">
+      <img class="top-border" src="{{ 'border-thin-red.svg' | asset_url }}" itemprop="{{}}">
+    </div>
+  </div>
+  	<section class="blog-snippet">
+		<div class="grid-container">
+			<div class="grid-x {% if section.settings.blog-snippet-h2-align == 'right' %}text-right{% elsif section.settings.blog-snippet-h2-align == 'center' %}text-center{% elsif section.settings.blog-snippet-h2-align == 'left' %}text-left{% endif %} align-center">
+				<a href="{{ section.settings.blog-snippet-link }}">
+					<div class="cell small-12">
+						<h2>{{ section.settings.blog-snippet-h2 }}</h2>
+					</div>
+					<div class="cell small-12">
+						<p>{{ section.settings.blog-snippet-date }}</p>
+					</div>
+					<div class="cell small-6">
+						<p>{{ section.settings.blog-snippet-p }}</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+  
+  <div class="grid-x">
+    <div class="cell small-12">
+      <img class="bottom-border" src="{{ 'border-thin-red.svg' | asset_url }}" itemprop="{{}}">
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Blog Snippet",
+    "settings": [
+       {
+        "type": "text",
+        "id": "blog-snippet-h2",
+        "label": "blog-snippet-h2",
+        "default": "blog-snippet-h2"
+      },
+      {
+        "type": "text",
+        "id": "blog-snippet-date",
+        "label": "Blog Date",
+        "default": "Date"
+      },
+      {
+        "type": "text",
+        "id": "blog-snippet-p",
+        "label": "blog-snippet-p",
+        "default": "blog-snippet-p"
+      },
+      {
+          "id": "blog-snippet-link",
+          "type": "url",
+          "label": "Blog Link"
+        },
+      {
+        "type": "select",
+        "id": "blog-snippet-h2-align",
+        "label": "blog-snippet-h2",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      }
+
+
+
+    ],
+    "presets": [
+      {
+        "name": "Blog Snippet",
+        "category": "Ayoba-Yo Sections"
+      }
+    ]
+  }
+{% endschema %}

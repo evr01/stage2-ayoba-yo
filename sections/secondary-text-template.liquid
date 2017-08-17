@@ -1,0 +1,138 @@
+<section class="second-text">
+    <div class="grid-container">
+      <div class="grid-x second-pad">   
+        <div class="cell small-12 {% if section.settings.second-text-h2-align == 'right' %}text-right{% elsif section.settings.second-text-h2-align == 'center' %}text-center{% elsif section.settings.second-text-h2-align == 'left' %}text-left{% endif %}">
+          {% if section.settings.second-text-h2 != blank %}
+            <h2>{{ section.settings.second-text-h2 | escape }}</h2>
+          {% endif %}
+        </div>
+      </div>  
+
+      <div class="grid-x second-pad {% if section.settings.blurb-align == 'right' %}align-right{% elsif section.settings.blurb-align == 'center' %}align-center{% elsif section.settings.blurb-align == 'left' %}align-left{% endif %}">   
+        <div class="cell small-10 medium-8 large-8 {% if section.settings.blurb-align == 'right' %}text-right{% elsif section.settings.blurb-align == 'center' %}text-center{% elsif section.settings.blurb-align == 'left' %}text-left{% endif %}">
+          {% if section.settings.second-text-blurb != blank %}
+            <p>{{ section.settings.second-text-blurb | escape }}</p>
+          {% endif %}
+        </div>
+        
+
+
+      </div> 
+
+      {% for block in section.blocks %}  
+        <div class="grid-x second-pad">   
+          <div class="cell small-12 {% if block.settings.btnalign == 'right' %}text-right{% elsif block.settings.btnalign == 'center' %}text-center{% elsif block.settings.btnalign == 'left' %}text-left{% endif %}">
+            <a class="button secondary" href="{{ block.settings.link }}">{{ block.settings.linktext }}</a>
+          </div>
+        </div> 
+      {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Secondary Text",
+    "settings": [
+       {
+        "type": "text",
+        "id": "second-text-h2",
+        "label": "Heading H2",
+        "default": "H2"
+      },
+      {
+        "type": "select",
+        "id": "second-text-h2-align",
+        "label": "H2 Alignment",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      },
+
+       {
+        "type": "text",
+        "id": "second-text-blurb",
+        "label": "Blurb",
+        "default": "Blurb"
+      },
+      {
+        "type": "select",
+        "id": "blurb-align",
+        "label": "H2 Alignment",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      }
+
+
+    ],
+      "blocks": [
+    {
+      "type": "select",
+      "name": "Add Button",
+      "settings": [
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Button link"
+        },
+        {
+          "id": "linktext",
+          "type": "text",
+          "label": "Button text",
+          "default": "Click here"
+        },
+        {
+        "type": "select",
+        "id": "btnalign",
+        "label": "Button Alignment",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      }
+      ]
+    }
+  ],
+    "presets": [
+      {
+        "name": "Secondary Text",
+        "category": "Ayoba-Yo Sections"
+      }
+    ]
+  }
+{% endschema %}

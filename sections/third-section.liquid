@@ -1,0 +1,160 @@
+<section>
+	<div>
+		<div class="grid-x">
+			
+			<div class="third-section-hero medium-6 small-12 cell" {% if section.settings.third-section-image %} style="background-image: url('{{ section.settings.third-section-image | img_url: '2048x' }}'); background-position: center {{ section.settings.third-img-align }};"{% endif %}>	
+			</div>
+
+			<div class="third-section-container small-12 medium-6 cell {% if section.settings.third-blurb-align == 'right' %}align-right{% elsif section.settings.third-blurb-align == 'center' %}align-center{% elsif section.settings.third-blurb-align == 'left' %}align-left{% endif %}">
+				<div class="{% if section.settings.third-blurb-align == 'right' %}text-right{% elsif section.settings.third-blurb-align == 'center' %}text-center{% elsif section.settings.third-blurb-align == 'left' %}text-left{% endif %}">
+					<div class="text-container">
+						{% if section.settings.third-section-h2 != blank %}
+		        		<h2>{{ section.settings.third-section-h2 | escape }}</h2>
+			        {% endif %}
+					{% if section.settings.third-text-blurb != blank %}
+			        	<div class="grid-x align-center">
+			        		<div class="cell small-12 medium-10 large-6">
+			        			<p>{{ section.settings.third-text-blurb | escape }}</p>
+			        		</div>
+			        	</div>
+			        {% endif %}
+		             
+			          	<div class="grid-x align-center third-btn-contain">
+			          	{% for block in section.blocks %} 
+			          		<div class="cell small-6 medium-6 large-4">
+					            <a class="button {% if block.settings.third-button-type == 'primary' %}primary{% elsif block.settings.third-button-type == 'secondary' %}secondary{% endif %}" href="{{ block.settings.third-button-link }}">{{ block.settings.third-button-label }}</a>
+					        </div>
+					    {% endfor %}
+			          	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% schema %}
+  {
+    "name": "Third Section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "third-section-image",
+        "label": "Third Section"
+      },
+      {
+        "type": "select",
+        "id": "third-img-align",
+        "label": "Image alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "center",
+            "label": "Middle"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          }
+        ]
+      },
+       {
+        "type": "text",
+        "id": "third-section-h2",
+        "label": "Heading H2",
+        "default": "H2"
+      },
+      {
+        "type": "text",
+        "id": "third-text-blurb",
+        "label": "Blurb",
+        "default": "Blurb"
+      },
+      {
+        "type": "select",
+        "id": "third-blurb-align",
+        "label": "H2 Alignment",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      }
+
+    ],
+      "blocks": [
+    {
+      "type": "select",
+      "name": "Add Button",
+      "settings": [
+        {
+          "id": "third-button-link",
+          "type": "url",
+          "label": "Button link"
+        },
+        {
+          "id": "third-button-label",
+          "type": "text",
+          "label": "Button text",
+          "default": "Click here"
+        },
+        {
+        "type": "select",
+        "id": "third-button-align",
+        "label": "Button Alignment",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      },
+      {
+        "type": "radio",
+        "id": "third-button-type",
+        "label": "Button Type",
+        "options": [
+          {
+            "label": "Primary",
+            "value": "primary"
+          },
+          {
+            "label": "Secondary",
+            "value": "secondary"
+          }
+        ]
+      }
+      ]
+    }
+  ],
+    "presets": [
+      {
+        "name": "Third Section",
+        "category": "Ayoba-Yo Sections"
+      }
+    ]
+  }
+{% endschema %}
