@@ -1,4 +1,4 @@
-<section class="quote">
+<section class="quote" data-section-id="{{ section.id }}" data-section-type="quotes">
   <div class="grid-x">
       <div class="cell small-12">
         <img class="top-border" src="{{ 'border-thin-blue.svg' | asset_url }}" itemprop="{{}}">
@@ -14,13 +14,14 @@
             </div>
           {% endif %}
         </div>
+        {% if section.blocks.size > 0 %}
         <div class="cell small-12">
-          <div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
+          <div class="orbit" role="region" aria-label="Testimonials" data-orbit>
             <div class="orbit-wrapper">
               <ul class="orbit-container">
               {% for block in section.blocks %}
-                <li class="is-active orbit-slide">
-                  <blockquote>
+                <li class="is-active orbit-slide" data-count="{{ section.blocks.size }}">
+                  <blockquote {{ block.shopify_attributes }}>
                     {% if block.settings.quote != blank %}
                       <div>{{ block.settings.quote }}</div>
                     {% endif %}
@@ -37,6 +38,7 @@
             {% endif %}
           </div>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>

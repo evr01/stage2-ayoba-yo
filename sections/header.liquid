@@ -1,9 +1,11 @@
-<header data-sticky-container>
+<header data-sticky-container data-section-type="header-section" role="banner">
   <div class="main-nav" role="navigation" data-sticky data-options="anchor: page; marginTop: 0; stickyOn: small;">
     <!-- mobile nav bar -->
     <div class="title-bar topbar-center-logo-mobile" data-responsive-toggle="topbar-center-logo" data-hide-for="medium">
       <div class="title-bar-left">
-        <button class="menu-icon" type="button" data-toggle="topbar-center-logo"></button>
+        <button class="menu-icon" type="button" data-toggle="topbar-center-logo">
+          <span class="icon__fallback-text">{{ 'layout.navigation.toggle' | t }}</span>
+        </button>
       </div>
       <div class="top-bar-center">
         <div class="title-bar-title">
@@ -63,7 +65,7 @@
         <div class="top-bar-left hide-for-small-only">
           <div class="logo-font" itemscope itemtype="http://schema.org/Organization">
               {% if section.settings.logo %}
-                <a class="clearfix" href="/" itemprop="url">
+                <a class="clearfix" href="/" itemprop="url" data-target="{{ child_list_handle }}">
                   {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
                   <img src="{{ section.settings.logo | img_url: image_size }}"
                        srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
@@ -76,8 +78,8 @@
           </div>
         </div>
         <div class="nav-link-container">
-          <nav>
-            <ul class="dropdown menu vertical medium-horizontal" data-responsive-menu="accordion medium-dropdown">
+          <nav role="navigation">
+            <ul class="dropdown menu vertical medium-horizontal" data-responsive-menu="accordion medium-dropdown" data-parent="{{ child_list_handle }}">
 
             {% for link in linklists[section.settings.main_linklist].links %}
               {%- assign child_list_handle = link.title | handleize -%}
@@ -145,7 +147,7 @@
           </div>
         </div>
       </form>
-    
+    <img class="bottom-border nav-bottom" src="{{ 'border-thin-black.svg' | asset_url }}" itemprop="{{}}">
   </div>
 </header>
 

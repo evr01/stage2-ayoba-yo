@@ -1,0 +1,76 @@
+{% for block in section.blocks %}
+{% if block.settings.product-des-one != blank %}
+<div>
+ <div class="grid-x">
+    <div class="cell small-12">
+      <img class="top-border" src="{{ 'border-thin-red.svg' | asset_url }}" itemprop="{{}}">
+    </div>
+  </div>
+  <section class="blurb-container">
+    <div class="grid-x ">
+      <div class="cell small-12 blurb-bullet">
+        
+          <div class="grid-container">
+            <ul>
+              <div class="grid-x align-center">
+                <div class="small-4 cell">
+                
+                  <li>
+                      <div class="grid-x">
+                        <div class="small-4 medium-4 cell text-center">{{ 'icon-no-sugar.svg' | asset_url | img_tag }}</div>
+                        
+                          <h4 class="small-8 medium-8 cell">{{ block.settings.product-des-one }}</h4>
+                       
+                      </div>
+                  </li>
+                
+                 <li>
+                      <div class="grid-x">
+                      <div class="small-4 medium-4 cell text-center">{{ 'icon-high-protein.svg' | asset_url | img_tag }}</div>
+                        <h4 class="small-8 medium-8 cell">{{ block.settings.product-des-two }}</h4>
+                      </div>
+                  </li>
+                </div>
+                <div class="small-4 cell">
+                <li>
+                      <div class="grid-x">
+                      <div class="small-4 medium-4 cell text-center">{{ 'icon-gluten-free.svg' | asset_url | img_tag }}</div>
+                        <h4 class="small-8 medium-8 cell">{{ block.settings.product-des-three }}</h4>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="grid-x">
+                      <div class="small-4 medium-4 cell text-center">{{ 'icon-natural-flavor.svg' | asset_url | img_tag }}</div>
+                        <h4 class="small-8 medium-8 cell">{{ block.settings.product-des-four }}</h4>
+                      </div>
+                  </li>
+                </div>
+                <div class="small-4 cell">
+                  <li>
+                      <div class="grid-x">
+                      <div class="small-4 medium-4 cell text-center">{{ 'icon-naturally-air-dried.svg' | asset_url | img_tag }}</div>
+                        <h4 class="small-8 medium-8 cell">{{ block.settings.product-des-five }}</h4>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="grid-x">
+                      <div class="small-4 medium-4 cell text-center">{{ 'icon-whole30.svg' | asset_url | img_tag }}</div>
+                        <h4 class="small-8 medium-8 cell">{{ block.settings.product-des-six }}</h4>
+                      </div>
+                  </li> 
+                </div>
+              </div>
+            </ul>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+  <div class="grid-x">
+    <div class="cell small-12">
+      <img class="bottom-border" src="{{ 'border-thin-red.svg' | asset_url }}" itemprop="{{}}">
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endfor %}

@@ -1,15 +1,15 @@
 <section class="cta-container">
 	<div class="grid-container">
 		<div class="grid-x {% if section.settings.cta-h3-align == 'right' %}text-right{% elsif section.settings.cta-h3-align == 'center' %}text-center{% elsif section.settings.cta-h3-align == 'left' %}text-left{% endif %} align-center">
-			<div class="small-12 cell">
+			<div class="small-8 medium-12 cell">
 				{% if section.settings.cta-h3 != blank %}
-					<h3>{{ section.settings.cta-h3 | escape }}</h3>
+					<h3 class="product-feature-h2">{{ section.settings.cta-h3 | escape }}</h3>
 				{% endif %}
 				{% if section.settings.cta-p != blank %}
 			        <p>{{ section.settings.cta-p | escape }}</p>
 			    {% endif %}
 			</div>
-			<div class="small-6 cell">
+			<div class="small-6 cell cta-pad">
 			  {% form 'customer' %}
 		      {{ form.errors | default_errors }}
 		      {% if form.posted_successfully? %}
@@ -17,10 +17,13 @@
 		      {% else %}
 				<form>
 				  <div class="grid-x grid-padding-x">
-				    <div class="small-12 medium-8 columns">
+				  	<div class="small-12 cell">
+				  		<input type="hidden" name="contact[tags]" value="newsletter">
+				  	</div>
+				    <div class="small-12 medium-8 cell">
 				        <input type="email" name="contact[email]" id="Email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" autocorrect="off" autocapitalize="off" placeholder="Email">
 				    </div>
-				    <div class="small-12 medium-4 columns">
+				    <div class="small-12 medium-4 cell">
 				        <button type="submit" class="secondary button" name="commit" id="Subscribe">{{ 'general.newsletter_form.submit' | t }}</button>
 				    </div>
 				  </div>

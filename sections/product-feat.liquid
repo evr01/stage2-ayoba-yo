@@ -4,21 +4,37 @@
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: '800x' }}">
 
-<div class="grid-container">
+<!-- Desktop featured Product -->
+<div class="grid-container show-for-large">
   <div class="grid-x">
     <div class="medium-4 large-3 cell text-right product-feature-pad">
       <ul>
         <li>
-            <h4>{{ section.settings.product-feat-one }}</h4>
-            <p>{{ section.settings.product-feat-p-one }}</p>
+            {{ 'icon-no-sugar.svg' | asset_url | img_tag }}
+            {% if section.settings.product-feat-one != blank %}
+              <h4>{{ section.settings.product-feat-one }}</h4>
+            {% endif %}
+            {% if section.settings.product-feat-p-one != blank %}
+              <p>{{ section.settings.product-feat-p-one }}</p>
+            {% endif %}
         </li>
         <li>
-            <h4>{{ section.settings.product-feat-two }}</h4>
-            <p>{{ section.settings.product-feat-p-two }}</p>
+            {{ 'icon-high-protein.svg' | asset_url | img_tag }}
+            {% if section.settings.product-feat-two != blank %}
+              <h4>{{ section.settings.product-feat-two }}</h4>
+            {% endif %}
+            {% if section.settings.product-feat-p-two != blank %}
+              <p>{{ section.settings.product-feat-p-two }}</p>
+            {% endif %}
         </li>
         <li>
-            <h4>{{ section.settings.product-feat-three }}</h4>
-            <p>{{ section.settings.product-feat-p-three }}</p>
+            {{ 'icon-gluten-free.svg' | asset_url | img_tag }}
+            {% if section.settings.product-feat-three != blank %}
+              <h4>{{ section.settings.product-feat-three }}</h4>
+            {% endif %}
+            {% if section.settings.product-feat-p-three != blank %}
+              <p>{{ section.settings.product-feat-p-three }}</p>
+            {% endif %}
         </li>
 
       </ul>
@@ -28,48 +44,165 @@
         <div class="orbit-wrapper">
           <ul class="orbit-container">
             <li class="is-active orbit-slide">
-                <h3 class="text-center">Traditional Biltong</h3> 
-                <img class="" src="{{ 'biltong-traditional-dried-beef-slices-packaging.svg' | asset_url }}" itemprop="{{}}"> 
+                <h3 class="text-center product-feature-h2">Traditional Biltong</h3> 
+                <img class="" src="{{ 'biltong-traditional-dried-beef-slices-packaging.svg' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Traditional Biltong, South African Jerky, 2oz snack bag"> 
             </li>
             <li class="orbit-slide">
-                <h3 class="text-center">Spicy Biltong</h3> 
-                <img class="" src="{{ 'biltong-spicy-dried-sliced-beef-packaging.svg' | asset_url }}" itemprop="{{}}">
+                <h3 class="text-center product-feature-h2">Spicy Biltong</h3> 
+                <img class="" src="{{ 'biltong-spicy-dried-sliced-beef-packaging.svg' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Spicy Biltong, South African Jerky, 2oz snack bag">
             </li>
             <li class="orbit-slide">
-                <h3 class="text-center">Droewors</h3>
-                <img class="" src="{{ 'droewors-dried-beef-stick-packaging.svg' | asset_url }}" itemprop="{{}}">
+                <h3 class="text-center product-feature-h2">Droewors</h3>
+                <img class="" src="{{ 'droewors-dried-beef-stick-packaging.svg' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Droewors, South African Jerky, 2oz snack bag">
             </li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="medium-4 large-2 cell text-left product-feature-pad">
+    <div class="medium-4 large-3 cell text-left product-feature-pad">
       <ul>
         <li>
-            <h4>{{ section.settings.product-feat-four }}</h4>
-            <p>{{ section.settings.product-feat-p-four }}</p>
+            {{ 'icon-natural-flavor.svg' | asset_url | img_tag }}
+            {% if section.settings.product-feat-four != blank %}
+              <h4>{{ section.settings.product-feat-four }}</h4>
+            {% endif %}
+            {% if section.settings.product-feat-p-four  != blank %}
+              <p>{{ section.settings.product-feat-p-four }}</p>
+            {% endif %}
         </li>
         <li>
-            <h4>{{ section.settings.product-feat-five }}</h4>
-            <p>{{ section.settings.product-feat-p-five }}</p>
+            {{ 'icon-naturally-air-dried.svg' | asset_url | img_tag }}
+            {% if section.settings.product-feat-five  != blank %}
+              <h4>{{ section.settings.product-feat-five }}</h4>
+            {% endif %}
+            {% if section.settings.product-feat-p-five  != blank %}
+              <p>{{ section.settings.product-feat-p-five }}</p>
+            {% endif %}
         </li>
         <li>
-            <h4>{{ section.settings.product-feat-six }}</h4>
-            <p>{{ section.settings.product-feat-p-six }}</p>
+            {{ 'icon-whole30.svg' | asset_url | img_tag }}
+            {% if section.settings.product-feat-six  != blank %}
+              <h4>{{ section.settings.product-feat-six }}</h4>
+            {% endif %}
+            {% if section.settings.product-feat-p-six  != blank %}
+              <p>{{ section.settings.product-feat-p-six }}</p>
+            {% endif %}
         </li>
       </ul>
     </div>
   </div>
 </div>
-<div class="grid-container">
-  <div class="grid-x align-center">
-    {% for block in section.blocks %} 
-      <div class="cell small-6 medium-6 large-3 text-center">
-        <a class="button {% if block.settings.product-feat-btn-type == 'primary' %}primary{% elsif block.settings.product-feat-btn-type == 'secondary' %}secondary{% endif %}" href="{{ block.settings.product-feat-btn-link }}">{{ block.settings.product-feat-btn-label }}</a>
+
+
+<!-- Mobile featured Product -->
+<div class="hide-for-large">
+  <div class="grid-x align-right">
+
+  <div class="medium-12 cell">
+      <div class="orbit" role="region" aria-label="Ayoba-Yo Product Pictures" data-orbit data-timer-delay="4500" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;" data-pause-on-hover="false">
+        <div class="orbit-wrapper">
+          <ul class="orbit-container">
+            <li class="is-active orbit-slide">
+                <h3 class="text-center product-feature-h2">Traditional Biltong</h3> 
+                
+            </li>
+            <li class="orbit-slide">
+                <h3 class="text-center product-feature-h2">Spicy Biltong</h3> 
+              
+            </li>
+            <li class="orbit-slide">
+                <h3 class="text-center product-feature-h2">Droewors</h3>
+              
+            </li>
+          </ul>
+        </div>
       </div>
-    {% endfor %}
+  </div>
+    <div class="small-5 medium-5 cell product-feature-mobile">
+      <div class="orbit" role="region" aria-label="Ayoba-Yo Product Pictures" data-orbit data-timer-delay="4500" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;" data-pause-on-hover="false">
+        <div class="orbit-wrapper">
+          <ul class="orbit-container">
+            <li class="is-active orbit-slide">
+                <img class="" src="{{ 'biltong-traditional-dried-beef-slices-packaging-4x.png' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Traditional Biltong, South African Jerky, 2oz snack bag"> 
+            </li>
+            <li class="orbit-slide">
+                <img class="" src="{{ 'biltong-spicy-dried-sliced-beef-packaging-4x.png' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Spicy Biltong, South African Jerky, 2oz snack bag">
+            </li>
+            <li class="orbit-slide">
+                <img class="" src="{{ 'droewors-dried-beef-stick-packaging-4x.png' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Droewors, South African Jerky, 2oz snack bag">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="small-7 medium-7 cell product-feature-pad-mobile">
+      <ul>
+        <li>
+            <div class="grid-x">
+              <div class="small-4 medium-4 cell text-center">{{ 'icon-no-sugar.svg' | asset_url | img_tag }}</div>
+              {% if section.settings.product-feat-one != blank %}
+                <h4 class="small-8 medium-8 cell">{{ section.settings.product-feat-one }}</h4>
+              {% endif %}
+            </div>
+        </li>
+        <li>
+            <div class="grid-x">
+            <div class="small-4 medium-4 cell text-center">{{ 'icon-high-protein.svg' | asset_url | img_tag }}</div>
+            {% if section.settings.product-feat-two != blank %}
+              <h4 class="small-8 medium-8 cell">{{ section.settings.product-feat-two }}</h4>
+            {% endif %}
+            </div>
+        </li>
+        <li>
+            <div class="grid-x">
+            <div class="small-4 medium-4 cell text-center">{{ 'icon-gluten-free.png' | asset_url | img_tag }}</div>
+            {% if section.settings.product-feat-three != blank %}
+              <h4 class="small-8 medium-8 cell">{{ section.settings.product-feat-three }}</h4>
+            {% endif %}
+            </div>
+        </li>
+        <li>
+            <div class="grid-x">
+            <div class="small-4 medium-4 cell text-center">{{ 'icon-natural-flavor.png' | asset_url | img_tag }}</div>
+            {% if section.settings.product-feat-four != blank %}
+              <h4 class="small-8 medium-8 cell">{{ section.settings.product-feat-four }}</h4>
+            {% endif %}
+            </div>
+        </li>
+        <li>
+            <div class="grid-x">
+            <div class="small-4 medium-4 cell text-center">{{ 'icon-naturally-air-dried.png' | asset_url | img_tag }}</div>
+            {% if section.settings.product-feat-five  != blank %}
+              <h4 class="small-8 medium-8 cell">{{ section.settings.product-feat-five }}</h4>
+            {% endif %}
+            </div>
+        </li>
+        <li>
+            <div class="grid-x">
+            <div class="small-4 medium-4 cell text-center">{{ 'icon-whole30.svg' | asset_url | img_tag }}</div>
+            {% if section.settings.product-feat-six  != blank %}
+              <h4 class="small-8 medium-8 cell">{{ section.settings.product-feat-six }}</h4>
+            {% endif %}
+            </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+<div class="button-group align-center product-feat-btn">
+{% for block in section.blocks %} 
+    <a class="button btn-pad {% if block.settings.product-feat-btn-type == 'primary' %}primary{% elsif block.settings.product-feat-btn-type == 'secondary' %}secondary{% endif %}" href="{{ block.settings.product-feat-btn-link }}">{{ block.settings.product-feat-btn-label }}</a>
+{% endfor %}
+</div>
+
 </section>
 
 

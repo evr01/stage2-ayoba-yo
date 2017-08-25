@@ -1,360 +1,530 @@
-<style>
-  {% case section.settings.grid %}
-  {% when '2' %}
-    .grid__item--{{section.id}} .grid-view-item__image {
-      max-height: 530px;
-    }
-  {% when '3' %}
-    .grid__item--{{section.id}} .grid-view-item__image {
-      max-height: 345px;
-    }
-  {% when '4' %}
-    .grid__item--{{section.id}} .grid-view-item__image {
-      max-height: 250px;
-    }
-  {% when '5' %}
-    .grid__item--{{section.id}} .grid-view-item__image {
-      max-height: 195px;
-    }
-  {% endcase %}
-</style>
-
-{% if section.settings.layout == 'grid' %}
-  {%- assign limit = section.settings.grid | times: section.settings.rows -%}
-{% else %}
-  {%- assign limit = 16 -%}
-{% endif %}
-
-{% paginate collection.products by limit %}
-
-<div data-section-id="{{ section.id }}" data-section-type="collection-template">
-  <header class="collection-header">
-
-    {% if section.settings.show_collection_image and collection.image %}
-      <div class="collection-hero">
-        <div class="collection-hero__image" style="background-image: url({{ collection.image | img_url: '2048x600', crop: 'top' }});"></div>
-        <div class="collection-hero__title-wrapper">
-          <h1 class="collection-hero__title page-width">{{ collection.title }}</h1>
-        </div>
+<section>
+  <div class="grid-container">
+    <div class="grid-x align-center product-all-head">
+      <div class="cell small-12 {% if section.settings.all-products-h2-align == 'right' %}text-right{% elsif section.settings.all-products-h2-align == 'center' %}text-center{% elsif section.settings.all-products-h2-align == 'left' %}text-left{% endif %}">
+        {% if section.settings.all-products-h2 != blank %}
+          <h2 class="h1">{{ section.settings.all-products-h2 | escape }}</h2>
+        {% endif %}
       </div>
-
-      {% if collection.description != blank %}
-        <div class="rte collection-description page-width">
-          {{ collection.description }}
-        </div>
-      {% endif %}
-    {% else %}
-      <div class="page-width">
-        <div class="section-header text-center">
-          <h1>{{ collection.title }}</h1>
-          {% if collection.description != blank %}
-            <div class="rte">
-              {{ collection.description }}
-            </div>
-          {% endif %}
-        </div>
-      </div>
-    {% endif %}
-
-    {% if section.settings.tags_enable or section.settings.sort_enable %}
-      <div class="filters-toolbar-wrapper">
-        <div class="page-width">
-          <div class="filters-toolbar">
-            {% if section.settings.tags_enable %}
-              <div class="filters-toolbar__item">
-                <label for="SortTags" class="label--hidden">{{ 'collections.filters.title_tags' | t }}</label>
-                <select class="filters-toolbar__input filters-toolbar__input--filter hidden" name="SortTags" id="SortTags">
-                  {% if current_tags %}
-                    {% if collection.handle %}
-                      <option value="/collections/{{ collection.handle }}">{{ 'collections.filters.all_tags' | t }}</option>
-                    {% elsif collection.current_type %}
-                      <option value="{{ collection.current_type | url_for_type }}">{{ 'collections.filters.all_tags' | t }}</option>
-                    {% elsif collection.current_vendor %}
-                      <option value="{{ collection.current_vendor | url_for_vendor }}">{{ 'collections.filters.all_tags' | t }}</option>
-                    {% endif %}
-                  {% else %}
-                    {% if current_tags contains tag %}
-                      <option value="">{{ 'collections.filters.all_tags' | t }}</option>
-                    {% else %}
-                      <option value="">{{ 'collections.filters.title_tags' | t }}</option>
-                    {% endif %}
-                  {% endif %}
-                  {% for tag in collection.all_tags %}
-                    <option value="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            {% endif %}
-
-            <div class="filters-toolbar__item filters-toolbar__item--count">
-              <span class="filters-toolbar__product-count">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>
-            </div>
-
-            {% if section.settings.sort_enable %}
-              <div class="filters-toolbar__item text-right">
-                {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-                <label for="SortBy" class="label--hidden">{{ 'collections.sorting.title' | t }}</label>
-                <select name="SortBy" id="SortBy" class="filters-toolbar__input filters-toolbar__input--sort hidden">
-                  {% if sort_by == collection.default_sort_by %}
-                    <option value="title-ascending" selected="selected">{{ 'collections.sorting.title' | t }}</option>
-                    {% if collection.default_sort_by != 'manual' %}
-                      <option value="manual"{% if sort_by == "manual" %} selected="selected"{% endif %}>{{ 'collections.sorting.featured' | t }}</option>
-                    {% endif %}
-                    {% if collection.default_sort_by != 'best-selling' %}
-                      <option value="best-selling"{% if sort_by == "best-selling" %} selected="selected"{% endif %}>{{ 'collections.sorting.best_selling' | t }}</option>
-                    {% endif %}
-                    {% if collection.default_sort_by != 'title-ascending' %}
-                      <option value="title-ascending"{% if sort_by == "title-ascending"  %}selected="selected"{% endif %}>{{ 'collections.sorting.az' | t }}</option>
-                    {% endif %}
-                    {% if collection.default_sort_by != 'title-descending' %}
-                      <option value="title-descending"{% if sort_by == "title-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.za' | t }}</option>
-                    {% endif %}
-                    {% if collection.default_sort_by != 'price-ascending' %}
-                      <option value="price-ascending"{% if sort_by == "price-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_ascending' | t }}</option>
-                    {% endif %}
-                    {% if collection.default_sort_by != 'price-descending' %}
-                      <option value="price-descending"{% if sort_by == "price-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_descending' | t }}</option>
-                    {% endif %}
-                    {% if collection.default_sort_by != 'created-descending' %}
-                      <option value="created-descending"{% if sort_by == "created-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_descending' | t }}</option>
-                    {% endif %}
-                    {% if collection.default_sort_by != 'created-ascending' %}
-                      <option value="created-ascending"{% if sort_by == "created-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_ascending' | t }}</option>
-                    {% endif %}
-                  {% else %}
-                    <option value="manual"{% if sort_by == "manual" %} selected="selected"{% endif %}>{{ 'collections.sorting.featured' | t }}</option>
-                    <option value="best-selling"{% if sort_by == "best-selling" %} selected="selected"{% endif %}>{{ 'collections.sorting.best_selling' | t }}</option>
-                    <option value="title-ascending"{% if sort_by == "title-ascending"  %}selected="selected"{% endif %}>{{ 'collections.sorting.az' | t }}</option>
-                    <option value="title-descending"{% if sort_by == "title-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.za' | t }}</option>
-                    <option value="price-ascending"{% if sort_by == "price-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_ascending' | t }}</option>
-                    <option value="price-descending"{% if sort_by == "price-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_descending' | t }}</option>
-                    <option value="created-descending"{% if sort_by == "created-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_descending' | t }}</option>
-                    <option value="created-ascending"{% if sort_by == "created-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_ascending' | t }}</option>
-                  {% endif %}
-                </select>
-                <input class="collection-header__default-sort" type="hidden" value="{{ collection.default_sort_by }}">
-              </div>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    {% endif %}
-  </header>
-
-  <div class="page-width" id="Collection">
-    {% if section.settings.layout == 'grid' %}
-      {% case section.settings.grid %}
-      {% when '2' %}
-        {%- assign grid_item_width = 'medium-up--one-half' -%}
-        {%- assign image_size = '530x530' -%}
-      {% when '3' %}
-        {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
-        {%- assign image_size = '345x345' -%}
-      {% when '4' %}
-        {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
-        {%- assign image_size = '250x250' -%}
-      {% when '5' %}
-        {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
-        {%- assign image_size = '195x195' -%}
-      {% endcase %}
-
-      <div class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
-        {% for product in collection.products %}
-          <div class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
-            {% include 'product-card-grid', grid_image_width: image_size %}
-          </div>
-        {% else %}
-          {% comment %}
-          Add default products to help with onboarding for collections/all only.
-
-          The onboarding styles and products are only loaded if the
-          store has no products.
-          {% endcomment %}
-          {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-            <div class="grid__item">
-              <div class="grid grid--uniform">
-                {% for i in (1..limit) %}
-                  <div class="grid__item {{ grid_item_width }}">
-                    <div class="grid-view-item">
-                      <a href="#" class="grid-view-item__link">
-                        <div class="grid-view-item__image">
-                          {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                          {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-                        </div>
-                        <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
-                        <div class="grid-view-item__meta">
-                          <span class="product-price__price">$19.99</span>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                {% endfor %}
-              </div>
-            </div>
-          {% else %}
-            {%- assign is_empty_collection = true -%}
-          {% endif %}
-        {% endfor %}
-      </div>
-    {% else %}
-      <div class="list-view-items">
-        {% for product in collection.products %}
-          <a href="{{ product.url | within: collection }}" class="list-view-item">
-            {% include 'product-card-list', product: product %}
-          </a>
-        {% else %}
-
-          {% comment %}
-          Add default products to help with onboarding for collections/all only.
-
-          The onboarding styles and products are only loaded if the
-          store has no products.
-          {% endcomment %}
-          {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0%}
-            {% for i in (1..4) %}
-              <a href="#" class="list-view-item">
-                <div class="list-view-item__image-column">
-                  <div class="list-view-item__image-wrapper">
-                    <div class="list-view-item__image">
-                      {%- assign placeholder = 'placeholder-product-' | append: i -%}
-                      {% include placeholder %}
-                    </div>
-                  </div>
-                </div>
-
-                <div class="list-view-item__title-column">
-                  <div class="list-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
-                </div>
-
-                <div class="list-view-item__price-column">
-                  <span class="product-price__price">$19.99</span>
-                </div>
-              </a>
-            {% endfor %}
-          {% else %}
-            {%- assign is_empty_collection = true -%}
-          {% endif %}
-        {% endfor %}
-      </div>
-    {% endif %}
-
-    {% if is_empty_collection %}
-      <div class="grid__item small--text-center">
-        <p class="text-center">{{ 'collections.general.no_matches' | t }}</p>
-      </div>
-    {% endif %}
-
-    {% if paginate.pages > 1 %}
-      {% include 'pagination' %}
-    {% endif %}
+    </div>
   </div>
-</div>
+  <div class="grid-x align-center product-all-subhead">
+    <div class="cell small-8 {% if section.settings.all-products-h1-align == 'right' %}text-right{% elsif section.settings.all-products-h1-align == 'center' %}text-center{% elsif section.settings.all-products-h1-align == 'left' %}text-left{% endif %}">
+      {% if section.settings.all-products-h1 != blank %}
+        <h1 class="h2">{{ section.settings.all-products-h1 | escape }}</h1>
+      {% endif %}
+    </div>
+  </div>
+      
 
-{% endpaginate %}
+    <div class="grid-container product-all-pad">
+      <ul>
+        <div class="grid-x align-center">
+          <div class="small-4 cell">
+            <li>
+                <div class="grid-x">
+                  <div class="small-4 medium-4 cell text-center">{{ 'icon-no-sugar.svg' | asset_url | img_tag }}</div>
+                  {% if section.settings.product-all-one != blank %}
+                    <h4 class="small-8 medium-8 cell">{{ section.settings.product-all-one }}</h4>
+                  {% endif %}
+                </div>
+            </li>
+            <li>
+                <div class="grid-x">
+                <div class="small-4 medium-4 cell text-center">{{ 'icon-high-protein.svg' | asset_url | img_tag }}</div>
+                {% if section.settings.product-all-two != blank %}
+                  <h4 class="small-8 medium-8 cell">{{ section.settings.product-all-two }}</h4>
+                {% endif %}
+                </div>
+            </li>
+            <li>
+                <div class="grid-x">
+                <div class="small-4 medium-4 cell text-center">{{ 'icon-gluten-free.svg' | asset_url | img_tag }}</div>
+                {% if section.settings.product-all-three != blank %}
+                  <h4 class="small-8 medium-8 cell">{{ section.settings.product-all-three }}</h4>
+                {% endif %}
+                </div>
+            </li>
+          </div>
+          <div class="small-4 cell">
+            <li>
+                <div class="grid-x">
+                <div class="small-4 medium-4 cell text-center">{{ 'icon-natural-flavor.svg' | asset_url | img_tag }}</div>
+                {% if section.settings.product-all-four != blank %}
+                  <h4 class="small-8 medium-8 cell">{{ section.settings.product-all-four }}</h4>
+                {% endif %}
+                </div>
+            </li>
+            <li>
+                <div class="grid-x">
+                <div class="small-4 medium-4 cell text-center">{{ 'icon-naturally-air-dried.svg' | asset_url | img_tag }}</div>
+                {% if section.settings.product-all-five  != blank %}
+                  <h4 class="small-8 medium-8 cell">{{ section.settings.product-all-five }}</h4>
+                {% endif %}
+                </div>
+            </li>
+            <li>
+                <div class="grid-x">
+                <div class="small-4 medium-4 cell text-center">{{ 'icon-whole30.svg' | asset_url | img_tag }}</div>
+                {% if section.settings.product-all-six  != blank %}
+                  <h4 class="small-8 medium-8 cell">{{ section.settings.product-all-six }}</h4>
+                {% endif %}
+                </div>
+            </li>
+          </div>
+        </div>
+      </ul>
+    </div>
+</section>
+
+
+{% for block in section.blocks %}
+{% case block.type %}
+
+
+{% when 'left' %}
+  {% include 'product-all-box-one' %}
+{% when 'right' %}
+  {% include 'product-all-box-two' %}
+{% when 'cta' %}
+  {% include 'cta-snippet' %}
+
+
+{% endcase %}
+{% endfor %}
+
 
 {% schema %}
   {
-    "name": "Collection pages",
+    "name": "Collection Pages",
     "settings": [
+       {
+        "type": "text",
+        "id": "all-products-h2",
+        "label": "Product H1",
+        "default": "H2"
+      },
       {
         "type": "select",
-        "id": "layout",
-        "label": "Layout",
-        "default": "grid",
+        "id": "all-products-h2-align",
+        "label": "H2 Alignment",
+        "default": "center",
         "options": [
           {
-            "value": "grid",
-            "label": "Grid"
+            "label": "Left",
+            "value": "left"
           },
           {
-            "value": "list",
-            "label": "List"
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
           }
         ]
       },
       {
+        "type": "text",
+        "id": "all-products-h1",
+        "label": "Product H2",
+        "default": "Blurb"
+      },
+      {
         "type": "select",
-        "id": "grid",
-        "label": "Products per row (grid only)",
-        "default": "4",
+        "id": "all-products-h1-align",
+        "label": "H2 Alignment",
+        "default": "center",
         "options": [
           {
-            "value": "2",
-            "label": "2"
+            "label": "Left",
+            "value": "left"
           },
           {
-            "value": "3",
-            "label": "3"
+            "label": "Right",
+            "value": "right"
           },
           {
-            "value": "4",
-            "label": "4"
-          },
-          {
-            "value": "5",
-            "label": "5"
+            "label": "Center",
+            "value": "center"
           }
         ]
       },
       {
-        "type": "select",
-        "id": "rows",
-        "label": "Rows per page (grid only)",
-        "default": "2",
-        "options": [
+        "type": "text",
+        "id": "product-all-one",
+        "label": "Bullet 1",
+        "default": "Bullet 1"
+      },
+      {
+        "type": "text",
+        "id": "product-all-p-one",
+        "label": "Heading p",
+        "default": "p"
+      },
+      {
+        "type": "text",
+        "id": "product-all-two",
+        "label": "Bullet 2",
+        "default": "Bullet 2"
+      },
+      {
+        "type": "text",
+        "id": "product-all-p-two",
+        "label": "Heading p",
+        "default": "p"
+      },
+      {
+        "type": "text",
+        "id": "product-all-three",
+        "label": "Bullet 3",
+        "default": "Bullet 3"
+      },
+      {
+        "type": "text",
+        "id": "product-all-p-three",
+        "label": "Heading p",
+        "default": "p"
+      },
+      {
+        "type": "text",
+        "id": "product-all-four",
+        "label": "Bullet 3",
+        "default": "Bullet 3"
+      },
+      {
+        "type": "text",
+        "id": "product-all-p-four",
+        "label": "Heading p",
+        "default": "p"
+      },
+      {
+        "type": "text",
+        "id": "product-all-five",
+        "label": "Bullet 3",
+        "default": "Bullet 3"
+      },
+      {
+        "type": "text",
+        "id": "product-all-p-five",
+        "label": "Heading p",
+        "default": "p"
+      },
+      {
+        "type": "text",
+        "id": "product-all-six",
+        "label": "Bullet 3",
+        "default": "Bullet 3"
+      },
+      {
+        "type": "text",
+        "id": "product-all-p-six",
+        "label": "Heading p",
+        "default": "p"
+      }
+    ],
+     "blocks": [
+       {
+        "type": "left",
+        "name": "left",
+        "settings": [
           {
-            "value": "2",
-            "label": "2"
+            "type": "image_picker",
+            "id": "product-one-pic",
+            "label": "Product Pic"
           },
           {
-            "value": "3",
-            "label": "3"
+            "type": "select",
+            "id": "product-one-color",
+            "label": "Image alignment",
+            "options": [
+              {
+                "value": "black",
+                "label": "Black"
+              },
+              {
+                "value": "green",
+                "label": "Green"
+              },
+              {
+                "value": "orange",
+                "label": "Orange"
+              },
+              {
+                "value": "blue",
+                "label": "Blue"
+              },
+              {
+                "value": "brown",
+                "label": "Brown"
+              },
+              {
+                "value": "red",
+                "label": "Red"
+              }
+            ]
           },
           {
-            "value": "4",
-            "label": "4"
+            "type": "text",
+            "id": "product-one-h1",
+            "label": "product heading",
+            "default": "product heading"
           },
           {
-            "value": "5",
-            "label": "5"
+            "type": "text",
+            "id": "product-one-define",
+            "label": "product definition",
+            "default": "product definition"
           },
           {
-            "value": "6",
-            "label": "6"
+            "type": "text",
+            "id": "product-one-pronounce",
+            "label": "product category pronounce",
+            "default": "product category pronounce"
           },
           {
-            "value": "7",
-            "label": "7"
+            "type": "text",
+            "id": "product-one-blurb",
+            "label": "product category description",
+            "default": "product category description"
           },
           {
-            "value": "8",
-            "label": "8"
-          }
+            "id": "product-one-link",
+            "type": "url",
+            "label": "Button link"
+          },
+          {
+            "id": "product-one-label",
+            "type": "text",
+            "label": "Button text",
+            "default": "Click here"
+          },
+          {
+          "type": "select",
+          "id": "product-one-align",
+          "label": "Button Alignment",
+          "default": "center",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            },
+            {
+              "label": "Center",
+              "value": "center"
+            }
+          ]
+        },
+         {
+          "type": "select",
+          "id": "product-one-align-text",
+          "label": "Text Alignment",
+          "default": "center",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            },
+            {
+              "label": "Center",
+              "value": "center"
+            }
+          ]
+        },
+        {
+          "type": "radio",
+          "id": "product-one-type",
+          "label": "Button Type",
+          "options": [
+            {
+              "label": "Primary",
+              "value": "primary"
+            },
+            {
+              "label": "Secondary",
+              "value": "secondary"
+            }
+          ]
+        }
         ]
       },
       {
-        "type": "checkbox",
-        "id": "show_collection_image",
-        "label": "Show collection image",
-        "default": true
+        "type": "right",
+        "name": "right",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "product-two-pic",
+            "label": "Product Pic"
+          },
+          {
+            "type": "select",
+            "id": "product-two-color",
+            "label": "Image alignment",
+            "options": [
+              {
+                "value": "black",
+                "label": "Black"
+              },
+              {
+                "value": "green",
+                "label": "Green"
+              },
+              {
+                "value": "orange",
+                "label": "Orange"
+              },
+              {
+                "value": "blue",
+                "label": "Blue"
+              },
+              {
+                "value": "brown",
+                "label": "Brown"
+              },
+              {
+                "value": "red",
+                "label": "Red"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "id": "product-two-h1",
+            "label": "product heading",
+            "default": "product heading"
+          },
+          {
+            "type": "text",
+            "id": "product-two-define",
+            "label": "product definition",
+            "default": "product definition"
+          },
+          {
+            "type": "text",
+            "id": "product-two-pronounce",
+            "label": "product category pronounce",
+            "default": "product category pronounce"
+          },
+          {
+            "type": "text",
+            "id": "product-two-blurb",
+            "label": "product category description",
+            "default": "product category description"
+          },
+          {
+            "id": "product-two-link",
+            "type": "url",
+            "label": "Button link"
+          },
+          {
+            "id": "product-two-label",
+            "type": "text",
+            "label": "Button text",
+            "default": "Click here"
+          },
+          {
+          "type": "select",
+          "id": "product-two-align",
+          "label": "Button Alignment",
+          "default": "center",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            },
+            {
+              "label": "Center",
+              "value": "center"
+            }
+          ]
+        },
+         {
+          "type": "select",
+          "id": "product-two-align-text",
+          "label": "Text Alignment",
+          "default": "center",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            },
+            {
+              "label": "Center",
+              "value": "center"
+            }
+          ]
+        },
+        {
+          "type": "radio",
+          "id": "product-two-type",
+          "label": "Button Type",
+          "options": [
+            {
+              "label": "Primary",
+              "value": "primary"
+            },
+            {
+              "label": "Secondary",
+              "value": "secondary"
+            }
+          ]
+        }
+        ]
       },
       {
-        "type": "checkbox",
-        "id": "show_vendor",
-        "label": "Show product vendors",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "sort_enable",
-        "label": "Enable sorting",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "tags_enable",
-        "label": "Enable tag filtering",
-        "default": true
+        "type": "cta",
+        "name": "cta",
+        "settings": [
+          {
+            "type": "text",
+            "id": "cta-h3",
+            "label": "cta-h3",
+            "default": "cta-h3"
+          },
+          {
+            "type": "text",
+            "id": "cta-p",
+            "label": "cta-p",
+            "default": "cta-p"
+          },
+          {
+            "type": "select",
+            "id": "cta-h3-align",
+            "label": "blog-snippet-h2",
+            "default": "center",
+            "options": [
+              {
+                "label": "Left",
+                "value": "left"
+              },
+              {
+                "label": "Right",
+                "value": "right"
+              },
+              {
+                "label": "Center",
+                "value": "center"
+              }
+            ]
+          }
+        ]
       }
     ]
   }

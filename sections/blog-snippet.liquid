@@ -1,7 +1,3 @@
-
-
-
-
 <div class="blurb-position">
  <div class="grid-x">
     <div class="cell small-12">
@@ -13,13 +9,19 @@
 			<div class="grid-x {% if section.settings.blog-snippet-h2-align == 'right' %}text-right{% elsif section.settings.blog-snippet-h2-align == 'center' %}text-center{% elsif section.settings.blog-snippet-h2-align == 'left' %}text-left{% endif %} align-center">
 				<a href="{{ section.settings.blog-snippet-link }}">
 					<div class="cell small-12">
+					{% if section.settings.blog-snippet-h2 != blank %}
 						<h2>{{ section.settings.blog-snippet-h2 }}</h2>
+					{% endif %}
 					</div>
 					<div class="cell small-12">
+					{% if section.settings.blog-snippet-date != blank %}
 						<p>{{ section.settings.blog-snippet-date }}</p>
+					{% endif %}
 					</div>
 					<div class="cell small-6">
+					{% if section.settings.blog-snippet-p != blank %}
 						<p>{{ section.settings.blog-snippet-p }}</p>
+					{% endif %}
 					</div>
 				</a>
 			</div>

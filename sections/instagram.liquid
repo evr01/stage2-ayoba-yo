@@ -8,13 +8,19 @@
 	<div class="grid-container">
 		<div class="grid-x">
 			<div class="cell small-12 {% if section.settings.instagram-h2-align == 'right' %}text-right{% elsif section.settings.instagram-h2-align == 'center' %}text-center{% elsif section.settings.instagram-h2-align == 'left' %}text-left{% endif %}">
-				<h2>{{ section.settings.instagram-h2 | escape }}</h2>
+				{% if section.settings.instagram-h2 != blank %}
+					<h2>{{ section.settings.instagram-h2 | escape }}</h2>
+				{% endif %}
 			</div>
 			<div class="cell small-12 {% if section.settings.instagram-p-align == 'right' %}text-right{% elsif section.settings.instagram-p-align == 'center' %}text-center{% elsif section.settings.instagram-p-align == 'left' %}text-left{% endif %}">
-				<p>{{ section.settings.instagram-p | escape }}</p>
+				{% if section.settings.instagram-p != blank %}
+					<p>{{ section.settings.instagram-p | escape }}</p>
+				{% endif %}
 			</div>
 			<div class="cell small-12 insta-padding {% if section.settings.instagram-a-align == 'right' %}text-right{% elsif section.settings.instagram-a-align == 'center' %}text-center{% elsif section.settings.instagram-a-align == 'left' %}text-left{% endif %}">
+				{% if section.settings.instagram-a != blank %}
 				<a target="blank" href="{{ section.settings.instagram-link }}">{{ section.settings.instagram-a | escape }}</a>
+				{% endif %}
 			</div>
 		</div>
 	</div>
