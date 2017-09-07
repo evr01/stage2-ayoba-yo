@@ -1,0 +1,243 @@
+<section>
+  <div class="contact-section"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}>
+    <div class="grid-container">
+
+      <div class="grid-x align-center">
+        <div class="cell small-10 medium-8 {% if section.settings.second-text-h1-align == 'right' %}text-right{% elsif section.settings.second-text-h1-align == 'center' %}text-center{% elsif section.settings.second-text-h1-align == 'left' %}text-left{% endif %}">
+
+          <h1>{{ page.title }}</h1>
+
+        </div> 
+      </div>
+
+      <div class="grid-x align-center">
+        <div class="cell small-10 medium-6 {% if section.settings.tagline-align == 'right' %}text-right{% elsif section.settings.tagline-align == 'center' %}text-center{% elsif section.settings.tagline-align == 'left' %}text-left{% endif %}">
+
+
+
+          {% if page.content.size > 0 %}
+            <p class="lead">
+              {{ page.content }}
+            </p>
+          {% endif %}
+
+        </div> 
+      </div>
+
+      <div class="grid-x">
+        <div class="cell small-12 {% if section.settings.button-home-align == 'right' %}text-right{% elsif section.settings.button-home-align == 'center' %}text-center{% elsif section.settings.button-home-align == 'left' %}text-left{% endif %}">
+
+            {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+              <a class="button primary" href="{{ section.settings.button_link }}">
+                {{ section.settings.button_label | escape }}
+              </a>
+            {% endif %}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="grid-container contact-form">
+    <div class="grid-x align-center">
+      <div class="cell small-8">
+        {% form 'contact' %}
+
+          {% if form.posted_successfully? %}
+            <p class="note form-success">
+              {{ 'contact.form.post_success' | t }}
+            </p>
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+
+          <div class="grid-x grid-margin-x">
+            <div class="cell small-6">
+              <label for="ContactFormName">{{ 'contact.form.name' | t }}</label>
+              <input type="text" id="ContactFormName" name="contact[name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+            </div>
+            <div class="cell small-6">
+              <label for="ContactFormReason">Reasoning for Contacting</label>
+              <select id="ContactFormReason" name="contact[Reason]">
+                <option>I love Ayoba-Yo and jest want to say thank you</option>
+                <option>I have an issue with Ayoba-Yo</option>
+                <option>There's something wrong with my order</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-x grid-margin-x">
+            <div class="cell small-6">
+              <label for="ContactFormEmail" class="{% if form.errors contains 'email' %}label--error{% endif %}">{{ 'contact.form.email' | t }}</label>
+              <input type="email" id="ContactFormEmail" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %}">
+            </div>
+            <div class="cell small-6">
+              <label for="ContactFormPhone">{{ 'contact.form.phone' | t }}</label>
+              <input type="tel" id="ContactFormPhone" name="contact[phone]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+            </div>
+          </div>
+
+           <div class="grid-x">
+            <div class="cell small-12">
+              <label for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
+              <textarea rows="10" id="ContactFormMessage" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            </div>
+          </div>
+
+          <div class="grid-x text-center">
+            <div class="cell small-12">
+              <input type="submit" class="button primary large" value="{{ 'contact.form.submit' | t }}">
+            </div>
+          </div>
+
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Image with text overlay",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "alignment",
+        "label": "Image alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "center",
+            "label": "Middle"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          }
+        ]
+      },
+      
+      {
+        "type": "select",
+        "id": "second-text-h1-align",
+        "label": "H2 Alignment",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      },
+
+
+
+      {
+        "type": "select",
+        "id": "tagline-align",
+        "label": "H2 Alignment",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      },
+
+
+
+
+
+       {
+        "type": "text",
+        "id": "blurb",
+        "label": "Blurb",
+        "default": "Blurb"
+      },
+
+      
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "select",
+        "id": "button-home-align",
+        "label": "Button Alignment",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      }
+
+
+
+
+
+
+
+
+    ],
+    "presets": [
+      {
+        "name": "Image with text overlay",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}
+

@@ -1,0 +1,68 @@
+<section class="about-container">
+  <div class="about">
+    <div class="grid-container about-content">
+
+      <div class="grid-x text-left align-center text-center">
+        <div class="cell small-12 medium-8">
+          <h1>{{ page.title }}</h1>
+      
+          <h2>Ayoba-Yo</h2>
+      
+          <p class="lead">Pronounced: Ah-Yohbah-Yoh</p>
+          <p class="lead">A term used to express amazement, excitement, and approval.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-x text-left align-center page-content-container">
+    <div class="cell small-10 medium-8">{{ page.content }}</div>
+  </div>
+</section>
+<div class="insta-center about-insta-back">
+  <div class="about-insta-position">
+    <div>
+      <img class="insta-logo" src="{{ 'instagram-logo.svg' | asset_url }}" itemprop="{{}}">
+    </div>
+  </div>
+<section class="insta-container">
+  <div class="grid-container">
+    <div class="grid-x">
+      <div class="cell small-10 {% if section.settings.instagram-h2-align == 'right' %}text-right{% elsif section.settings.instagram-h2-align == 'center' %}text-center{% elsif section.settings.instagram-h2-align == 'left' %}text-left{% endif %}">
+        {% if section.settings.instagram-h2 != blank %}
+          <h2>{{ section.settings.instagram-h2 | escape }}</h2>
+        {% endif %}
+      </div>
+      <div class="cell small-10 {% if section.settings.instagram-p-align == 'right' %}text-right{% elsif section.settings.instagram-p-align == 'center' %}text-center{% elsif section.settings.instagram-p-align == 'left' %}text-left{% endif %}">
+        {% if section.settings.instagram-p != blank %}
+          <p>{{ section.settings.instagram-p | escape }}</p>
+        {% endif %}
+      </div>
+      <div class="cell small-10 insta-padding {% if section.settings.instagram-a-align == 'right' %}text-right{% elsif section.settings.instagram-a-align == 'center' %}text-center{% elsif section.settings.instagram-a-align == 'left' %}text-left{% endif %}">
+        {% if section.settings.instagram-a != blank %}
+        <a target="blank" href="{{ section.settings.instagram-link }}">{{ section.settings.instagram-a | escape }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="grid-container">
+    <div class="grid-x align-center">
+      <div class="cell small-10 medium-6 text-center">
+        <ul id="feed"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<section>
+  <div class="grid-container cta-order">
+    <div class="grid-x align-center text-center">
+      <div class="small-8 medium-12 cell">
+          <h3 class="product-feature-h2">Try Biltong Today!</h3>
+      </div>
+      <div class="small-6 cell cta-pad">
+      <a href="../collections/all" class="button primary">Order Now</a>
+      </div>
+    </div>
+  </div>
+</section>

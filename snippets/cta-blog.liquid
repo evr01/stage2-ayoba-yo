@@ -1,16 +1,6 @@
-<section class="collection-cta-pad">
-	<div class="grid-container">
-		<div class="grid-x {% if block.settings.cta-h3-align == 'right' %}text-right{% elsif block.settings.cta-h3-align == 'center' %}text-center{% elsif block.settings.cta-h3-align == 'left' %}text-left{% endif %} align-center">
-			<div class="small-8 medium-12 cell">
-				{% if block.settings.cta-h3 != blank %}
-					<h3>{{ block.settings.cta-h3 | escape }}</h3>
-				{% endif %}
-				{% if block.settings.cta-p != blank %}
-			        <p>{{ block.settings.cta-p | escape }}</p>
-			    {% endif %}
-			</div>
-			<div class="small-6 cell cta-pad">
-			  {% form 'customer' %}
+<div class="reveal" id="signup" data-reveal>
+
+  			{% form 'customer' %}
 		      {{ form.errors | default_errors }}
 		      {% if form.posted_successfully? %}
 				    <p class="form--success">{{ 'general.newsletter_form.confirmation' | t }}</p>
@@ -29,8 +19,15 @@
 				  </div>
 				</form>
 				{% endif %}
-    			{% endform %}
-			</div>
-		</div>
-	</div>
-</section>
+    		{% endform %}
+
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+</div>
+
+<button class="button secondary" data-open="signup">Subscribe Now</button>
+
+
+

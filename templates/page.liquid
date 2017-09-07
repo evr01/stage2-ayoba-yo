@@ -1,13 +1,17 @@
-<div class="page-width">
-  <div class="grid">
-    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
-      <div class="section-header text-center">
-        <h1>{{ page.title }}</h1>
-      </div>
+<section>
+  <div>
+    <div class="grid-container">
 
-      <div class="rte">
-        {{ page.content }}
+      <div class="grid-x text-left align-center">
+        <div class="cell small-10 medium-8">
+            <h1>{{ page.title }}</h1>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <div class="grid-x text-left align-center page-content-container">
+    <div class="cell small-10 medium-8">{{ page.content }}</div>
+  </div>
+</section>
+
+

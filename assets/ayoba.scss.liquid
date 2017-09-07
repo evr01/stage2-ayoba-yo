@@ -260,6 +260,9 @@ $topbar-center-logo-bg: #2c3840;
         .button, .button-group .button{
           font-size: .6rem;
         }
+        .mobile-btn{
+          justify-content: center;
+        }
     }
 .footer-bottom-bar{
   border-top: 1px solid #fafafa; 
@@ -276,22 +279,24 @@ $topbar-center-logo-bg: #2c3840;
   font-family:'futura_lt_btlight'; 
 }
 /*HERO HOME PAGE*/
-.hero-section h1, .hero-section h2, .hero-section p, .hero-section a{
+.hero-section h1, .hero-section h2, .hero-section p, .hero-section a, .about h1, .about h2, .about p, .about a{
   color: #fafafa;
   position: relative;
   z-index: 10;  
 }
-.hero-section h1, .hero-section h2, .hero-section p{
+.hero-section h1, .hero-section h2, .hero-section p, .about h1, .about h2, .about p{
   text-shadow: 0px 2px 3px rgba(35,31,32, 1); 
 }
-.hero-section h1{
+.hero-section h1, .about h1{
   font-size: 3rem;
+}
+.hero-section h2, .about h2{
+  text-transform: none;
+  text-shadow: ;
 }
 .hero-section h2{
   padding-bottom: 2rem;
   font-family: 'futura_lt_btlight';
-  text-transform: none;
-  text-shadow: ;
 }
 .hero-section::before {
     content: '';
@@ -326,7 +331,7 @@ $topbar-center-logo-bg: #2c3840;
   }
 }
 @media print, screen and (min-width: 40em) {
-  .hero-section h1 {
+  .hero-section h1, .about h1 {
     font-size: 6rem; }
 }
 .blurb-container{
@@ -434,8 +439,27 @@ $topbar-center-logo-bg: #2c3840;
 }
 .btn-pad{
   margin-left: 0rem !important;
-  margin-right: 1rem !important;
+  margin-right: 0rem !important;
 }
+@media screen and (min-width: 385px) {
+    .btn-pad{
+      margin-left: 0rem !important;
+      margin-right: 1rem !important;
+    }
+}
+@media screen and (max-width: 951px) {
+      .mobile-align-center{
+          justify-content: center;
+          margin: 0 auto;
+        } 
+      .product-page-align{
+          text-align: center;
+        }
+      .btn-group-pad{
+        padding-bottom: 1rem;
+      }
+}
+
 .text-container{
   position: relative;
 }
@@ -614,6 +638,9 @@ $topbar-center-logo-bg: #2c3840;
 .cta-pad{
   padding: 1rem;
 }
+.collection-cta-pad{
+  padding: 4rem;
+}
 /* EAT OUR MEAT */
 
 .prod-all-green{
@@ -636,17 +663,46 @@ $topbar-center-logo-bg: #2c3840;
 }
 
 
-
+.product-hero-container{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
 .product-all-head{
-  padding-top: 4rem;
+ 
 }
+.product-all-head .h1{
+  font-size: 1.5rem;
+}
+
+@media print, screen and (min-width: 40em) {
+  .product-all-head .h1 {
+    font-size: 3rem; }
+  }
+
 .product-all-subhead{
   padding-bottom: 1rem;
 }
+.product-all-subhead .h2{
+  font-size: 1.125rem;
+}
+.text-font{
+  font-size: 1rem;
+  padding-top: .85rem;
+}
+.product-hero-height{
+  height: 50vh;
+}
+@media print, screen and (min-width: 40em) {
+    .product-all-subhead .h2{
+      font-size: 1.5625rem;}
+  }
+
 .product-all-pad li{
   padding-bottom: 1rem;
 }
+
 /* product */
 .product-all-container{
   color: #fafafa;
@@ -698,8 +754,8 @@ $topbar-center-logo-bg: #2c3840;
 
 
 .product-page-align {
-  padding: 4rem;
-  position: relative;
+  padding: 2rem;
+  /*position: relative;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -708,7 +764,13 @@ $topbar-center-logo-bg: #2c3840;
           align-items: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
-          justify-content: center;
+          justify-content: center;*/
+}
+.product-page-align p{
+  margin-bottom: 0;
+}
+.product-page-align img{
+  padding-bottom: 2rem;
 }
 .product-description{
   padding: 2rem;
@@ -819,9 +881,269 @@ $topbar-center-logo-bg: #2c3840;
   max-width: 80%;
   margin: 0 auto !important;
 }
+.spr-badge{
+  padding-bottom: 1rem;
+}
 .spr-container{
   border: none !important;
 }
 .spr-header-title{
   text-align: center;
+}
+/* About Page */
+.about-container{
+  padding-bottom: 4rem;
+}
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-color: rgba( 35,31,32, 0.5);
+}
+.about {
+  position: relative;
+  background-size: cover;
+  height: 80vh;
+  background-image:  url('https://cdn.shopify.com/s/files/1/2076/1189/files/lion-cub.jpg?12600900657312465052');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.about-content{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); 
+}
+.about h1, .about h2, .about p{
+  color: #fff;
+}
+.about-insta-back{
+  background: #fafafa;
+}
+.about-insta-position{
+  position: relative;
+  bottom: 3.2rem;
+}
+@media screen and (max-width: 1000px) {
+    .about-insta-position{
+      position: relative;
+      bottom: 3.2rem;
+    }
+}
+@media screen and (max-width: 800px) {
+    .about-insta-position{
+      position: relative;
+      bottom: 3.2rem;
+    }
+}
+@media screen and (max-width: 700px) {
+    .about-insta-position{
+      position: relative;
+      bottom: 3.2rem;
+    }
+}
+.cta-order{
+  padding: 2rem;
+}
+/* blog card */
+.blog-wrapper{
+  background: #fafafa;
+  padding: 4rem 2rem;
+}
+.blog-hero{
+  height: 50vh; 
+}
+.blog-content-container{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.blog-content-container .h2{
+  font-size: 1.125rem;
+}
+.blog-filter{
+  padding-bottom: 1rem;
+}
+.card-article-hover {
+  box-shadow: 0px 0px 7px #888888;
+}
+
+.card-article-hover .card-section {
+  width: 90%;
+  background: #fff;
+  margin: 0 auto;
+  padding-top: 25px;
+  margin-top: -3rem;
+  z-index: 2;
+}
+
+.card-article-hover .card-section .article-subtext {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+}
+
+.card-article-hover .card-section .article-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.card-article-hover .card-section .article-desc {
+  font-size: 1rem;
+}
+
+.card-article-hover .card-divider {
+  background: #fff;
+}
+
+.card-article-hover .card-divider .author {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #2daebf;
+}
+
+.card-article-hover .hover-border {
+  height: 10px;
+  width: 450px;
+  background: #2daebf;
+  width: 0;
+  transition: width 1s ease;
+}
+
+.card-article-hover:hover .hover-border {
+  height: 10px;
+  width: 450px;
+  transition: width 1s ease;
+}
+
+.card-article-hover .author {
+  color: navy;
+}
+
+.card-article-hover .avatar {
+  border-radius: 50%;
+  margin: 0 1rem;
+}
+
+.card-article-hover .meta-data {
+  text-transform: uppercase;
+}
+.blog-cta-wrap{
+  padding: 4rem 0;
+}
+.blog-cta-wrap p{
+  padding-bottom: 1rem;
+}
+/* Recipe */
+.recipe-btn{
+  padding-top: 1rem;
+}
+/* meet our meat */
+.meet-hero-container{
+  height: 50vh;
+}
+.meet-hero{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.meet-hero .h1{
+  font-size: 1.5rem;
+}
+.meet-hero .h2{
+  font-size: 1.125rem;
+}
+.meet-content{
+  padding: 4rem 0;
+}
+.meet-container{
+    padding-bottom: 4rem;
+  }
+@media print, screen and (max-width: 639px) {
+  .meat-icon{
+    height: 300px;
+  }
+  .mobile-center{
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+.boerewors{
+  width: 65%;
+}
+.about h2{
+  font-size: 2rem;
+}
+@media print, screen and (min-width: 40em) {
+    .meet-hero .h1{
+    font-size: 3rem;
+    }
+    .meet-hero .h2{
+      font-size: 1.5625rem;
+    }
+    .about h2{
+      font-size: 3.5rem;
+    }
+    .blog-content-container .h2{
+      font-size: 1.5625rem;
+    }
+  }
+.page-content-container{
+  padding: 4rem 0;
+}
+/* Contact Us*/
+.contact-form{
+  padding: 2rem 0;
+}
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-color: rgba( 35,31,32, 0.3);
+}
+.contact-section {
+  position: relative;
+  background-size: cover;
+  height: 80vh;
+  text-align: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.contact-section h1, .contact-section p{
+  color: #fafafa;
+  position: relative;
+  z-index: 10;  
+}
+.contact-section h1, .contact-section p{
+  text-shadow: 0px 2px 3px rgba(35,31,32, 1); 
+}
+.contact-section h1{
+  font-size: 3rem;
+}
+
+@media print, screen and (min-width: 40em) {
+  .contact-section h1 {
+    font-size: 6rem; }
+}
+.article-cta{
+  background: #fafafa;
+}
+.article-pad{
+  padding: 2rem 0;
 }

@@ -1,0 +1,119 @@
+<section>
+	<div class="grid-container meet-hero-container">
+		<div class="grid-x align-center meet-hero">
+			<div class="cell small-12 text-center">
+				<h2 class="h1">{{ page.title }}</h2>
+			</div>
+			<div class="cell small-12 text-center">
+				{% if section.settings.meeth2!= blank %}
+          <h1 class="h2">{{ section.settings.meeth2| escape }}</h1>
+        {% endif %}
+			</div>
+			<div class="cell small-10 medium-6 text-center">
+        {% if section.settings.meetp!= blank %}
+          <p>{{ section.settings.meetp| escape }}</p>
+        {% endif %}
+			</div>
+		</div>
+	</div>
+	<div>
+ <div class="grid-x">
+    <div class="cell small-12">
+      <img class="top-border" src="{{ 'border-thin-red.svg' | asset_url }}" itemprop="{{}}">
+    </div>
+  </div>
+  <section class="blurb-container">
+    <div class="grid-x ">
+      <div class="cell small-12 blurb-bullet">
+        
+          <div class="grid-container">
+            <ul>
+              <div class="grid-x align-center">
+                <div class="small-4 cell">
+                
+                  <li>
+                      <div class="grid-x">
+                        <div class="small-4 medium-4 cell text-center">{{ 'icon-no-sugar.svg' | asset_url | img_tag }}</div>
+                        
+                          <h4 class="small-8 medium-8 cell">No Sugar</h4>
+                       
+                      </div>
+                  </li>
+                
+                 <li>
+                      <div class="grid-x">
+                      <div class="small-4 medium-4 cell text-center">{{ 'icon-high-protein.svg' | asset_url | img_tag }}</div>
+                        <h4 class="small-8 medium-8 cell">Hign Protein</h4>
+                      </div>
+                  </li>
+                </div>
+                <div class="small-4 cell">
+                <li>
+                      <div class="grid-x">
+                      <div class="small-4 medium-4 cell text-center">{{ 'icon-gluten-free.svg' | asset_url | img_tag }}</div>
+                        <h4 class="small-8 medium-8 cell">Gluten Free</h4>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="grid-x">
+                      <div class="small-4 medium-4 cell text-center">{{ 'icon-natural-flavor.svg' | asset_url | img_tag }}</div>
+                        <h4 class="small-8 medium-8 cell">Natural Flavor</h4>
+                      </div>
+                  </li>
+                </div>
+                <div class="small-4 cell">
+                  <li>
+                      <div class="grid-x">
+                      <div class="small-4 medium-4 cell text-center">{{ 'icon-naturally-air-dried.svg' | asset_url | img_tag }}</div>
+                        <h4 class="small-8 medium-8 cell">Naturally Air Dried</h4>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="grid-x">
+                      <div class="small-4 medium-4 cell text-center">{{ 'icon-whole30.svg' | asset_url | img_tag }}</div>
+                        <h4 class="small-8 medium-8 cell">Whole30</h4>
+                      </div>
+                  </li> 
+                </div>
+              </div>
+            </ul>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+  <div class="grid-x">
+    <div class="cell small-12">
+      <img class="bottom-border" src="{{ 'border-thin-red.svg' | asset_url }}" itemprop="{{}}">
+    </div>
+  </div>
+</div>
+	<div class="grid-container meet-content">
+		<div grid-x>
+			<div class="cell small-12">
+				{{ page.content }}
+			</div>
+		</div>
+	</div>
+</section>
+
+{% schema %}
+  {
+    "name": "Blog pages",
+    "settings": [
+      {
+        "type": "text",
+        "id": "meeth2",
+        "label": "meeth2",
+        "default": "description"
+      },
+      {
+        "type": "text",
+        "id": "meetp",
+        "label": "meetp"
+      }
+    ]
+
+
+  }
+{% endschema %}

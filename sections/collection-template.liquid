@@ -1,4 +1,5 @@
-<section>
+<section class="product-hero-height">
+  <div class="product-hero-container">
   <div class="grid-container">
     <div class="grid-x align-center product-all-head">
       <div class="cell small-12 {% if section.settings.all-products-h2-align == 'right' %}text-right{% elsif section.settings.all-products-h2-align == 'center' %}text-center{% elsif section.settings.all-products-h2-align == 'left' %}text-left{% endif %}">
@@ -20,12 +21,12 @@
     <div class="grid-container product-all-pad">
       <ul>
         <div class="grid-x align-center">
-          <div class="small-4 cell">
+          <div class="small-12 medium-4 cell">
             <li>
                 <div class="grid-x">
                   <div class="small-4 medium-4 cell text-center">{{ 'icon-no-sugar.svg' | asset_url | img_tag }}</div>
                   {% if section.settings.product-all-one != blank %}
-                    <h4 class="small-8 medium-8 cell">{{ section.settings.product-all-one }}</h4>
+                    <h4 class="small-8 medium-8 cell text-font">{{ section.settings.product-all-one }}</h4>
                   {% endif %}
                 </div>
             </li>
@@ -33,33 +34,35 @@
                 <div class="grid-x">
                 <div class="small-4 medium-4 cell text-center">{{ 'icon-high-protein.svg' | asset_url | img_tag }}</div>
                 {% if section.settings.product-all-two != blank %}
-                  <h4 class="small-8 medium-8 cell">{{ section.settings.product-all-two }}</h4>
-                {% endif %}
-                </div>
-            </li>
-            <li>
-                <div class="grid-x">
-                <div class="small-4 medium-4 cell text-center">{{ 'icon-gluten-free.svg' | asset_url | img_tag }}</div>
-                {% if section.settings.product-all-three != blank %}
-                  <h4 class="small-8 medium-8 cell">{{ section.settings.product-all-three }}</h4>
+                  <h4 class="small-8 medium-8 cell text-font">{{ section.settings.product-all-two }}</h4>
                 {% endif %}
                 </div>
             </li>
           </div>
-          <div class="small-4 cell">
-            <li>
+          <div class="small-12 medium-4 cell">
+          <li>
                 <div class="grid-x">
-                <div class="small-4 medium-4 cell text-center">{{ 'icon-natural-flavor.svg' | asset_url | img_tag }}</div>
-                {% if section.settings.product-all-four != blank %}
-                  <h4 class="small-8 medium-8 cell">{{ section.settings.product-all-four }}</h4>
+                <div class="small-4 medium-4 cell text-center">{{ 'icon-gluten-free.svg' | asset_url | img_tag }}</div>
+                {% if section.settings.product-all-three != blank %}
+                  <h4 class="small-8 medium-8 cell text-font">{{ section.settings.product-all-three }}</h4>
                 {% endif %}
                 </div>
             </li>
             <li>
                 <div class="grid-x">
+                <div class="small-4 medium-4 cell text-center">{{ 'icon-natural-flavor.svg' | asset_url | img_tag }}</div>
+                {% if section.settings.product-all-four != blank %}
+                  <h4 class="small-8 medium-8 cell text-font">{{ section.settings.product-all-four }}</h4>
+                {% endif %}
+                </div>
+            </li>
+          </div>
+          <div class="cell small-12 medium-4">
+            <li>
+                <div class="grid-x">
                 <div class="small-4 medium-4 cell text-center">{{ 'icon-naturally-air-dried.svg' | asset_url | img_tag }}</div>
                 {% if section.settings.product-all-five  != blank %}
-                  <h4 class="small-8 medium-8 cell">{{ section.settings.product-all-five }}</h4>
+                  <h4 class="small-8 medium-8 cell text-font">{{ section.settings.product-all-five }}</h4>
                 {% endif %}
                 </div>
             </li>
@@ -67,7 +70,7 @@
                 <div class="grid-x">
                 <div class="small-4 medium-4 cell text-center">{{ 'icon-whole30.svg' | asset_url | img_tag }}</div>
                 {% if section.settings.product-all-six  != blank %}
-                  <h4 class="small-8 medium-8 cell">{{ section.settings.product-all-six }}</h4>
+                  <h4 class="small-8 medium-8 cell text-font">{{ section.settings.product-all-six }}</h4>
                 {% endif %}
                 </div>
             </li>
@@ -75,6 +78,7 @@
         </div>
       </ul>
     </div>
+  </div>
 </section>
 
 

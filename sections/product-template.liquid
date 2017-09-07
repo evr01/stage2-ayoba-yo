@@ -4,7 +4,7 @@
 <meta itemprop="image" content="{{ product.featured_image.src | img_url: '2048x' }}">
 
 
-  <div class="grod-x">
+  <div class="grid-x">
       <div class="small-12 cell product-img-container">
 
       {%- assign featured_img_src = current_variant.featured_image.src | default: product.featured_image.src -%}
@@ -22,22 +22,14 @@
 <div class="product-page-align">
   <div class="grid-container">
      <div class="grid-x">
-      <div class="cell small-12 medium-7 {% if block.settings.product-h1-align == 'right' %}text-right{% elsif section.settings.product-h1-align == 'center' %}text-center{% elsif section.settings.second-product-h1 == 'left' %}text-left{% endif %}">
+      <div class="cell small-12 medium-8 mobile-align-center {% if block.settings.product-h1-align == 'right' %}text-right{% elsif section.settings.product-h1-align == 'center' %}text-center{% elsif section.settings.second-product-h1 == 'left' %}text-left{% endif %}">
         <h1 itemprop="name">{{ product.title }}</h1>
 
-        <div class="grid-x">
-          <div class="cell small-9">
+  
             {% for field in product.metafields.ProductPageHTwo %}
               <h2 class="product-h2">{{ field | last }}</h2>
             {% endfor %}
-          </div>
-          <div class="cell small-3">
-            {% for field in product.metafields.aka %}
-            <p>{{ field | last }}</p>
-          {% endfor %}
-          </div>
-        </div>
-
+   
         {% for field in product.metafields.ProductPageHTwoSEO %}
           <h2 class="product-h2">{{ field | last }}</h2>
         {% endfor %}
@@ -45,9 +37,9 @@
       <div class="small-12 cell">
         <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
       </div>
-      <div class="small-12 cell">
+      <div class="small-12 cell btn-group-pad">
         <p>Product Type</p>
-        <div class="button-group">
+        <div class="button-group mobile-align-center">
           {% for block in section.blocks %} 
           {% if block.type == 'select' %}
               <button class="button btn-pad {% if block.settings.product-btn-type == 'primary' %}primary{% elsif block.settings.product-btn-type == 'secondary' %}secondary{% endif %}">{{ block.settings.product-btn-label }}</button>
@@ -55,11 +47,11 @@
           {% endfor %}
         </div>
       </div>
-        <div class="small-12 cell">
-          <div class="grid-x grid-margin-x">
-            <div class="small-12 medium-8 large-6 cell">
+        <div class="small-12 cell btn-group-pad">
+          <div class="grid-x grid-margin-x mobile-align-center">
+            <div class="medium-12 large-6 cell btn-group-pad">
               <p>Delivery Type</p>
-              <div class="button-group">
+              <div class="button-group expanded mobile-align-center">
                 {% for block in section.blocks %} 
                 {% if block.type == 'select-again' %}
                     <button class="button btn-pad {% if block.settings.deliver-btn-type == 'primary' %}primary{% elsif block.settings.deliver-btn-type == 'secondary' %}secondary{% endif %}">{{ block.settings.deliver-btn-label }}</button>
@@ -67,10 +59,10 @@
                 {% endfor %}
               </div>
             </div>
-            <div class="small-12 medium-4 large-6 cell">
+            <div class="medium-12 large-6 cell">
              {% if section.settings.show_quantity_selector %}
              <p>Quantity</p>
-              <div class="quantity-input">
+              <div class="quantity-input mobile-align-center">
                 <input type="number" id="Quantity" name="quantity" value="1" min="1" pattern="[0-9]*">
               </div>
             {% endif %}
@@ -123,11 +115,11 @@
         </div>
       </div>
 
-      <div class="hide-for-small-only cell medium-5">
+      <div class="show-for-medium cell medium-4">
         <div class="grid-x">
           <div class="cell small-12">
             {% if product.url == '/products/traditional-biltong-south-african-jerky' %}
-              <img class="" src="{{ 'biltong-traditional-dried-beef-slices-packaging.png' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Traditional Biltong, South African Jerky, 2oz snack bag"> 
+              <img class="" src="{{ 'biltong-traditional-dried-beef-slices-packaging.svg' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Traditional Biltong, South African Jerky, 2oz snack bag"> 
             {% elsif product.url == '/products/spicy-biltong-south-african-jerky' %}
               <img class="" src="{{ 'biltong-spicy-dried-sliced-beef-packaging.svg' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Spicy Biltong, South African Jerky, 2oz snack bag">
             {% elsif product.url == '/products/droewors-air-dried-beef-stick' %}
@@ -142,18 +134,13 @@
             
           </div>
         </div>
-        <div class="grid-x">
-          <div class="cell small-12">
-            <!-- Go to www.addthis.com/dashboard to customize your tools --> <div class="addthis_inline_follow_toolbox social-icon"></div>
-          </div>
-        </div>
       </div>
-
-
-
-
-
     </div> 
+    <div class="grid-x show-for-medium">
+      <div class="cell small-12">
+        <!-- Go to www.addthis.com/dashboard to customize your tools --> <div class="addthis_inline_share_toolbox float-right"></div>
+      </div>
+    </div>
   </div>
 </div>
 
