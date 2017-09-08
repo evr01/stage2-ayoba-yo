@@ -16,16 +16,47 @@
           {% endif %}
         </header>
       </div>
-      {{ article | img_url: '2048x', scale: 2 | img_tag: article.title }}
+      {{ article | img_url: '1024x' | img_tag: article.title }}
 
-    <div class="cell small-10 article-pad">
-      <section>
-          <div itemprop="articleBody">
-            {{ article.content }}
+    
+
+    </div>
+
+
+    <div class="grid-x text-center align-center">
+      <div class="cell small-10 medium-8 article-pad">
+        <section>
+            <div itemprop="articleBody">
+              {{ article.content }}
+            </div>
+        </section>
+      </div>
+    </div>
+
+
+
+    <section>
+      <div class="grid-x align-center">
+          <div class="cell small-5 article-pad">
+            <h2>Ingredients</h2>
+            <ul>
+              {% for block in section.blocks %} 
+                <li><p>{{ block.settings.ingredient }}</p></li>
+              {% endfor %}
+            </ul>
+        
           </div>
-      </section>
-    </div>
-    </div>
+          <div class="cell small-5 article-pad">
+            <h2>Preparation</h2>
+              <ul>
+                {% for block in section.blocks %} 
+                  <li><p>{{ block.settings.prepstep }}</p></li>
+                {% endfor %}
+              </ul>
+          
+          </div>
+      </div>
+    </section>
     
 </article>
 
@@ -138,6 +169,30 @@
         "id": "cta-article-p",
         "label": "article p"
       }
-    ]
+    ],
+    "blocks": [
+    {
+      "type": "select",
+      "name": "Add Ingredient",
+      "settings": [
+        {
+          "id": "ingredient",
+          "type": "text",
+          "label": "ingredient label"
+        }
+      ]
+    },
+    {
+      "type": "selectprep",
+      "name": "Add Prep Description",
+      "settings": [
+        {
+          "id": "prepstep",
+          "type": "text",
+          "label": "prep description"
+        }
+      ]
+    }
+  ]
   }
 {% endschema %}

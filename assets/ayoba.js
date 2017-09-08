@@ -9,7 +9,7 @@
     template: '<li class="">'+
 			  	'<a href="{{link}}" target="_blank">'+
 				  	'<img src="{{image}}" class="image" />'+
-				  	'<div class="caption">{{caption}}</div>'+
+				  /*	'<div class="caption">{{caption}}</div>'+ */
 			  	'</a>'+
 			  '</li>',
        after: function () {

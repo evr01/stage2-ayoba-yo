@@ -18,7 +18,7 @@ table tbody th, table tbody td {
   margin-bottom: 0.5rem; 
 }
 .h2{
-  font-family: 'futura_lt_btlight';
+  font-family: Futura-Lig;
 
   line-height: 1.4;
   margin-top: 0;
@@ -41,8 +41,8 @@ table tbody th, table tbody td {
   justify-content: center;
 }
 body{
-  font-family: 'futura_lt_btlight'; 
-  font-weight: normal;
+  font-family: Futura-Lig; 
+  font-weight: bold;
 }
 .logo-font, .nav-link-container, .login-icons{
   display: inline-block;
@@ -268,7 +268,7 @@ $topbar-center-logo-bg: #2c3840;
   border-top: 1px solid #fafafa; 
 }
 .footer-bottom-bar .menu a{
-  font-family:'futura_lt_btlight'; 
+  font-family:Futura-Lig; 
   font-weight: normal;
   font-size: 80%;
   text-transform: none; 
@@ -276,7 +276,7 @@ $topbar-center-logo-bg: #2c3840;
 .footer-bottom-bar p{
   text-align: left;
   font-size: 80%;
-  font-family:'futura_lt_btlight'; 
+  font-family:Futura-Lig; 
 }
 /*HERO HOME PAGE*/
 .hero-section h1, .hero-section h2, .hero-section p, .hero-section a, .about h1, .about h2, .about p, .about a{
@@ -296,7 +296,7 @@ $topbar-center-logo-bg: #2c3840;
 }
 .hero-section h2{
   padding-bottom: 2rem;
-  font-family: 'futura_lt_btlight';
+  font-family: Futura-Lig;
 }
 .hero-section::before {
     content: '';
@@ -311,6 +311,7 @@ $topbar-center-logo-bg: #2c3840;
 .hero-section {
   position: relative;
   background-size: cover;
+  background: center center no-repeat; 
   height: 80vh;
   text-align: center;
   display: -webkit-flex;
@@ -328,7 +329,10 @@ $topbar-center-logo-bg: #2c3840;
 @media screen and (max-width: 767px) {
     .hero-section {
       height: 60vh;
-  }
+      background: center no-repeat;
+      background-size: cover;
+    }
+
 }
 @media print, screen and (min-width: 40em) {
   .hero-section h1, .about h1 {
@@ -533,7 +537,7 @@ $topbar-center-logo-bg: #2c3840;
 }
 @media screen and (max-width: 639px) {
     .product-feature-pad-mobile h4{
-      font-family: 'futura_lt_btlight';
+      font-family: Futura-Lig;
     }
 }
 @media screen and (min-width: 760px) {
@@ -616,6 +620,7 @@ $topbar-center-logo-bg: #2c3840;
   max-height: 100px;
 }
 .slick-slide img{
+  max-height: 450px;
   margin: 0 auto;
   border-radius: 5px;
 }
@@ -713,7 +718,7 @@ $topbar-center-logo-bg: #2c3840;
 }
 .product-all-container h2{
   padding-bottom: 1.5rem;
-  font-family: 'futura_lt_btlight';
+  font-family: Futura-Lig;
 }
 .product-all-container p{
   color: #fafafa;
@@ -726,7 +731,7 @@ $topbar-center-logo-bg: #2c3840;
     }
 }
 .product-h2{
-  font-family: 'futura_lt_btlight';
+  font-family: Futura-Lig;
   text-transform: none;
   font-size: 1rem;
 }
@@ -752,7 +757,39 @@ $topbar-center-logo-bg: #2c3840;
   width: 50px;
 }
 
+.product-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-color: rgba( 35,31,32, 0.1);
+}
+.product-section {
+  position: relative;
+  background-size: cover;
+  height: 80vh;
+  text-align: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+@media screen and (max-width: 767px) {
+    .product-section {
+      height: 60vh;
+      background: center no-repeat;
+      background-size: cover;
+    }
 
+}
 .product-page-align {
   padding: 2rem;
   /*position: relative;
