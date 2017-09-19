@@ -1,0 +1,74 @@
+<form action="/cart/add" method="post" enctype="multipart/form-data" data-productid="{{product.id}}">
+  <div class="grid-x form-align">
+    <div class="cell small-6">
+      <select name="id" data-productid="{{product.id}}">
+      {% for variant in product.variants %}
+        {% if variant.available == true %}
+        <option value="{{variant.id}}"> {{ variant.title }}</option>
+        {% else %}
+        <option disabled="disabled"> {{ variant.title }} - sold out!</option>
+        {% endif %}
+      {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="grid-x form-align">
+    <div class="cell small-8 medium-6">
+      {% if product.available %}{% include 'subscription-product' %}{% endif %}
+    </div>
+  </div>
+  <div class="grid-x">
+      <div class="cell small-6">
+        <div class="grid-x">
+          <div class="small-1 medium-2 cell">
+            {% if section.settings.show_quantity_selector %}
+             <p>Quantity</p>
+              <div class="quantity-input mobile-align-center">
+                <input type="number" id="Quantity" name="quantity" value="1" min="1" pattern="[0-9]*">
+              </div>
+            {% endif %}
+          </div>
+          <div class="cell small-11 medium-10 float-left">
+             {% if product.variants.size > 1 %}
+             <p>
+
+              <div class="modal_price lead" itemscope itemtype="http://schema.org/Offer">
+                 <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+                 <meta itemprop="seller" content="{{ shop.name | escape }}" />
+                 <meta itemprop="availability" content="{% if product.available %}in_stock{% else %}out_of_stock{% endif %}" />
+                 <meta itemprop="itemCondition" content="New" />
+
+                 <span>{% if variant.available == false %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
+
+                 <span itemprop="price" content="{{ variant.price | money_without_currency }}" class="{% if variant.compare_at_price > variant.price %}sale{% endif %}">
+                    <span>
+                      {% if variant.available %}
+                        {% if variant.price > 0 %} 
+                          {{ current_variant.price | money }} 
+                        {% else %}
+                          {{ settings.free_price_text }}
+                        {% endif %}
+                      {% endif %}
+                    </span>
+                 </span>
+
+                 <span>
+                  {% if variant.price < variant.compare_at_price %}
+                    {{ variant.compare_at_price | money }}
+                  {% endif %}
+                 </span>
+                 <span>each</span>
+
+              </div>
+               
+             </p>
+
+          {% else %}
+              <div class="modal_price lead">{{ product.price | money }} each</div>
+          {% endif %}
+          </div>
+        </div>
+      </div>
+  </div>
+  <input type="submit" name="add" id="add" value="Add to Cart" class="button primary button-pad">
+</form>

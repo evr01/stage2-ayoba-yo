@@ -10,92 +10,57 @@
         {% endif %}
 			</div>
 			<div class="cell small-10 medium-6 text-center">
-        {% if section.settings.meetp!= blank %}
-          <p>{{ section.settings.meetp| escape }}</p>
-        {% endif %}
+        {{ page.content }}
 			</div>
 		</div>
 	</div>
 	<div>
- <div class="grid-x">
-    <div class="cell small-12">
-      <img class="top-border" src="{{ 'border-thin-red.svg' | asset_url }}" itemprop="{{}}">
-    </div>
-  </div>
-  <section class="blurb-container">
-    <div class="grid-x ">
-      <div class="cell small-12 blurb-bullet">
-        
-          <div class="grid-container">
-            <ul>
-              <div class="grid-x align-center">
-                <div class="small-4 cell">
-                
-                  <li>
-                      <div class="grid-x">
-                        <div class="small-4 medium-4 cell text-center">{{ 'icon-no-sugar.svg' | asset_url | img_tag }}</div>
-                        
-                          <h4 class="small-8 medium-8 cell">No Sugar</h4>
-                       
-                      </div>
-                  </li>
-                
-                 <li>
-                      <div class="grid-x">
-                      <div class="small-4 medium-4 cell text-center">{{ 'icon-high-protein.svg' | asset_url | img_tag }}</div>
-                        <h4 class="small-8 medium-8 cell">Hign Protein</h4>
-                      </div>
-                  </li>
-                </div>
-                <div class="small-4 cell">
-                <li>
-                      <div class="grid-x">
-                      <div class="small-4 medium-4 cell text-center">{{ 'icon-gluten-free.svg' | asset_url | img_tag }}</div>
-                        <h4 class="small-8 medium-8 cell">Gluten Free</h4>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="grid-x">
-                      <div class="small-4 medium-4 cell text-center">{{ 'icon-natural-flavor.svg' | asset_url | img_tag }}</div>
-                        <h4 class="small-8 medium-8 cell">Natural Flavor</h4>
-                      </div>
-                  </li>
-                </div>
-                <div class="small-4 cell">
-                  <li>
-                      <div class="grid-x">
-                      <div class="small-4 medium-4 cell text-center">{{ 'icon-naturally-air-dried.svg' | asset_url | img_tag }}</div>
-                        <h4 class="small-8 medium-8 cell">Naturally Air Dried</h4>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="grid-x">
-                      <div class="small-4 medium-4 cell text-center">{{ 'icon-whole30.svg' | asset_url | img_tag }}</div>
-                        <h4 class="small-8 medium-8 cell">Whole30</h4>
-                      </div>
-                  </li> 
-                </div>
-              </div>
-            </ul>
-          </div>
-        
-      </div>
-    </div>
-  </section>
-  <div class="grid-x">
-    <div class="cell small-12">
-      <img class="bottom-border" src="{{ 'border-thin-red.svg' | asset_url }}" itemprop="{{}}">
-    </div>
-  </div>
+ {% include 'blurb' %}
 </div>
 	<div class="grid-container meet-content">
 		<div grid-x>
 			<div class="cell small-12">
-				{{ page.content }}
+        <div class="grid-container">
+        {% for block in section.blocks %}
+          <div class="grid-x align-center meet-container">
+            
+
+              {% if block.type == 'meet-faq' %}
+              <div class="cell small-10 medium-3 text-center" style="text-align: left;"><img class="meat-icon" alt="Ayoba-Yo Traditional Biltong, South African Jerky, 2oz snack bag" src="{{ block.settings.meat-image | img_url: '2048x' }}" style="float: none;" /></div>
+              <div class="cell small-10 medium-9 mobile-center"> 
+                    <h2>{{ block.settings.meet-faq-h2 }}</h2>
+                    <h3>{{ block.settings.meet-faq-h3 }}</h3>
+                    <p>{{ block.settings.meet-faq-p }}</p>              
+              </div>
+              {% endif %}
+            
+
+            
+          </div>
+          
+          <div class="grid-x align-center">
+         
+                {% if block.type == 'meet-btn' %}
+                  <a class="button btn-pad {% if block.settings.meet-btn-type == 'primary' %}primary{% elsif block.settings.meet-btn-type == 'secondary' %}secondary{% endif %}" href="{{ block.settings.meet-btn-link }}">{{ block.settings.meet-btn-label }}</a>
+                {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+
+  
+
+
+                    
 			</div>
 		</div>
 	</div>
 </section>
+
+
+
+
+
 
 {% schema %}
   {
@@ -106,13 +71,109 @@
         "id": "meeth2",
         "label": "meeth2",
         "default": "description"
+      }
+    ],
+    "blocks": [
+    {
+      "type": "meet-faq",
+      "name": "Meet our Meat FAQ",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "meat-image",
+          "label": "Image"
+        },
+         {
+            "type": "text",
+            "id": "meet-faq-h2",
+            "label": "meetp"
+          },
+          {
+            "type": "text",
+            "id": "meet-faq-h3",
+            "label": "meetp"
+          },
+          {
+            "type": "textarea",
+            "id": "meet-faq-p",
+            "label": "meetp"
+          }
+      ]
+    },
+    {
+      "type": "meet-btn",
+      "name": "Meet our Meat",
+      "settings": [
+          {
+            "id": "meet-btn-link",
+            "type": "url",
+            "label": "Button link"
+          },
+          {
+            "id": "meet-btn-label",
+            "type": "text",
+            "label": "Button text"
+          },
+          {
+            "type": "radio",
+            "id": "meet-btn-type",
+            "label": "Button Type",
+            "options": [
+            {
+              "label": "Primary",
+              "value": "primary"
+            },
+            {
+              "label": "Secondary",
+              "value": "secondary"
+            }
+            ]
+          }
+      ]
+    },
+    {
+      "type": "bullets",
+      "name": "add bullet",
+      "settings": [
+        { 
+          "type": "text",
+          "id": "product-des-one",
+          "label": "Bullet 1",
+          "default": "Bullet 1"
+        },
+        {
+        "type": "text",
+        "id": "product-des-two",
+        "label": "Bullet 1",
+        "default": "Bullet 1"
       },
       {
         "type": "text",
-        "id": "meetp",
-        "label": "meetp"
+        "id": "product-des-three",
+        "label": "Bullet 1",
+        "default": "Bullet 1"
+      },
+      {
+        "type": "text",
+        "id": "product-des-four",
+        "label": "Bullet 1",
+        "default": "Bullet 1"
+      },
+      {
+        "type": "text",
+        "id": "product-des-five",
+        "label": "Bullet 1",
+        "default": "Bullet 1"
+      },
+      {
+        "type": "text",
+        "id": "product-des-six",
+        "label": "Bullet 1",
+        "default": "Bullet 1"
       }
-    ]
+      ]
+    }
+  ]
 
 
   }

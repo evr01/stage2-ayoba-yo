@@ -1,33 +1,42 @@
-<article class="grid-container" itemscope itemtype="http://schema.org/Article">
-    <div class="grid-x align-center">
-      <div class="cell small-10 meet-hero-container">
-        <header class="meet-hero">
+<article itemscope itemtype="http://schema.org/Article">
+  <div class="blog-article"{% if article.image %} style="background-image: url('{{ article | img_url: '2048x', scale: 2 }}');"{% endif %}>
+    <div class="grid-container">
+      <div class="grid-x">
+        <div class="cell small-12 {% if section.settings.second-text-h1-align == 'right' %}text-right{% elsif section.settings.second-text-h1-align == 'center' %}text-center{% elsif section.settings.second-text-h1-align == 'left' %}text-left{% endif %}">
+
+          <header class="meet-hero">
             <h1>{{ article.title }}</h1>
             {% if section.settings.blog_show_date %}
-            <p>
+            <p class="lead">
               {{ article.published_at | time_tag: format: 'month_day_year' }}
             </p>
           {% endif %}
           {% if section.settings.blog_show_author %}
-            <p >{{ 'blogs.article.by_author' | t: author: article.author }}</p>
+            <p class="lead">{{ 'blogs.article.by_author' | t: author: article.author }}</p>
           {% endif %}
           {% if section.settings.show_share_buttons %}
-            {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+            <!-- Go to www.addthis.com/dashboard to customize your tools --> <div class="addthis_inline_share_toolbox"></div>
           {% endif %}
         </header>
-      </div>
-      {{ article | img_url: '2048x', scale: 2 | img_tag: article.title }}
 
-    <div class="cell small-10 article-pad">
-      <section>
-          <div itemprop="articleBody">
-            {{ article.content }}
-          </div>
-      </section>
+        </div> 
+      </div>
     </div>
+  </div>
+  <div class="grid-container">
+    <div class="grid-x align-center">
+      <div class="cell small-10 article-pad">
+        <section>
+            <div itemprop="articleBody">
+              {{ article.content }}
+            </div>
+        </section>
+      </div>
     </div>
-    
-</article>
+  </div>
+
+
+
 
 <section class="article-cta">
       <div class="grid-container text-center blog-cta-wrap">
@@ -97,10 +106,47 @@
     </div>
 
 </section>
-  
+<aside>
+  <div class="grid-container related-blog">
+    <div class="grid-x grid-margin-x">
+      <div class="cell small-12">
+          <h2 class="text-center">{{ 'blogs.article.additional_articles' | t: title: blog.title }}</h2>
+        </div>
+        {% for a in blog.articles limit: 3 %}
 
+          <div class="small-12 medium-4 cell text-center">
 
+              <h3 class="h6">
+                <a href="{{ a.url }}" title="{{ a.title | escape }}">{{ a.title }}</a>
+              </h3>
+              <p>{{ a.published_at | date: format: "month_day_year" }}</p>
+              <p>{{ 'blogs.article.by_author' | t: author: a.author }}</p>
+              {% if settings.blog_tags %}
+                <div>
+                  {% for tag in a.tags %}
+                    <span><a href="{{ shop.url}}/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}" title="{{ blog.title | escape }} {{ 'blogs.general.tagged' | t }} {{ tag | escape }}">{{ tag }}</a></span> 
+                  {% endfor %}
+                </div>
+              {% endif %}
+              {% if a.image %}
+                <a href="{{ a.url }}" title="{{ a.title | escape }}">
+                  <img src="{{ a.image | img_url: 'large' }}" alt="{{ a.title | escape }}" />
+                </a>
+              {% endif %}
+              <a href="{{ a.url }}" title="{{ a.title | escape }}">Read More <span class="icon-right-arrow"></span></a>
 
+                              
+        
+              
+              
+
+          </div>
+        {% endfor %}
+
+        </div>
+  </div>
+</aside>
+</article>  
 
 
 

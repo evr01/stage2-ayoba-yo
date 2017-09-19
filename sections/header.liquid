@@ -25,36 +25,36 @@
         </div>
       </div>
       <div class="title-bar-right">
-          <div>
-            {% if shop.customer_accounts_enabled %}
-              {% if customer %}
-                <a href="/account" class="icon-padding">
-                  <i class="fi-torso"></i>
-                  <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
-                </a>
-              {% else %}
-                <a href="/account/login" class="icon-padding">
-                  <i class="fi-torso"></i>
-                  <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
-                </a>
+          <div class="login-icons">
+              <a href="/cart" class="icon-padding">
+                <i class="fi-shopping-cart"></i>
+                <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
+                <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+                {% if cart.item_count > -1 %}
+                  <div id="CartCount" class="site-header__cart-count">
+                    <span>{{ cart.item_count }}</span>
+                    <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
+                  </div>
+                {% endif %}
+              </a>
+              {% if shop.customer_accounts_enabled %}
+                {% if customer %}
+                  <a href="/account" class="icon-padding">
+                    <i class="fi-torso"></i>
+                    <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
+                  </a>
+                {% else %}
+                  <a href="/account/login" class="icon-padding">
+                    <i class="fi-torso"></i>
+                    <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
+                  </a>
+                {% endif %}
               {% endif %}
-            {% endif %}
-            <a href="/cart" class="icon-padding">
-              <i class="fi-shopping-cart"></i>
-              <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
-              <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
-              {% if cart.item_count > 0 %}
-                <div id="CartCount" class="site-header__cart-count">
-                  <span>{{ cart.item_count }}</span>
-                  <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
-                </div>
-              {% endif %}
-            </a>
               <button type="button" class="search searchbar icon-padding">
-                <i class="fi-magnifying-glass"></i>
-                <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
-            </button>
-          </div>
+                  <i class="fi-magnifying-glass"></i>
+                  <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+              </button>
+            </div>
       </div>
     </div>
     <!-- /mobile nav bar -->
@@ -62,7 +62,7 @@
     <!-- medium and larger nav bar -->
     
       <div class="top-bar topbar-center-logo" id="topbar-center-logo">
-        <div class="top-bar-left hide-for-small-only">
+        <div class="top-bar-left show-for-large">
           <div class="logo-font" itemscope itemtype="http://schema.org/Organization">
               {% if section.settings.logo %}
                 <a class="clearfix" href="/" itemprop="url" data-target="{{ child_list_handle }}">
@@ -79,7 +79,7 @@
         </div>
         <div class="nav-link-container">
           <nav role="navigation">
-            <ul class="dropdown menu vertical medium-horizontal" data-responsive-menu="accordion medium-dropdown" data-parent="{{ child_list_handle }}">
+            <ul class="dropdown menu vertical medium-horizontal accordion-menu" data-submenu-toggle="true" data-responsive-menu="accordion large-dropdown" data-parent="{{ child_list_handle }}">
 
             {% for link in linklists[section.settings.main_linklist].links %}
               {%- assign child_list_handle = link.title | handleize -%}
@@ -101,8 +101,21 @@
           </nav>
           
         </div>
-        <div class="top-bar-right hide-for-small-only">
+        <div class="top-bar-right show-for-large">
            <div class="login-icons">
+              
+
+              <a href="/cart" class="icon-padding">
+                <i class="fi-shopping-cart"></i>
+                <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
+                <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+                {% if cart.item_count > -1 %}
+                  <div id="CartCount" class="site-header__cart-count">
+                    <span>{{ cart.item_count }}</span>
+                    <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
+                  </div>
+                {% endif %}
+              </a>
               {% if shop.customer_accounts_enabled %}
                 {% if customer %}
                   <a href="/account" class="icon-padding">
@@ -116,17 +129,6 @@
                   </a>
                 {% endif %}
               {% endif %}
-              <a href="/cart" class="icon-padding">
-                <i class="fi-shopping-cart"></i>
-                <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
-                <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
-                {% if cart.item_count > 0 %}
-                  <div id="CartCount" class="site-header__cart-count">
-                    <span>{{ cart.item_count }}</span>
-                    <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
-                  </div>
-                {% endif %}
-              </a>
               <button type="button" class="search searchbar icon-padding">
                   <i class="fi-magnifying-glass"></i>
                   <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
@@ -134,8 +136,10 @@
             </div>
         </div>
     </div>
+        <img class="bottom-border nav-bottom" src="{{ 'border-thin-black.svg' | asset_url }}" itemprop="{{}}">
+
     <!-- /medium and larger nav bar -->
-      <form class="search-drop" action="/search">
+      <form class="search-drop search-align" action="/search">
         <div class="grid-container">
           <div class="grid-x grid-margin-x">
             <div class="cell auto">
@@ -147,7 +151,6 @@
           </div>
         </div>
       </form>
-    <img class="bottom-border nav-bottom" src="{{ 'border-thin-black.svg' | asset_url }}" itemprop="{{}}">
   </div>
 </header>
 

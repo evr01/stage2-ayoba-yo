@@ -190,7 +190,12 @@ $topbar-center-logo-bg: #2c3840;
 .search-field{
   width: 100%;
 }
-
+.search-align{
+    position: absolute;
+    min-width: 100%;
+    top: 70px;
+    z-index: -10;
+}
 .expand-search {
   display: block;
   background: #fafafa; 
@@ -297,6 +302,7 @@ $topbar-center-logo-bg: #2c3840;
 .hero-section h2{
   padding-bottom: 2rem;
   font-family: Futura-Lig;
+  font-weight: 600;
 }
 .hero-section::before {
     content: '';
@@ -351,8 +357,31 @@ $topbar-center-logo-bg: #2c3840;
   position: relative;
   top: -40px;
 }
+.blurb-h4{
+  position: relative;
+  top: .5rem;
+}
 
+@media screen and (max-width: 639px) {
+ /* .mobile-blurb-h4{
+    padding-top: 1rem;
+  } */
+  .mobile-blurb-icon{
+    padding-bottom: 1rem;
+  }
+}
 
+@media screen and (min-width: 940px) and (max-width: 1078px) {
+  .blurb-h4{
+    font-size: 1.35rem;
+    top: 1rem;
+  }
+}
+@media screen and (min-width: 640px) and (max-width: 940px) {
+  .blurb-h4{
+    font-size: 1rem;
+  }
+}
 @media screen and (min-width: 800px) {
   .top-border{
     position: relative;
@@ -452,6 +481,9 @@ $topbar-center-logo-bg: #2c3840;
     }
 }
 @media screen and (max-width: 951px) {
+      .form-align{
+        justify-content: center;
+      }
       .mobile-align-center{
           justify-content: center;
           margin: 0 auto;
@@ -670,8 +702,7 @@ $topbar-center-logo-bg: #2c3840;
 
 .product-hero-container{
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  padding: 5rem 0;
 }
 
 .product-all-head{
@@ -697,7 +728,7 @@ $topbar-center-logo-bg: #2c3840;
   padding-top: .85rem;
 }
 .product-hero-height{
-  height: 50vh;
+  min-height: 50vh;
 }
 @media print, screen and (min-width: 40em) {
     .product-all-subhead .h2{
@@ -724,7 +755,26 @@ $topbar-center-logo-bg: #2c3840;
   color: #fafafa;
 } 
 
-
+/* product form */
+div#rc_container{
+  margin-bottom: 0 !important;
+}
+div.rc_popup{
+  padding: 0 !important;
+}
+label.rc_label__deliver_every {
+  padding: 0 !important;
+}
+div.rc_block{
+  padding-left: 2rem;
+}
+.modal_price{
+  position: relative;
+  top: 50%;
+}
+.button-pad{
+  padding-top: 1rem;
+}
 @media screen and (max-width: 639px) {
     .product-all-container  {
       height: 45vh;
@@ -828,7 +878,7 @@ $topbar-center-logo-bg: #2c3840;
   border-bottom: 1px solid #000 ;
 }
 .nutrition-facts__header {
-  border-bottom: 10px solid black;
+  border-bottom: 5px solid black;
   padding: 0 0 0.25rem 0;
   margin: 0 0 0.5rem 0;
 }
@@ -889,23 +939,6 @@ $topbar-center-logo-bg: #2c3840;
   }
 }
 
-.nutrition-facts__table--grid {
-  @extend .nutrition-facts__table;
-  margin: 0 0 0.5rem 0;
-  td {
-    &:last-child {
-      text-align: left;
-      &::before {
-        content: "•";
-        font-weight: bold;
-        margin: 0 0.25rem 0 0;
-      }
-    }
-  }
-}
-.thick-end {
-  border-bottom: 10px solid black;
-}
 .thin-end {
   border-bottom: 1px solid black;
 }
@@ -1076,6 +1109,42 @@ $topbar-center-logo-bg: #2c3840;
 .blog-cta-wrap p{
   padding-bottom: 1rem;
 }
+/* Blog Article */
+.blog-article::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-color: rgba( 35,31,32, 0.1);
+}
+.blog-article {
+  position: relative;
+  background-size: cover;
+  background: center center no-repeat; 
+  height: 40vh;
+  text-align: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.blog-article, .blog-article p{
+  color: #fafafa;
+}
+.related-blog{
+  padding: 4rem 0;
+}
+.related-blog h2{
+  padding: 1rem 0;
+}
 /* Recipe */
 .recipe-btn{
   padding-top: 1rem;
@@ -1099,8 +1168,9 @@ $topbar-center-logo-bg: #2c3840;
   padding: 4rem 0;
 }
 .meet-container{
-    padding-bottom: 4rem;
+    padding-top: 4rem;
   }
+
 @media print, screen and (max-width: 639px) {
   .meat-icon{
     height: 300px;
@@ -1183,4 +1253,26 @@ $topbar-center-logo-bg: #2c3840;
 }
 .article-pad{
   padding: 2rem 0;
+}
+/* FAQ */
+.faq{
+ // min-height: 50vh;
+ min-height: 50vh; 
+}
+.faq-hero{
+  position: relative;
+  padding: 5rem 0;
+}
+.faq-content{
+  padding-bottom: 2.5rem;
+}
+.faq-btn{
+  padding-bottom: 2rem;
+}
+.accordion-title{
+  font-size: 16px;
+  color: #231F20;
+}
+.privacy{
+  padding: 5rem 0;
 }

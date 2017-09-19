@@ -4,17 +4,30 @@
 <meta itemprop="image" content="{{ product.featured_image.src | img_url: '2048x' }}">
 
 
-  <div class="grid-x">
-      <div class="small-12 cell product-img-container">
 
+    <div class="grid-x">
+      <div class="small-12 cell product-img-container">
       {%- assign featured_img_src = current_variant.featured_image.src | default: product.featured_image.src -%}
       {%- assign featured_img_alt = current_variant.featured_image.alt | default: product.featured_image.alt -%}
 
+      <div class="orbit" role="region" aria-label="Ayoba-Yo Product Pictures" data-orbit data-timer-delay="10000" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;" data-pause-on-hover="false">
+        <div class="orbit-wrapper">
 
-        <img class="product-img" src="{{ featured_img_src | img_url: product_image_size, scale: product_image_scale }}" alt="{{ featured_img_alt }}" id="FeaturedImage-{{ section.id }}" class="product-featured-img">
+        <div class="orbit-controls">
+          <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+          <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+        </div>
 
-       <!-- <div class="hero-section"{% if section.settings.image %} style="background-image: url('{{ featured_img_src | img_url: product_image_size, scale: product_image_scale }}'); background-position: center {{ section.settings.alignment }};"{% endif %}></div>-->
-   
+          <ul class="orbit-container">
+          {% for image in product.images %}
+            <li class="is-active orbit-slide">
+              <img class="product-img product-featured-img" src="{{ image.src | img_url: product_image_size, scale: product_image_scale }}" alt="{{ featured_img_alt }}" id="FeaturedImage-{{ section.id }}">
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -22,54 +35,69 @@
 <div class="product-page-align">
   <div class="grid-container">
      <div class="grid-x">
+    
+
+
+
+
+
+
+
       <div class="cell small-12 medium-8 mobile-align-center {% if block.settings.product-h1-align == 'right' %}text-right{% elsif section.settings.product-h1-align == 'center' %}text-center{% elsif section.settings.second-product-h1 == 'left' %}text-left{% endif %}">
         <h1 itemprop="name">{{ product.title }}</h1>
 
   
-            {% for field in product.metafields.ProductPageHTwo %}
-              <h2 class="product-h2">{{ field | last }}</h2>
-            {% endfor %}
+        {% for field in product.metafields.ProductPageHTwo %}
+          <h2 class="product-h2">{{ field | last }}</h2>
+        {% endfor %}
    
         {% for field in product.metafields.ProductPageHTwoSEO %}
           <h2 class="product-h2">{{ field | last }}</h2>
         {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
 
       <div class="small-12 cell">
         <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
       </div>
       <div class="small-12 cell btn-group-pad">
         <p>Product Type</p>
-        <div class="button-group mobile-align-center">
+        {% include 'product-form' %}
+      <!--  <div class="button-group mobile-align-center">
           {% for block in section.blocks %} 
           {% if block.type == 'select' %}
               <button class="button btn-pad {% if block.settings.product-btn-type == 'primary' %}primary{% elsif block.settings.product-btn-type == 'secondary' %}secondary{% endif %}">{{ block.settings.product-btn-label }}</button>
           {% endif %}
           {% endfor %}
-        </div>
+        </div> -->
       </div>
-        <div class="small-12 cell btn-group-pad">
-          <div class="grid-x grid-margin-x mobile-align-center">
-            <div class="medium-12 large-6 cell btn-group-pad">
-              <p>Delivery Type</p>
-              <div class="button-group expanded mobile-align-center">
-                {% for block in section.blocks %} 
-                {% if block.type == 'select-again' %}
-                    <button class="button btn-pad {% if block.settings.deliver-btn-type == 'primary' %}primary{% elsif block.settings.deliver-btn-type == 'secondary' %}secondary{% endif %}">{{ block.settings.deliver-btn-label }}</button>
-                {% endif %}
-                {% endfor %}
-              </div>
-            </div>
-            <div class="medium-12 large-6 cell">
-             {% if section.settings.show_quantity_selector %}
-             <p>Quantity</p>
-              <div class="quantity-input mobile-align-center">
-                <input type="number" id="Quantity" name="quantity" value="1" min="1" pattern="[0-9]*">
-              </div>
-            {% endif %}
+   <!--   <div class="small-12 cell btn-group-pad">
+        <div class="grid-x grid-margin-x mobile-align-center">
+          <div class="medium-12 large-6 cell btn-group-pad">
+            <p>Delivery Type</p>
+            <div class="button-group expanded mobile-align-center">
+              {% for block in section.blocks %} 
+              {% if block.type == 'select-again' %}
+                  <button class="button btn-pad {% if block.settings.deliver-btn-type == 'primary' %}primary{% elsif block.settings.deliver-btn-type == 'secondary' %}secondary{% endif %}">{{ block.settings.deliver-btn-label }}</button>
+              {% endif %}
+              {% endfor %}
             </div>
           </div>
+          <div class="medium-12 large-6 cell">
+           
+          </div>
         </div>
-        <div class="small-12 cell">
+      </div> 
+      <div class="small-12 cell">
           
         <p>
           {% comment %}
@@ -101,19 +129,46 @@
           {% endif %}
         </p>
 
-        </div>
-        <div class="small-12 cell">
-          <button class="button" type="submit" name="add" id="AddToCart-{{ section.id }}">
-            <span id="AddToCartText-{{ section.id }}">
-              {% unless current_variant.available %}
-                {{ 'products.product.sold_out' | t }}
-              {% else %}
-                {{ 'products.product.add_to_cart' | t }}
-              {% endunless %}
-            </span>
-          </button>
-        </div>
       </div>
+      <div class="small-12 cell">
+        <button value="Add To Cart" class="button" type="submit" name="add" id="AddToCart-{{ section.id }}">
+          <span id="AddToCartText-{{ section.id }}">
+            {% unless current_variant.available %}
+              {{ 'products.product.sold_out' | t }}
+            {% else %}
+              {{ 'products.product.add_to_cart' | t }}
+            {% endunless %}
+          </span>
+        </button>
+      </div> -->
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <div class="show-for-medium cell medium-4">
         <div class="grid-x">
@@ -125,7 +180,9 @@
             {% elsif product.url == '/products/droewors-air-dried-beef-stick' %}
               <img class="" src="{{ 'droewors.png' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Droewors, South African Jerky, 2oz snack bag">
             {% elsif product.url == '/products/boerewors-south-african-sausage' %}
-              <img class="" src="{{ 'boerewors-south-african-sausage-packaging.svg' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Boerewors, South African Sausage, 16oz bag">
+              <img class="" src="{{ 'boerewors.png' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Boerewors, South African Sausage, 16oz bag">
+            {% elsif product.url == '/products/combo-packs' %}
+              <img class="" src="{{ 'combo-pack.png' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Boerewors, South African Sausage, 16oz bag">
             {% else %}
             {% endif %}
 
@@ -173,7 +230,11 @@
 
 <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
 
-
+{% unless product == empty %}
+  <script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+  </script>
+{% endunless %}
 
 
 {% schema %}

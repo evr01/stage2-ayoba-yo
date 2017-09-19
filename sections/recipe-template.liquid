@@ -131,13 +131,7 @@
                   </a>
                 </li>
 
-                {% if blog.comments_enabled? and article.comments_count > 0 %}
-                  <li>
-                    <a href="{{ article.url }}#comments" class="button secondary">
-                      {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
-                    </a>
-                  </li>
-                {% endif %}
+             
               </ul>
           </div>
           <div class="card-divider flex-container align-middle">

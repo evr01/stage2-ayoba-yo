@@ -51,7 +51,7 @@
                 {% if property_size > 0 %}
                   <div class="cart__meta-text">
                     {% for p in item.properties %}
-                      {% unless p.last == blank %}
+                      {% unless p.last == blank or p.first == "subscription_id" or p.first == "shipping_interval_frequency" or p.first == "shipping_interval_unit_type" %}
                         {{ p.first }}:
 
                         {% comment %}

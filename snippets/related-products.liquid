@@ -6,7 +6,7 @@
   and number of rows.
 {% endcomment %}
 
-{% assign number_of_related_products_per_row = 4 %}
+{% assign number_of_related_products_per_row = 3 %}
 {% assign number_of_rows = 1 %}
 
 {% comment %}
@@ -66,7 +66,7 @@
   {% assign current_product = product %}
 
   {% capture related_items %}
-    {% for product in collection.products %}
+    {% for product in collection.products limit: 4 %}
       {% unless product.handle == current_product.handle %}
          {% unless same_vendor and current_product.vendor != product.vendor %}
            {% unless same_type and current_product.type != product.type %}
