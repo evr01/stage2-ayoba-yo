@@ -6,7 +6,7 @@
         <div class="cell small-12 {% if section.settings.second-text-h1-align == 'right' %}text-right{% elsif section.settings.second-text-h1-align == 'center' %}text-center{% elsif section.settings.second-text-h1-align == 'left' %}text-left{% endif %}">
 
           {% if section.settings.title != blank %}
-            <h1>{{ section.settings.title | escape }}</h1>
+            <h1 itemscope itemprop="organization" itemtype="http://schema.org/Organization"><span itemprop="name">{{ section.settings.title | escape }}</span></h1>
           {% endif %}
 
         </div> 
@@ -16,7 +16,7 @@
         <div class="cell small-12 {% if section.settings.tagline-align == 'right' %}text-right{% elsif section.settings.tagline-align == 'center' %}text-center{% elsif section.settings.tagline-align == 'left' %}text-left{% endif %}">
 
           {% if section.settings.tagline != blank %}
-            <h2>{{ section.settings.tagline | escape }}</h2>
+            <h2 itemprop="description">{{ section.settings.tagline | escape }}</h2>
           {% endif %}
 
         </div> 
@@ -47,7 +47,7 @@
     <div class="grid-x ">
       <div class="cell small-12">
         {% if section.settings.blurb != blank %}
-          <p class="text-center">{{ section.settings.blurb | escape }}</p>
+          <p class="text-center lead">{{ section.settings.blurb | escape }}</p>
         {% endif %}
       </div>
     </div>

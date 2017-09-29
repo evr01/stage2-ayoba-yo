@@ -25,7 +25,6 @@ table tbody th, table tbody td {
   margin-bottom: 0.5rem;
   text-transform: none;
 }
-
 .top-border{
   position: relative;
   top: 10px;
@@ -57,7 +56,7 @@ h1, .logo-font a{
 .text-logo{
   font-family: 'intro_rust_gbase_2_line'; 
 }
-h2, h3{
+h2, h3, .review-title{
   font-family: 'festivo_lcbasic_r_line'; 
   text-transform: uppercase;
 }
@@ -66,6 +65,7 @@ p{
 }
 h4, .h4{
   font-family: 'halis_rbold';
+  text-transform: none;
 }
 .button{
   border-radius: 2px;
@@ -317,7 +317,8 @@ $topbar-center-logo-bg: #2c3840;
 .hero-section {
   position: relative;
   background-size: cover;
-  background: center center no-repeat; 
+  background-repeat: no-repeat;
+  background-position: center;
   height: 80vh;
   text-align: center;
   display: -webkit-flex;
@@ -358,6 +359,7 @@ $topbar-center-logo-bg: #2c3840;
   top: -40px;
 }
 .blurb-h4{
+  font-size: 1.5625rem;
   position: relative;
   top: .5rem;
 }
@@ -521,6 +523,10 @@ $topbar-center-logo-bg: #2c3840;
 /*PRODUCT FEATURE/PRODUCT DISPLAY*/
 .product-feature-container{
   padding: 4.5rem;
+}
+.product-feat-img{
+  max-width: 70%;
+  padding: 3rem 0 0 0;
 }
 .product-feature-pad{
   padding: 6rem 0 0 0;
@@ -708,12 +714,12 @@ $topbar-center-logo-bg: #2c3840;
 .product-all-head{
  
 }
-.product-all-head .h1{
+.product-all-head .h1, .h1-font-size{
   font-size: 1.5rem;
 }
 
 @media print, screen and (min-width: 40em) {
-  .product-all-head .h1 {
+  .product-all-head .h1, .h1-font-size {
     font-size: 3rem; }
   }
 
@@ -744,10 +750,10 @@ $topbar-center-logo-bg: #2c3840;
   color: #fafafa;
   position: relative;
 }
-.product-all-container h1{
+.product-all-container .h1{
   font-family: 'festivo_lcbasic_r_line';
 }
-.product-all-container h2{
+.h2-pad{
   padding-bottom: 1.5rem;
   font-family: Futura-Lig;
 }
@@ -1149,6 +1155,9 @@ div.rc_block{
 .recipe-btn{
   padding-top: 1rem;
 }
+.prep-pad{
+  padding-bottom: 1rem;
+}
 /* meet our meat */
 .meet-hero-container{
   height: 50vh;
@@ -1169,7 +1178,9 @@ div.rc_block{
 }
 .meet-container{
     padding-top: 4rem;
+    min-width: 100% !important;
   }
+ 
 
 @media print, screen and (max-width: 639px) {
   .meat-icon{
@@ -1275,4 +1286,22 @@ div.rc_block{
 }
 .privacy{
   padding: 5rem 0;
+}
+/* Shopping Cart*/
+.cart-pad{
+  padding: 4rem 0 0 0;
+}
+.list-view-item__title a{
+  color: #231F20;
+}
+.empty-cart-pad{
+  padding-bottom: 1rem;
+}
+/* Account */
+.account-pad{
+  padding: 4rem 0;
+}
+/* Search */
+.search-pad{
+  padding: 4rem 0;
 }

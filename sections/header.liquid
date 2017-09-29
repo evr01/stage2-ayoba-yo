@@ -31,9 +31,9 @@
                 <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
                 <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
                 {% if cart.item_count > -1 %}
-                  <div id="CartCount" class="site-header__cart-count">
+                  <div id="CartCount" class="site-header__cart-count hide-for-small-only">
                     <span>{{ cart.item_count }}</span>
-                    <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
+                    <span class="icon__fallback-text">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
                   </div>
                 {% endif %}
               </a>
@@ -136,7 +136,7 @@
             </div>
         </div>
     </div>
-        <img class="bottom-border nav-bottom" src="{{ 'border-thin-black.svg' | asset_url }}" itemprop="{{}}">
+        <img class="bottom-border nav-bottom" src="{{ 'border-thin-black.svg' | asset_url }}">
 
     <!-- /medium and larger nav bar -->
       <form class="search-drop search-align" action="/search">

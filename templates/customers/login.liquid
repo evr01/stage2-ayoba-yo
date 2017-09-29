@@ -1,4 +1,4 @@
-<div class="page-width">
+<div class="page-width account-pad">
   <div class="grid">
 
     <div class="grid__item medium-up--one-half medium-up--push-one-quarter">
@@ -26,7 +26,7 @@
               <p><a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a></p>
             {% endif %}
 
-            <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
+            <input type="submit" class="button primary" value="{{ 'customer.login.sign_in' | t }}">
 
             <p>
               {{ 'layout.customer.create_account' | t | customer_register_link }}
@@ -60,7 +60,7 @@
 
             <div class="text-center">
               <p>
-                <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
+                <input type="submit" class="button primary" value="{{ 'customer.recover_password.submit' | t }}">
               </p>
 
               <button type="button" id="HideRecoverPasswordLink" class="text-link">{{ 'customer.recover_password.cancel' | t }}</button>
@@ -80,7 +80,7 @@
           <h2>{{ 'customer.login.guest_title' | t }}</h2>
 
           {% form 'guest_login' %}
-            <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+            <input type="submit" class="button primary" value="{{ 'customer.login.guest_continue' | t }}">
           {% endform %}
         </div>
       {% endif %}

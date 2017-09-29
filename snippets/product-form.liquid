@@ -1,14 +1,16 @@
-<form action="/cart/add" method="post" enctype="multipart/form-data" data-productid="{{product.id}}">
+<form action="/cart/add" method="post" enctype="multipart/form-data" data-productid="{{product.id}}" data-money-format="{{ shop.money_format }}" data-shop-currency="{{ shop.currency }}" id="product-form-{{ product.id }}">
   <div class="grid-x form-align">
     <div class="cell small-6">
       <select name="id" data-productid="{{product.id}}">
+
       {% for variant in product.variants %}
         {% if variant.available == true %}
-        <option value="{{variant.id}}"> {{ variant.title }}</option>
+        <option value="{{variant.id}}" data-sku="{{ variant.sku }}"> {{ variant.title }}</option>
         {% else %}
         <option disabled="disabled"> {{ variant.title }} - sold out!</option>
         {% endif %}
       {% endfor %}
+
       </select>
     </div>
   </div>
@@ -29,10 +31,11 @@
             {% endif %}
           </div>
           <div class="cell small-11 medium-10 float-left">
-             {% if product.variants.size > 1 %}
+             
              <p>
-
-              <div class="modal_price lead" itemscope itemtype="http://schema.org/Offer">
+              {% if product.variants.size > 1 %}
+              {% assign variant = product.selected_or_first_available_variant %}
+              <div class="modal_price lead" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                  <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
                  <meta itemprop="seller" content="{{ shop.name | escape }}" />
                  <meta itemprop="availability" content="{% if product.available %}in_stock{% else %}out_of_stock{% endif %}" />
@@ -44,13 +47,13 @@
                     <span>
                       {% if variant.available %}
                         {% if variant.price > 0 %} 
-                          {{ current_variant.price | money }} 
+                          {{ variant.price | money }} 
                         {% else %}
                           {{ settings.free_price_text }}
                         {% endif %}
                       {% endif %}
                     </span>
-                 </span>
+                 
 
                  <span>
                   {% if variant.price < variant.compare_at_price %}
@@ -58,14 +61,16 @@
                   {% endif %}
                  </span>
                  <span>each</span>
+                 </span>
 
               </div>
+              {% else %}
+                  <div class="modal_price lead">{{ product.price | money }} each</div>
+              {% endif %}
                
              </p>
 
-          {% else %}
-              <div class="modal_price lead">{{ product.price | money }} each</div>
-          {% endif %}
+
           </div>
         </div>
       </div>

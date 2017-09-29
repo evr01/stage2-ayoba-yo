@@ -1,10 +1,10 @@
-<section class="about-container">
+<section class="about-container" itemprop="mainEntity" itemscope itemtype="http://schema.org/AboutPage">
   <div class="about">
     <div class="grid-container about-content">
 
       <div class="grid-x text-left align-center text-center">
         <div class="cell small-12 medium-8">
-          <h1>{{ page.title }}</h1>
+          <h1 itemprop="name">{{ page.title }}</h1>
       
           <h2>Ayoba-Yo</h2>
       
@@ -15,9 +15,14 @@
     </div>
   </div>
   <div class="grid-x text-left align-center page-content-container">
-    <div class="cell small-10 medium-8">{{ page.content }}</div>
+    <div class="cell small-10 medium-8" itemprop="description">{{ page.content }}</div>
   </div>
 </section>
+<div class="grid-x">
+  <div class="cell small-12">
+    <img class="top-border" src="{{ 'border-thin-white.svg' | asset_url }}" itemprop="{{}}">
+  </div>
+</div>
 <div class="insta-center about-insta-back">
   <div class="about-insta-position">
     <div>
@@ -52,6 +57,11 @@
     </div>
   </div>
 </section>
+</div>
+<div class="grid-x">
+  <div class="cell small-12">
+    <img class="bottom-border" src="{{ 'border-thin-white.svg' | asset_url }}" itemprop="{{}}">
+  </div>
 </div>
 
 <section>

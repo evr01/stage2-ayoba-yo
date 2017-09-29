@@ -86,12 +86,17 @@
   {% unless related_items == blank %}
 
   <aside>
+    <div class="grid-x">
+      <div class="cell small-12">
+        <img class="top-border" src="{{ 'border-thin-white.svg' | asset_url }}" itemprop="{{}}">
+      </div>
+    </div>
     <div class="related-products">
       {% unless heading == blank %}
       <div class="grid-container">
       	<div class="grid-x align-center">
         	<header>
-        		<h2>{{ heading }}</h1>
+        		<h3>{{ heading }}</h3>
       		</header>
       	</div>
       </div>
@@ -103,6 +108,11 @@
       	<div class="grid-x grid-margin-x">
         	{{ related_items }}
       	</div>
+      </div>
+    </div>
+    <div class="grid-x">
+      <div class="cell small-12">
+        <img class="bottom-border" src="{{ 'border-thin-white.svg' | asset_url }}" itemprop="{{}}">
       </div>
     </div>
   </aside>

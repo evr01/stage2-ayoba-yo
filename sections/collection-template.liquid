@@ -1,101 +1,95 @@
-<section class="product-hero-height">
-  <div class="product-hero-container">
-  <div class="grid-container">
-    <div class="grid-x align-center product-all-head">
-      <div class="cell small-12 {% if section.settings.all-products-h2-align == 'right' %}text-right{% elsif section.settings.all-products-h2-align == 'center' %}text-center{% elsif section.settings.all-products-h2-align == 'left' %}text-left{% endif %}">
-        {% if section.settings.all-products-h2 != blank %}
-          <h2 class="h1">{{ section.settings.all-products-h2 | escape }}</h2>
-        {% endif %}
+<section itemprop="mainEntity">
+  <div class="product-hero-height">
+    <div class="product-hero-container">
+      <div class="grid-container">
+        <div class="grid-x align-center product-all-head">
+          <div class="cell small-12 {% if section.settings.all-products-h2-align == 'right' %}text-right{% elsif section.settings.all-products-h2-align == 'center' %}text-center{% elsif section.settings.all-products-h2-align == 'left' %}text-left{% endif %}">
+            {% if section.settings.all-products-h2 != blank %}
+              <h2 class="h1" itemprop="name">{{ section.settings.all-products-h2 | escape }}</h2>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="grid-x align-center product-all-subhead">
+        <div class="cell small-8 {% if section.settings.all-products-h1-align == 'right' %}text-right{% elsif section.settings.all-products-h1-align == 'center' %}text-center{% elsif section.settings.all-products-h1-align == 'left' %}text-left{% endif %}">
+          {% if section.settings.all-products-h1 != blank %}
+            <h1 class="h2" itemprop="description">{{ section.settings.all-products-h1 | escape }}</h1>
+          {% endif %}
+        </div>
+      </div>
+      <div class="grid-container product-all-pad">
+        <ul>
+          <div class="grid-x align-center">
+            <div class="small-12 medium-4 cell">
+              <li>
+                  <div class="grid-x">
+                    <div class="small-4 medium-4 cell text-center">{{ 'icon-no-sugar.svg' | asset_url | img_tag }}</div>
+                    {% if section.settings.product-all-one != blank %}
+                      <h3 class="small-8 medium-8 cell text-font h4">{{ section.settings.product-all-one }}</h3>
+                    {% endif %}
+                  </div>
+              </li>
+              <li>
+                  <div class="grid-x">
+                  <div class="small-4 medium-4 cell text-center">{{ 'icon-high-protein.svg' | asset_url | img_tag }}</div>
+                  {% if section.settings.product-all-two != blank %}
+                    <h3 class="small-8 medium-8 cell text-font h4">{{ section.settings.product-all-two }}</h3>
+                  {% endif %}
+                  </div>
+              </li>
+            </div>
+            <div class="small-12 medium-4 cell">
+            <li>
+                  <div class="grid-x">
+                  <div class="small-4 medium-4 cell text-center">{{ 'icon-gluten-free.svg' | asset_url | img_tag }}</div>
+                  {% if section.settings.product-all-three != blank %}
+                    <h3 class="small-8 medium-8 cell text-font h4">{{ section.settings.product-all-three }}</h3>
+                  {% endif %}
+                  </div>
+              </li>
+              <li>
+                  <div class="grid-x">
+                  <div class="small-4 medium-4 cell text-center">{{ 'icon-natural-flavor.svg' | asset_url | img_tag }}</div>
+                  {% if section.settings.product-all-four != blank %}
+                    <h3 class="small-8 medium-8 cell text-font h4">{{ section.settings.product-all-four }}</h3>
+                  {% endif %}
+                  </div>
+              </li>
+            </div>
+            <div class="cell small-12 medium-4">
+              <li>
+                  <div class="grid-x">
+                  <div class="small-4 medium-4 cell text-center">{{ 'icon-naturally-air-dried.svg' | asset_url | img_tag }}</div>
+                  {% if section.settings.product-all-five  != blank %}
+                    <h3 class="small-8 medium-8 cell text-font h4">{{ section.settings.product-all-five }}</h3>
+                  {% endif %}
+                  </div>
+              </li>
+              <li>
+                  <div class="grid-x">
+                  <div class="small-4 medium-4 cell text-center">{{ 'icon-whole30.svg' | asset_url | img_tag }}</div>
+                  {% if section.settings.product-all-six  != blank %}
+                    <h3 class="small-8 medium-8 cell text-font h4">{{ section.settings.product-all-six }}</h3>
+                  {% endif %}
+                  </div>
+              </li>
+            </div>
+          </div>
+        </ul>
       </div>
     </div>
   </div>
-  <div class="grid-x align-center product-all-subhead">
-    <div class="cell small-8 {% if section.settings.all-products-h1-align == 'right' %}text-right{% elsif section.settings.all-products-h1-align == 'center' %}text-center{% elsif section.settings.all-products-h1-align == 'left' %}text-left{% endif %}">
-      {% if section.settings.all-products-h1 != blank %}
-        <h1 class="h2">{{ section.settings.all-products-h1 | escape }}</h1>
-      {% endif %}
-    </div>
-  </div>
-      
-
-    <div class="grid-container product-all-pad">
-      <ul>
-        <div class="grid-x align-center">
-          <div class="small-12 medium-4 cell">
-            <li>
-                <div class="grid-x">
-                  <div class="small-4 medium-4 cell text-center">{{ 'icon-no-sugar.svg' | asset_url | img_tag }}</div>
-                  {% if section.settings.product-all-one != blank %}
-                    <h4 class="small-8 medium-8 cell text-font">{{ section.settings.product-all-one }}</h4>
-                  {% endif %}
-                </div>
-            </li>
-            <li>
-                <div class="grid-x">
-                <div class="small-4 medium-4 cell text-center">{{ 'icon-high-protein.svg' | asset_url | img_tag }}</div>
-                {% if section.settings.product-all-two != blank %}
-                  <h4 class="small-8 medium-8 cell text-font">{{ section.settings.product-all-two }}</h4>
-                {% endif %}
-                </div>
-            </li>
-          </div>
-          <div class="small-12 medium-4 cell">
-          <li>
-                <div class="grid-x">
-                <div class="small-4 medium-4 cell text-center">{{ 'icon-gluten-free.svg' | asset_url | img_tag }}</div>
-                {% if section.settings.product-all-three != blank %}
-                  <h4 class="small-8 medium-8 cell text-font">{{ section.settings.product-all-three }}</h4>
-                {% endif %}
-                </div>
-            </li>
-            <li>
-                <div class="grid-x">
-                <div class="small-4 medium-4 cell text-center">{{ 'icon-natural-flavor.svg' | asset_url | img_tag }}</div>
-                {% if section.settings.product-all-four != blank %}
-                  <h4 class="small-8 medium-8 cell text-font">{{ section.settings.product-all-four }}</h4>
-                {% endif %}
-                </div>
-            </li>
-          </div>
-          <div class="cell small-12 medium-4">
-            <li>
-                <div class="grid-x">
-                <div class="small-4 medium-4 cell text-center">{{ 'icon-naturally-air-dried.svg' | asset_url | img_tag }}</div>
-                {% if section.settings.product-all-five  != blank %}
-                  <h4 class="small-8 medium-8 cell text-font">{{ section.settings.product-all-five }}</h4>
-                {% endif %}
-                </div>
-            </li>
-            <li>
-                <div class="grid-x">
-                <div class="small-4 medium-4 cell text-center">{{ 'icon-whole30.svg' | asset_url | img_tag }}</div>
-                {% if section.settings.product-all-six  != blank %}
-                  <h4 class="small-8 medium-8 cell text-font">{{ section.settings.product-all-six }}</h4>
-                {% endif %}
-                </div>
-            </li>
-          </div>
-        </div>
-      </ul>
-    </div>
-  </div>
+  {% for block in section.blocks %}
+    {% case block.type %}
+    {% when 'left' %}
+      {% include 'product-all-box-one' %}
+    {% when 'right' %}
+      {% include 'product-all-box-two' %}
+    {% when 'cta' %}
+      {% include 'cta-snippet' %}
+    {% endcase %}
+  {% endfor %}
 </section>
-
-
-{% for block in section.blocks %}
-{% case block.type %}
-
-
-{% when 'left' %}
-  {% include 'product-all-box-one' %}
-{% when 'right' %}
-  {% include 'product-all-box-two' %}
-{% when 'cta' %}
-  {% include 'cta-snippet' %}
-
-
-{% endcase %}
-{% endfor %}
 
 
 {% schema %}
@@ -162,21 +156,9 @@
       },
       {
         "type": "text",
-        "id": "product-all-p-one",
-        "label": "Heading p",
-        "default": "p"
-      },
-      {
-        "type": "text",
         "id": "product-all-two",
         "label": "Bullet 2",
         "default": "Bullet 2"
-      },
-      {
-        "type": "text",
-        "id": "product-all-p-two",
-        "label": "Heading p",
-        "default": "p"
       },
       {
         "type": "text",
@@ -186,21 +168,9 @@
       },
       {
         "type": "text",
-        "id": "product-all-p-three",
-        "label": "Heading p",
-        "default": "p"
-      },
-      {
-        "type": "text",
         "id": "product-all-four",
         "label": "Bullet 3",
         "default": "Bullet 3"
-      },
-      {
-        "type": "text",
-        "id": "product-all-p-four",
-        "label": "Heading p",
-        "default": "p"
       },
       {
         "type": "text",
@@ -210,21 +180,9 @@
       },
       {
         "type": "text",
-        "id": "product-all-p-five",
-        "label": "Heading p",
-        "default": "p"
-      },
-      {
-        "type": "text",
         "id": "product-all-six",
         "label": "Bullet 3",
         "default": "Bullet 3"
-      },
-      {
-        "type": "text",
-        "id": "product-all-p-six",
-        "label": "Heading p",
-        "default": "p"
       }
     ],
      "blocks": [

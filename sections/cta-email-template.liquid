@@ -4,7 +4,10 @@
 			<div class="small-6 cell cta-pad">
 			  <!-- Begin MailChimp Signup Form -->
           <div id="mc_embed_signup">
-          <form action="//ayoba-yo.us11.list-manage.com/subscribe/post?u=53127de0b6e30249d9bc29f9f&amp;id=fb3467f07c" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <form data-abide novalidate action="//ayoba-yo.us11.list-manage.com/subscribe/post?u=53127de0b6e30249d9bc29f9f&amp;id=fb3467f07c" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+            <div data-abide-error class="alert callout" style="display: none;">
+              <p><i class="fi-alert"></i> There are some errors in your form.</p>
+            </div>
               <div id="mc_embed_signup_scroll">
             {% if section.settings.cta-h3 != blank %}
               <h3 class="product-feature-h2">{{ section.settings.cta-h3 | escape }}</h3>
@@ -13,7 +16,8 @@
               <p>{{ section.settings.cta-p | escape }}</p>
           {% endif %}
           <div class="mc-field-group">
-            <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+            <input required type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+            <span class="form-error">Please enter your email to subscribe.</span>
           </div>
             <div id="mce-responses" class="clear">
               <div class="response" id="mce-error-response" style="display:none"></div>
@@ -23,8 +27,9 @@
               <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button primary" data-open="subscribe"></div>
               </div>
           </form>
-          <div class="reveal" id="subscribe" data-reveal>
+          <div class="reveal text-center" id="subscribe" data-reveal>
             <p class="lead">Thanks for Subscribing!</p>
+            <p>Please be sure to check your email for verification.</p>
             <button class="close-button" data-close aria-label="Close modal" type="button">
               <span aria-hidden="true">&times;</span>
             </button>

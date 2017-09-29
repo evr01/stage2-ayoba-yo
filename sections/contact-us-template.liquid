@@ -1,11 +1,11 @@
-<section>
+<section itemprop="mainEntity" itemscope itemtype="http://schema.org/ContactPage">
   <div class="contact-section"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}>
     <div class="grid-container">
 
       <div class="grid-x align-center">
         <div class="cell small-10 medium-8 {% if section.settings.second-text-h1-align == 'right' %}text-right{% elsif section.settings.second-text-h1-align == 'center' %}text-center{% elsif section.settings.second-text-h1-align == 'left' %}text-left{% endif %}">
 
-          <h1>{{ page.title }}</h1>
+          <h1 itemprop="name">{{ page.title }}</h1>
 
         </div> 
       </div>
@@ -16,7 +16,7 @@
 
 
           {% if page.content.size > 0 %}
-            <p class="lead">
+            <p class="lead" itemprop="description">
               {{ page.content }}
             </p>
           {% endif %}

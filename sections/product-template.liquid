@@ -1,4 +1,5 @@
-<section itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
+<section itemprop="mainEntity" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
+<div>
 <meta itemprop="name" content="{{ product.title }}">
 <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
 <meta itemprop="image" content="{{ product.featured_image.src | img_url: '2048x' }}">
@@ -35,36 +36,17 @@
 <div class="product-page-align">
   <div class="grid-container">
      <div class="grid-x">
-    
-
-
-
-
-
-
-
       <div class="cell small-12 medium-8 mobile-align-center {% if block.settings.product-h1-align == 'right' %}text-right{% elsif section.settings.product-h1-align == 'center' %}text-center{% elsif section.settings.second-product-h1 == 'left' %}text-left{% endif %}">
         <h1 itemprop="name">{{ product.title }}</h1>
 
   
         {% for field in product.metafields.ProductPageHTwo %}
-          <h2 class="product-h2">{{ field | last }}</h2>
+          <h2 itemprop="description" class="product-h2">{{ field | last }}</h2>
         {% endfor %}
    
         {% for field in product.metafields.ProductPageHTwoSEO %}
-          <h2 class="product-h2">{{ field | last }}</h2>
+          <h2 itemprop="description" class="product-h2">{{ field | last }}</h2>
         {% endfor %}
-
-
-
-
-
-
-
-
-
-
-
 
       <div class="small-12 cell">
         <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
@@ -72,123 +54,25 @@
       <div class="small-12 cell btn-group-pad">
         <p>Product Type</p>
         {% include 'product-form' %}
-      <!--  <div class="button-group mobile-align-center">
-          {% for block in section.blocks %} 
-          {% if block.type == 'select' %}
-              <button class="button btn-pad {% if block.settings.product-btn-type == 'primary' %}primary{% elsif block.settings.product-btn-type == 'secondary' %}secondary{% endif %}">{{ block.settings.product-btn-label }}</button>
-          {% endif %}
-          {% endfor %}
-        </div> -->
       </div>
-   <!--   <div class="small-12 cell btn-group-pad">
-        <div class="grid-x grid-margin-x mobile-align-center">
-          <div class="medium-12 large-6 cell btn-group-pad">
-            <p>Delivery Type</p>
-            <div class="button-group expanded mobile-align-center">
-              {% for block in section.blocks %} 
-              {% if block.type == 'select-again' %}
-                  <button class="button btn-pad {% if block.settings.deliver-btn-type == 'primary' %}primary{% elsif block.settings.deliver-btn-type == 'secondary' %}secondary{% endif %}">{{ block.settings.deliver-btn-label }}</button>
-              {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-          <div class="medium-12 large-6 cell">
-           
-          </div>
-        </div>
-      </div> 
-      <div class="small-12 cell">
-          
-        <p>
-          {% comment %}
-            You can show a leading 'from' or 'up to' by checking 'product.price_varies'
-            if your variants have different prices.
-          {% endcomment %}
-          {% if on_sale %}
-            {% if product.price_varies %}
-              {% assign sale_price = product.price | money %}
-              {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
-            {% else %}
-              <strong>{{ 'products.product.on_sale' | t }}</strong>
-              {{ product.price | money }}
-            {% endif %}
-          {% else %}
-            {% if product.price_varies %}
-              {% assign price = product.price | money %}
-              {{ 'products.general.from_text_html' | t: price: price }}
-            {% else %}
-              {{ product.price | money }}
-            {% endif %}
-          {% endif %}
-          {% if sold_out %}
-            <br><strong>{{ 'products.product.sold_out' | t }}</strong>
-          {% endif %}
-          {% if on_sale %}
-            <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
-            <br><s>{{ product.compare_at_price | money }}</s>
-          {% endif %}
-        </p>
-
       </div>
-      <div class="small-12 cell">
-        <button value="Add To Cart" class="button" type="submit" name="add" id="AddToCart-{{ section.id }}">
-          <span id="AddToCartText-{{ section.id }}">
-            {% unless current_variant.available %}
-              {{ 'products.product.sold_out' | t }}
-            {% else %}
-              {{ 'products.product.add_to_cart' | t }}
-            {% endunless %}
-          </span>
-        </button>
-      </div> -->
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <div class="show-for-medium cell medium-4">
         <div class="grid-x">
           <div class="cell small-12">
             {% if product.url == '/products/traditional-biltong-south-african-jerky' %}
-              <img class="" src="{{ 'biltong-traditional.png' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Traditional Biltong, South African Jerky, 2oz snack bag"> 
+              <img src="{{ 'biltong-traditional-product.png' | asset_url }}" itemprop="image" alt="Ayoba-Yo Traditional Biltong, South African Jerky, 2oz snack bag"> 
             {% elsif product.url == '/products/spicy-biltong-south-african-jerky' %}
-              <img class="" src="{{ 'biltong-spicy.png' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Spicy Biltong, South African Jerky, 2oz snack bag">
+              <img src="{{ 'biltong-spicy.png' | asset_url }}" itemprop="image" alt="Ayoba-Yo Spicy Biltong, South African Jerky, 2oz snack bag">
             {% elsif product.url == '/products/droewors-air-dried-beef-stick' %}
-              <img class="" src="{{ 'droewors.png' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Droewors, South African Jerky, 2oz snack bag">
+              <img src="{{ 'droewors-product.png' | asset_url }}" itemprop="image" alt="Ayoba-Yo Droewors, South African Jerky, 2oz snack bag">
             {% elsif product.url == '/products/boerewors-south-african-sausage' %}
-              <img class="" src="{{ 'boerewors.png' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Boerewors, South African Sausage, 16oz bag">
+              <img src="{{ 'boerewors.png' | asset_url }}" itemprop="image" alt="Ayoba-Yo Boerewors, South African Sausage, 16oz bag">
             {% elsif product.url == '/products/combo-packs' %}
-              <img class="" src="{{ 'combo-pack.png' | asset_url }}" itemprop="{{}}" alt="Ayoba-Yo Boerewors, South African Sausage, 16oz bag">
+              <img src="{{ 'combo-pack.png' | asset_url }}" itemprop="image" alt="Ayoba-Yo Biltong and Droewors Combo Packs">
+            {% elsif product.url == '/products/whole-biltong-slabs' %}
+              <img src="{{ 'whole-biltong-product-display.png' | asset_url }}" itemprop="image" alt="Ayoba-Yo Whole Uncut Biltong Beef Slab">
             {% else %}
-            {% endif %}
-
-
-
-            
+            {% endif %} 
           </div>
         </div>
       </div>
@@ -203,13 +87,14 @@
 
   
 
-</section>
+</div>
 {% include 'blurb' %}
-<section class="product-description">
+<div class="product-description">
   <div class="grid-container">
     <div class="grid-x grid-margin-x">
-      <div class="small-12 medium-6 cell">
-        <h2>Product Description</h2>
+      <div itemprop="description" class="small-12 medium-6 cell">
+        <h2>{{ product.title }}</h2>
+        <h3>Product Description</h3>
         <p>{{ product.description }}</p>
       </div>
       {% if product.url == '/products/traditional-biltong-south-african-jerky' %}
@@ -220,10 +105,13 @@
         {% include 'nutrition-droewors' %}
       {% elsif product.url == '/products/boerewors-south-african-sausage' %}
         {% include 'nutrition-boerewors' %}
+      {% elsif product.url == '/products/whole-biltong-slabs' %}
+        {% include 'nutrition-slab' %}
       {% else %}
       {% endif %}
     </div>
   </div>
+</div>
 </section>
 
 {% include 'related-products' %}
