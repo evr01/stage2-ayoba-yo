@@ -12,7 +12,7 @@
     </div>
     <div class="grid-x align-center">
       <div class="cell small-12">
-        <form action="/search" method="get" role="search" class="search align-center">
+        <form action="/search" method="get" role="search" class="align-center">
           <div class="grid-x grid-margin-x align-center">
           <div class="cell small-4 float-right">
             <input type="search"
@@ -30,39 +30,34 @@
         </div>
         </form>
         {% if search.performed and search.results_count == 0 %}
-          <hr class="hr--small hr--invisible">
           <p>{{ 'general.search.no_results_html' | t: terms: search.terms }}</p>
         {% endif %}
       </div>
     </div>
 
-        {% if search.performed %}
-          {% if search.results_count > 0 %}
-            <hr>
-          {% endif %}
      <div class="grid-container">
-        <div class="grid-x">
+        <div class="grid-x align-center">
           <div class="cell small-12" itemprop="description">
             {% for item in search.results %}
-              <a href="{{ item.url }}" class="list-view-item">
+              <a href="{{ item.url }}" class="search-item">
                 {% if item.object_type == 'product' %}
                   {% include 'product-card-list', product: item %}
                 {% else %}
-                  {% if item.image %}
-                    <div class="list-view-item__image-column">
-                      <div class="list-view-item__image-wrapper">
-                        <img class="list-view-item__image" src="{{ item.image.src | img_url: '600x600' }}" alt="{{ item.image.alt | escape }}">
-                      </div>
+                <div class="grid-container mobile-search-align">
+                  <div class="grid-x">
+                    <div class="cell small-12 medium-4">
+                      {% if item.image %}
+                      <img  src="{{ item.image.src | img_url: '310x310' }}" alt="{{ item.image.alt | escape }}">
+                      {% endif %}
                     </div>
-                  {% endif %}
-
-                  <div class="list-view-item__title-column">
-                    <div class="list-view-item__title">{{ item.title }}</div>
-                    <div class="">
-                      {% if item.published_at %}{{ item.published_at | date: "%b %d, %Y" }} &#8212; {% endif %}
-                      {{ item.content | strip_html | truncate: 200 }}
+                    <div class="cell small-12 medium-8">
+                      <div>{{ item.title }}</div>
+                      <div>{{ product.vendor }}</div>
+                        {% if item.published_at %}{{ item.published_at | date: "%b %d, %Y" }}{% endif %}
+             
                     </div>
                   </div>
+                </div>
                 {% endif %}
               </a>
             {% endfor %}
@@ -71,7 +66,7 @@
           {% if paginate.pages > 1 %}
             {% include 'pagination' %}
           {% endif %}
-        {% endif %}
+   
       </div>
      </div>
     </div>

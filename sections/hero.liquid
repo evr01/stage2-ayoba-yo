@@ -1,6 +1,6 @@
 <section>
   <div class="hero-section"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}');"{% endif %}>
-    <div class="grid-container">
+    <div class="grid-container hero-section-text">
 
       <div class="grid-x">
         <div class="cell small-12 {% if section.settings.second-text-h1-align == 'right' %}text-right{% elsif section.settings.second-text-h1-align == 'center' %}text-center{% elsif section.settings.second-text-h1-align == 'left' %}text-left{% endif %}">

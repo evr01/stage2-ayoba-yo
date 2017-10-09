@@ -19,14 +19,14 @@
 <div class="grid-container faq-content">
   <div class="grid-x align-center">
     <div class="cell small-12 medium-8">
-      <ul class="accordion" data-accordion data-allow-all-closed="true">
+      <ul class="accordion" data-accordion data-allow-all-closed="true" itemprop="mainEntity" itemscope itemtype="http://schema.org/Question">
       {% for block in section.blocks %}
       {% if block.type == 'faq' %}
         <li class="accordion-item" data-accordion-item>
         
           <!-- Accordion tab title -->
-          <span itemprop="mainEntity" itemscope itemtype="http://schema.org/Question">
-            <a itemprop="name" href="#" class="accordion-title"><p>{{ block.settings.question }}</p></a>
+
+            <a itemprop="name" href="#" class="accordion-title"><strong>{{ block.settings.question }}</strong></a>
           
           
 
@@ -34,7 +34,7 @@
           <div itemprop="suggestedAnswer acceptedAnswer" itemscope itemtype="http://schema.org/Answer" class="accordion-content" data-tab-content>
             <p itemprop="text">{{ block.settings.answer }}</p>
           </div>
-          </span>
+
         
         </li>
         {% endif %}

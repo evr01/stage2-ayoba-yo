@@ -6,7 +6,7 @@
       <img class="top-border" src="{{ 'border-thin-red.svg' | asset_url }}">
     </div>
   </div>
-  <section class="blurb-container">
+  <aside class="blurb-container">
     <div class="grid-x ">
       <div class="cell small-12 blurb-bullet">
         
@@ -19,7 +19,7 @@
                       <div class="grid-x align-center">
                         <div class="small-4 medium-3 large-4 cell text-center mobile-blurb-icon">{{ 'white-no-sugar.svg' | asset_url | img_tag }}</div>
                         
-                          <h3 class="small-4 medium-9 large-8 cell mobile-blurb-h4 blurb-h4 h4">{{ block.settings.product-des-one }}</h3>
+                          <h3 class="small-6 medium-9 large-8 cell mobile-blurb-h4 blurb-h4 h4">{{ block.settings.product-des-one }}</h3>
                        
                       </div>
                   </li>
@@ -27,7 +27,7 @@
                  <li>
                       <div class="grid-x align-center">
                       <div class="small-4 medium-3 large-4 cell text-center mobile-blurb-icon">{{ 'white-flex-arm.svg' | asset_url | img_tag }}</div>
-                        <h3 class="small-4 medium-9 large-8  cell mobile-blurb-h4 blurb-h4 h4">{{ block.settings.product-des-two }}</h3>
+                        <h3 class="small-6 medium-9 large-8  cell mobile-blurb-h4 blurb-h4 h4">{{ block.settings.product-des-two }}</h3>
                       </div>
                   </li>
 
@@ -36,13 +36,13 @@
                 <li>
                       <div class="grid-x align-center">
                       <div class="small-4 medium-3 large-4 cell text-center mobile-blurb-icon">{{ 'white-gluten-free.svg' | asset_url | img_tag }}</div>
-                        <h3 class="small-4 medium-9 large-8  cell mobile-blurb-h4 blurb-h4 h4">{{ block.settings.product-des-three }}</h3>
+                        <h3 class="small-6 medium-9 large-8  cell mobile-blurb-h4 blurb-h4 h4">{{ block.settings.product-des-three }}</h3>
                       </div>
                   </li>
                   <li>
                       <div class="grid-x align-center">
                       <div class="small-4 medium-3 large-4 cell text-center mobile-blurb-icon">{{ 'white-steak.svg' | asset_url | img_tag }}</div>
-                        <h3 class="small-4 medium-9 large-8  cell mobile-blurb-h4 blurb-h4 h4">{{ block.settings.product-des-four }}</h3>
+                        <h3 class="small-6 medium-9 large-8  cell mobile-blurb-h4 blurb-h4 h4">{{ block.settings.product-des-four }}</h3>
                       </div>
                   </li>
                 </div>
@@ -50,14 +50,17 @@
                   <li>
                       <div class="grid-x align-center">
                       <div class="small-4 medium-3 large-4 cell text-center mobile-blurb-icon">{{ 'white-air-dried.svg' | asset_url | img_tag }}</div>
-                        <h3 class="small-4 medium-9 large-8  cell mobile-blurb-h4 blurb-h4 h4">{{ block.settings.product-des-five }}</h3>
+                        <h3 class="small-6 medium-9 large-8  cell mobile-blurb-h4 blurb-h4 h4">{{ block.settings.product-des-five }}</h3>
                       </div>
                   </li>
                   <li>
                       <div class="grid-x align-center">
-                      <div class="small-4 medium-3 large-4 cell text-center mobile-blurb-icon">{{ 'white-check-mark.svg' | asset_url | img_tag }}</div>
-                        <h3 class="small-4 medium-9 large-8 cell mobile-blurb-h4 blurb-h4 h4">{{ block.settings.product-des-six }}</h3>
+                      <div class="small-4 medium-3 large-4 cell text-center mobile-blurb-icon" data-position="bottom" data-alignment="center">{{ 'white-check-mark.svg' | asset_url | img_tag }}</div>
+                        <h3 class="small-6 medium-9 large-8 cell mobile-blurb-h4 blurb-h4 h4">
+                          <span data-position="bottom" data-alignment="left">{{ block.settings.product-des-six }}</span></h3>
                       </div>
+
+
                   </li> 
                 </div>
               </div>
@@ -66,7 +69,7 @@
         
       </div>
     </div>
-  </section>
+  </aside>
   <div class="grid-x">
     <div class="cell small-12">
       <img class="bottom-border" src="{{ 'border-thin-red.svg' | asset_url }}">

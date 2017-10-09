@@ -19,18 +19,20 @@
       {% if product.available %}{% include 'subscription-product' %}{% endif %}
     </div>
   </div>
-  <div class="grid-x">
-      <div class="cell small-6">
-        <div class="grid-x">
-          <div class="small-1 medium-2 cell">
+  <div class="grid-x mobile-product-align">
+      <div class="cell small-6 medium-12">
+        <div class="grid-x mobile-product-align">
+          <div class="small-6 medium-2 large-2 cell">
             {% if section.settings.show_quantity_selector %}
-             <p>Quantity</p>
-              <div class="quantity-input mobile-align-center">
-                <input type="number" id="Quantity" name="quantity" value="1" min="1" pattern="[0-9]*">
-              </div>
+             <div class="quantity-input-align">
+               <p>Quantity</p>
+                <div class="quantity-input mobile-align-center">
+                  <input type="number" id="Quantity" name="quantity" value="1" min="1" pattern="[0-9]*">
+                </div>
+             </div>
             {% endif %}
           </div>
-          <div class="cell small-11 medium-10 float-left">
+          <div class="cell small-4 medium-2 large-10 float-left">
              
              <p>
               {% if product.variants.size > 1 %}

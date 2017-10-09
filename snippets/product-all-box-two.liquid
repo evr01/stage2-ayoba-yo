@@ -1,5 +1,5 @@
 <div itemprop="product" itemscope itemtype="http://schema.org/Product">
-    <div class="grid-x">
+  <div class="grid-x">
     <div class="product-all-container small-order-2 medium-order-1 small-12 medium-6 cell {% if block.settings.product-two-align == 'right' %}align-right{% elsif block.settings.product-two-align == 'center' %}align-center{% elsif block.settings.product-two-align == 'left' %}align-left{% endif %} {% if block.settings.product-two-color == 'green' %}prod-all-green{% elsif block.settings.product-two-color == 'red' %}prod-all-red{% elsif block.settings.product-two-color == 'orange' %}prod-all-orange{% elsif block.settings.product-two-color == 'black' %}prod-all-black{% elsif block.settings.product-two-color == 'brown' %}{% elsif block.settings.product-two-color == 'blue' %}prod-all-blue{% endif %}">
         <div class="{% if block.settings.product-two-align == 'right' %}text-right{% elsif block.settings.product-two-align == 'center' %}text-center{% elsif block.settings.product-two-align == 'left' %}text-left{% endif %}">
            <article>
@@ -33,9 +33,11 @@
            </article>
         </div>
       </div>
-      <div class="third-section-hero medium-6 small-12 cell small-order-1 medium-order-2" {% if block.settings.product-two-pic %} style="background-image: url('{{ block.settings.product-two-pic | img_url: '2048x' }}'); background-position: center {{ block.settings.product-cat-two-align }};"{% endif %}></div>
-    </div>
+      <a class="medium-6 small-12 cell small-order-1 medium-order-2" itemprop="url" href="{{ block.settings.product-two-link }}">
+         <div class="third-section-hero" {% if block.settings.product-two-pic %} style="background-image: url('{{ block.settings.product-two-pic | img_url: '2048x' }}'); background-position: center;"{% endif %}></div>
+      </a>
   </div>
+</div>
 
 
 

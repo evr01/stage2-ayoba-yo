@@ -49,7 +49,14 @@
         {% endfor %}
 
       <div class="small-12 cell">
-        <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+        <div class="grid-x mobile-product-align">
+          <div class="cell medium-6 large-4">
+            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+          </div>
+          <div class="cell medium-3 large-2">
+            <a href="#learnmore" data-smooth-scroll>Learn More</a>
+          </div>
+        </div>
       </div>
       <div class="small-12 cell btn-group-pad">
         <p>Product Type</p>
@@ -68,7 +75,21 @@
             {% elsif product.url == '/products/boerewors-south-african-sausage' %}
               <img src="{{ 'boerewors.png' | asset_url }}" itemprop="image" alt="Ayoba-Yo Boerewors, South African Sausage, 16oz bag">
             {% elsif product.url == '/products/combo-packs' %}
-              <img src="{{ 'combo-pack.png' | asset_url }}" itemprop="image" alt="Ayoba-Yo Biltong and Droewors Combo Packs">
+              <div class="orbit align-center text-center" role="region" aria-label="Ayoba-Yo Product Pictures" data-orbit data-timer-delay="4500" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
+                <div class="orbit-wrapper">
+                  <ul class="orbit-container">
+                    <li class="is-active orbit-slide">
+                        <img src="{{ 'biltong-traditional-product.png' | asset_url }}" itemprop="image" alt="Ayoba-Yo Biltong and Droewors Combo Packs, 2oz snack bag"> 
+                    </li>
+                    <li class="orbit-slide">
+                        <img src="{{ 'biltong-spicy.png' | asset_url }}" itemprop="image" alt="Ayoba-Yo Biltong and Droewors Combo Packs, 2oz snack bag">
+                    </li>
+                    <li class="orbit-slide">
+                        <img src="{{ 'droewors-product.png' | asset_url }}" itemprop="image" alt="Ayoba-Yo Biltong and Droewors Combo Packs, 2oz snack bag">
+                    </li>
+                  </ul>
+                </div>
+              </div>
             {% elsif product.url == '/products/whole-biltong-slabs' %}
               <img src="{{ 'whole-biltong-product-display.png' | asset_url }}" itemprop="image" alt="Ayoba-Yo Whole Uncut Biltong Beef Slab">
             {% else %}
@@ -89,12 +110,12 @@
 
 </div>
 {% include 'blurb' %}
-<div class="product-description">
+<div class="product-description" id="learnmore">
   <div class="grid-container">
     <div class="grid-x grid-margin-x">
       <div itemprop="description" class="small-12 medium-6 cell">
         <h2>{{ product.title }}</h2>
-        <h3>Product Description</h3>
+        <h3>Product Description</h3><a href="#shopify-product-reviews" data-smooth-scroll>Check out our reviews</a>
         <p>{{ product.description }}</p>
       </div>
       {% if product.url == '/products/traditional-biltong-south-african-jerky' %}
@@ -107,6 +128,8 @@
         {% include 'nutrition-boerewors' %}
       {% elsif product.url == '/products/whole-biltong-slabs' %}
         {% include 'nutrition-slab' %}
+      {% elsif product.url == '/products/combo-packs' %}
+        {% include 'nutrition-combo' %}
       {% else %}
       {% endif %}
     </div>

@@ -35,7 +35,7 @@
   {% assign sold_out = false %}
 {% endif %}
 
-    <div class="small-12 medium-4 cell text-center">
+    <div class="small-12 medium-4 cell text-center review-pad">
 
         {% comment %}
           Link to your product with the 'within: collection' filter for the link to be aware of the collection.
@@ -52,10 +52,6 @@
         <h4 class="review-title">
           <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
         </h4>
-
-        {% for field in product.metafields.pronounce %}
-          <p>{{ field | last }}</p>
-        {% endfor %}
 
         <p> Starting at {{ product.price | money }} </p>
 

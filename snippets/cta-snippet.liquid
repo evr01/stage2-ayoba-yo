@@ -1,7 +1,7 @@
 <section class="collection-cta-pad">
 	<div class="grid-container">
 		<div class="grid-x {% if block.settings.cta-h3-align == 'right' %}text-right{% elsif block.settings.cta-h3-align == 'center' %}text-center{% elsif block.settings.cta-h3-align == 'left' %}text-left{% endif %} align-center">
-			<div class="small-6 cell cta-pad">
+			<div class="small-12 medium-6 cell cta-pad">
 				<!-- Begin MailChimp Signup Form -->
 					<div id="mc_embed_signup">
 					<form data-abide novalidate action="//ayoba-yo.us11.list-manage.com/subscribe/post?u=53127de0b6e30249d9bc29f9f&amp;id=76313f95ea" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
@@ -18,7 +18,7 @@
 		
 							<div class="mc-field-group">
 
-								<input required placeholder="Email Address" type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+								<input required pattern="email" placeholder="Email Address" type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
 							</div>
 							<div id="mce-responses" class="clear">
 								<div class="response" id="mce-error-response" style="display:none"></div>

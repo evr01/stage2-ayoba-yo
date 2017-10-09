@@ -1563,7 +1563,7 @@ a {
   border: 1px solid transparent;
   border-radius: $border-radius;
   padding: $input-padding-top-bottom-small $input-padding-left-right-small;
-  background-color: $color-btn-primary;
+  background-color: #60BBD4;
   color: $color-btn-primary-text;
   font-family: $font-stack-header;
   font-weight: $font-weight-header;
@@ -1597,7 +1597,7 @@ a {
 .btn--secondary {
   background-color: $color-small-button;
   color: $color-small-button-text;
-  border-color: $color-border;
+  border-color: #EBE9E9;
 }
 
 .btn--small {
@@ -1671,14 +1671,6 @@ a {
 /*================ Return to collection/blog links ================*/
 .return-link-wrapper {
   margin: ($gutter-site * 1.5) 0;
-
-  @include media-query($small) {
-    margin-bottom: (-$section-spacing) - 1; // same as .site-footer
-
-    .btn {
-      display: block;
-    }
-  }
 }
 
 /*================ #Tables ================*/
@@ -1925,11 +1917,6 @@ optgroup {
   font-weight: $font-weight-bold;
 }
 
-// Force option color (affects IE only)
-option {
-  color: $color-text;
-  background-color: $color-body;
-}
 
 select::-ms-expand {
   display: none;
@@ -2528,7 +2515,6 @@ hr {
 .list-view-item__image-column {
   display: table-cell;
   vertical-align: middle;
-  width: 130px;
 
   @include media-query($small) {
     width: 85px;

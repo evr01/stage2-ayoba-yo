@@ -1,67 +1,52 @@
 <section itemprop="mainEntity" itemscope itemtype="http://schema.org/ContactPage">
   <div class="contact-section"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}>
-    <div class="grid-container">
-
+    <div class="grid-container ie-mid-align-fix contact-section-text">
       <div class="grid-x align-center">
-        <div class="cell small-10 medium-8 {% if section.settings.second-text-h1-align == 'right' %}text-right{% elsif section.settings.second-text-h1-align == 'center' %}text-center{% elsif section.settings.second-text-h1-align == 'left' %}text-left{% endif %}">
-
+        <div class="cell small-10 medium-10 {% if section.settings.second-text-h1-align == 'right' %}text-right{% elsif section.settings.second-text-h1-align == 'center' %}text-center{% elsif section.settings.second-text-h1-align == 'left' %}text-left{% endif %}">
           <h1 itemprop="name">{{ page.title }}</h1>
-
         </div> 
       </div>
-
       <div class="grid-x align-center">
         <div class="cell small-10 medium-6 {% if section.settings.tagline-align == 'right' %}text-right{% elsif section.settings.tagline-align == 'center' %}text-center{% elsif section.settings.tagline-align == 'left' %}text-left{% endif %}">
-
-
-
           {% if page.content.size > 0 %}
             <p class="lead" itemprop="description">
               {{ page.content }}
             </p>
           {% endif %}
-
         </div> 
       </div>
-
       <div class="grid-x">
         <div class="cell small-12 {% if section.settings.button-home-align == 'right' %}text-right{% elsif section.settings.button-home-align == 'center' %}text-center{% elsif section.settings.button-home-align == 'left' %}text-left{% endif %}">
-
             {% if section.settings.button_label != blank and section.settings.button_link != blank %}
               <a class="button primary" href="{{ section.settings.button_link }}">
                 {{ section.settings.button_label | escape }}
               </a>
             {% endif %}
-
         </div>
-
       </div>
     </div>
   </div>
   <div class="grid-container contact-form">
     <div class="grid-x align-center">
       <div class="cell small-8">
-        {% form 'contact' %}
-
-          {% if form.posted_successfully? %}
-            <p class="note form-success">
-              {{ 'contact.form.post_success' | t }}
-            </p>
-          {% endif %}
-
-          {{ form.errors | default_errors }}
+        <form data-abide novalidate>
+          <div data-abide-error class="alert callout" style="display: none;">
+            <p><i class="fi-alert"></i> There are some errors in your form.</p>
+          </div>
 
           <div class="grid-x grid-margin-x">
             <div class="cell small-6">
               <label for="ContactFormName">{{ 'contact.form.name' | t }}</label>
-              <input type="text" id="ContactFormName" name="contact[name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+              <input pattern="alpha_numeric" type="text" id="ContactFormName" name="contact[name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
             </div>
             <div class="cell small-6">
-              <label for="ContactFormReason">Reasoning for Contacting</label>
-              <select id="ContactFormReason" name="contact[Reason]">
-                <option>I love Ayoba-Yo and jest want to say thank you</option>
-                <option>I have an issue with Ayoba-Yo</option>
-                <option>There's something wrong with my order</option>
+              <label for="ContactFormReason">Reason</label>
+              <select required id="ContactFormReason" name="contact[Reason]">
+                <option value=""></option>
+                <option value="I love your biltong">I love your biltong</option>
+                <option value="I have an issue with Ayoba-Yo">I have an issue with Ayoba-Yo</option>
+                <option value="I have the wrong order">I have the wrong order</option>
+                <option value="Other">Other</option>
               </select>
             </div>
           </div>
@@ -69,7 +54,7 @@
           <div class="grid-x grid-margin-x">
             <div class="cell small-6">
               <label for="ContactFormEmail" class="{% if form.errors contains 'email' %}label--error{% endif %}">{{ 'contact.form.email' | t }}</label>
-              <input type="email" id="ContactFormEmail" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %}">
+              <input required pattern="email" type="email" id="ContactFormEmail" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %}">
             </div>
             <div class="cell small-6">
               <label for="ContactFormPhone">{{ 'contact.form.phone' | t }}</label>
@@ -80,7 +65,7 @@
            <div class="grid-x">
             <div class="cell small-12">
               <label for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
-              <textarea rows="10" id="ContactFormMessage" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+              <textarea required rows="10" id="ContactFormMessage" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
             </div>
           </div>
 
@@ -89,13 +74,11 @@
               <input type="submit" class="button primary" value="{{ 'contact.form.submit' | t }}">
             </div>
           </div>
-
-        {% endform %}
+        </form>
       </div>
     </div>
   </div>
 </section>
-
 
 
 

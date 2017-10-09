@@ -1,11 +1,11 @@
 <article itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
   <meta itemprop="publisher" content="Ayoba-Yo">
-  <div class="blog-article"{% if article.image %} itemprop="image" style="background-image: url('{{ article | img_url: '2048x', scale: 2 }}');"{% endif %}>
-    <div class="grid-container">
+  <div class="blog-article"{% if article.image %} itemprop="image" style="background-image: url('{{ article | img_url: '2860x' }}');"{% endif %}>
+    <div class="grid-container hero-section-text">
       <div class="grid-x">
         <div class="cell small-12 {% if section.settings.second-text-h1-align == 'right' %}text-right{% elsif section.settings.second-text-h1-align == 'center' %}text-center{% elsif section.settings.second-text-h1-align == 'left' %}text-left{% endif %}">
 
-          <header class="meet-hero">
+          <header>
             <h1 itemprop="name headline">{{ article.title }}</h1>
             {% if section.settings.blog_show_date %}
             <p class="lead" itemprop="datePublished">
@@ -40,7 +40,7 @@
 
 <div class="grid-x">
   <div class="cell small-12">
-    <img class="top-border" src="{{ 'border-thin-white.svg' | asset_url }}" itemprop="{{}}">
+    <img class="top-border shadow-border-top" src="{{ 'border-thin-white.svg' | asset_url }}" itemprop="{{}}">
   </div>
 </div>
 <section class="article-cta">
@@ -70,7 +70,7 @@
               <div class="mc-field-group">
                 <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
               </label>
-                <input required type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+                <input required pattern="email" type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
                 <span class="form-error">
                   Please enter your email
                 </span>
@@ -116,7 +116,7 @@
 </section>
 <div class="grid-x">
   <div class="cell small-12">
-    <img class="bottom-border" src="{{ 'border-thin-white.svg' | asset_url }}" itemprop="{{}}">
+    <img class="bottom-border shadow-border-bottom" src="{{ 'border-thin-white.svg' | asset_url }}" itemprop="{{}}">
   </div>
 </div>
 <aside>
@@ -127,10 +127,10 @@
         </div>
         {% for a in blog.articles limit: 3 %}
 
-          <div class="small-12 medium-4 cell text-center">
+          <div class="small-12 medium-4 cell text-center related-pad">
 
               <h3 class="h6">
-                <a href="{{ a.url }}" title="{{ a.title | escape }}">{{ a.title }}</a>
+                <a href="{{ a.url }}" title="{{ a.title | escape }}">{{ a.title | truncatewords: 3 }}</a>
               </h3>
               <p>{{ a.published_at | date: format: "month_day_year" }}</p>
               <p>{{ 'blogs.article.by_author' | t: author: a.author }}</p>
@@ -147,15 +147,8 @@
                 </a>
               {% endif %}
               <a href="{{ a.url }}" title="{{ a.title | escape }}">Read More <span class="icon-right-arrow"></span></a>
-
-                              
-        
-              
-              
-
           </div>
         {% endfor %}
-
         </div>
   </div>
 </aside>

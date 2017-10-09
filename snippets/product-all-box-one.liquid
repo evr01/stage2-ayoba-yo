@@ -1,7 +1,9 @@
   <div itemprop="product" itemscope itemtype="http://schema.org/Product">
     <div class="grid-x">
-    <div class="third-section-hero medium-6 small-12 cell" {% if block.settings.product-one-pic %} style="background-image: url('{{ block.settings.product-one-pic | img_url: '2048x' }}'); background-position: center;"{% endif %}>  
-    </div>
+    <a class="medium-6 small-12 cell" itemprop="url" href="{{ block.settings.product-one-link }}">
+	    <div class="third-section-hero" {% if block.settings.product-one-pic %} style="background-image: url('{{ block.settings.product-one-pic | img_url: '2048x' }}'); background-position: center;"{% endif %}></div>
+    </a>
+
     <div class="product-all-container small-12 medium-6 cell {% if block.settings.product-one-align == 'right' %}align-right{% elsif block.settings.product-one-align == 'center' %}align-center{% elsif block.settings.product-one-align == 'left' %}align-left{% endif %} {% if block.settings.product-one-color == 'green' %}prod-all-green{% elsif block.settings.product-one-color == 'red' %}prod-all-red{% elsif block.settings.product-one-color == 'orange' %}prod-all-orange{% elsif block.settings.product-one-color == 'black' %}prod-all-black{% elsif block.settings.product-one-color == 'brown' %}{% elsif block.settings.product-one-color == 'blue' %}prod-all-blue{% endif %}">
         <div class="{% if block.settings.product-one-align-text == 'right' %}text-right{% elsif block.settings.product-one-align-text == 'center' %}text-center{% elsif block.settings.product-one-align-text == 'left' %}text-left{% endif %}">
            <article>

@@ -23,7 +23,7 @@
             <div class="small-12 medium-4 cell">
               <li>
                   <div class="grid-x">
-                    <div class="small-4 medium-4 cell text-center">{{ 'icon-no-sugar.svg' | asset_url | img_tag }}</div>
+                    <div class="small-4 medium-4 cell text-center">{{ 'no-sugar.svg' | asset_url | img_tag }}</div>
                     {% if section.settings.product-all-one != blank %}
                       <h3 class="small-8 medium-8 cell text-font h4">{{ section.settings.product-all-one }}</h3>
                     {% endif %}
@@ -67,9 +67,9 @@
               </li>
               <li>
                   <div class="grid-x">
-                  <div class="small-4 medium-4 cell text-center">{{ 'icon-whole30.svg' | asset_url | img_tag }}</div>
+                  <div class="small-4 medium-4 cell text-center" data-position="bottom" data-alignment="center">{{ 'icon-whole30.svg' | asset_url | img_tag }}</div>
                   {% if section.settings.product-all-six  != blank %}
-                    <h3 class="small-8 medium-8 cell text-font h4">{{ section.settings.product-all-six }}</h3>
+                    <h3 class="small-8 medium-8 cell text-font h4" data-position="bottom" data-alignment="left">{{ section.settings.product-all-six }}</h3>
                   {% endif %}
                   </div>
               </li>

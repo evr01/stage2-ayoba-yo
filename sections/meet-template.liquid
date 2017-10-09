@@ -10,7 +10,7 @@
         {% endif %}
 			</div>
 			<div class="cell small-10 medium-6 text-center" itemprop="description">
-        {{ page.content }}
+        <p>{{ page.content }}</p>
 			</div>
 		</div>
 	</div>
@@ -25,7 +25,7 @@
           <div class="grid-x align-center meet-container grid-margin-x" itemprop="mainEntity" itemscope itemtype="http://schema.org/Question">
               {% if block.type == 'meet-faq' %}
               <div class="cell small-10 medium-3 text-center" style="text-align: left;">
-                <img class="meat-icon" alt="{{block.settings.meet-faq-alt}}" src="{{ block.settings.meat-image | img_url: '2048x' }}" style="float: none;" itemprop="image" />
+                <img class="meat-icon" alt="{{block.settings.meet-faq-alt}}" src="{{ block.settings.meat-image | img_url: '200x' }}" style="float: none;" itemprop="image" />
               </div>
               <div class="cell small-10 medium-9 mobile-center"> 
                 <h2 itemprop="name">{{ block.settings.meet-faq-h2 }}</h2>
@@ -49,6 +49,12 @@
 		</div>
 	</div>
 </section>
+
+
+
+
+
+
 
 {% schema %}
   {

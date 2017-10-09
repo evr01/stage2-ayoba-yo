@@ -26,6 +26,8 @@
       </div>
       <div class="title-bar-right">
           <div class="login-icons">
+
+            
               <a href="/cart" class="icon-padding">
                 <i class="fi-shopping-cart"></i>
                 <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
@@ -105,7 +107,7 @@
            <div class="login-icons">
               
 
-              <a href="/cart" class="icon-padding">
+              <a href="/cart" class="icon-padding"  data-toggle="cart-dropdown">
                 <i class="fi-shopping-cart"></i>
                 <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
                 <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
@@ -115,7 +117,50 @@
                     <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
                   </div>
                 {% endif %}
+
+               
               </a>
+               <div class="dropdown-pane" id="cart-dropdown" data-dropdown data-hover="true" data-hover-pane="true">
+                  <div class="checkout-summary">
+                    <div class="checkout-summary-title">
+                      <h5>Your Order</h5>
+                      <h5>Item Count: {{ cart.item_count }}</h5>
+                    </div>
+                    {% for item in cart.items %}
+                    <div class="checkout-summary-item">
+                      <div class="item-name">
+                        <a class="cart-anchor" href="{{ item.url }}" itemprop="url">{{ item.product.title }}  &#45;
+                        {% unless item.variant.title contains 'Default' %}
+                          {% for option in item.product.options %}
+                            {{ option }}: {{ item.variant.options[forloop.index0] }}
+                        {% endfor %}
+                        </a>
+
+
+                      {% endunless %}
+                      </div>
+                      <div class="item-price">
+                        <p class="title">{{ item.price | money }}</p>
+                        <a href="#">Remove</a>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    <div class="checkout-summary-details">
+                      <div class="left">
+                        <p><strong>Subtotal:</strong></p>
+                      </div>
+                      <div class="right">
+                        <p>{{ cart.total_price | money }}</p>
+                      </div>
+                    </div>
+                    <a href="/cart" class="primary button expanded">Proceed to Checkout</a>
+                  </div>
+                </div>
+
+
+
+
+
               {% if shop.customer_accounts_enabled %}
                 {% if customer %}
                   <a href="/account" class="icon-padding">
@@ -141,12 +186,12 @@
     <!-- /medium and larger nav bar -->
       <form class="search-drop search-align" action="/search">
         <div class="grid-container">
-          <div class="grid-x grid-margin-x">
-            <div class="cell auto">
-              <input class="search-field" placeholder="Search" name="q" value="{{ search.terms | escape }}"  />
+          <div class="grid-x grid-margin-x align-center">
+            <div class="cell small-8 medium-10">
+              <input class="search-field float-right" placeholder="Search" name="q" value="{{ search.terms | escape }}"  />
             </div>
-            <div class="cell small-2 align-center">
-              <input class="search-btn" type="submit" value="Search" />
+            <div class="cell small-4 medium-2">
+              <input class="search-btn float-left" type="submit" value="Search" />
             </div>
           </div>
         </div>
