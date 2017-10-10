@@ -82,7 +82,7 @@
             {% endif %}
         </li>
         <li>
-          <div data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="Ayoba-Yo Grass-Fed Products are Whole30 Approved" data-position="bottom" data-alignment="left">
+          <div>
             {{ 'icon-whole30.svg' | asset_url | img_tag }}
             {% if section.settings.product-feat-six  != blank %}
               <h4>{{ section.settings.product-feat-six }}</h4>
@@ -183,9 +183,9 @@
         </li>
         <li>
             <div class="grid-x">
-            <div class="small-4 medium-4 cell text-center" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="Ayoba-Yo Grass-Fed Products are Whole30 Approved" data-position="bottom" data-alignment="center">{{ 'icon-whole30.svg' | asset_url | img_tag }}</div>
+            <div class="small-4 medium-4 cell text-center">{{ 'icon-whole30.svg' | asset_url | img_tag }}</div>
             {% if section.settings.product-feat-six  != blank %}
-              <h4 class="small-8 medium-8 cell" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="Ayoba-Yo Grass-Fed Products are Whole30 Approved" data-position="bottom" data-alignment="left">{{ section.settings.product-feat-six }}</h4>
+              <h4 class="small-8 medium-8 cell">{{ section.settings.product-feat-six }}</h4>
             {% endif %}
             </div>
         </li>

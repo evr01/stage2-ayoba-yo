@@ -55,19 +55,18 @@
                         {% endif %}
                       {% endif %}
                     </span>
-                 
-
+              
                  <span>
                   {% if variant.price < variant.compare_at_price %}
                     {{ variant.compare_at_price | money }}
                   {% endif %}
                  </span>
-                 <span>each</span>
+          
                  </span>
 
               </div>
               {% else %}
-                  <div class="modal_price lead">{{ product.price | money }} each</div>
+                  <div class="modal_price lead">{{ product.price | money }}</div>
               {% endif %}
                
              </p>
